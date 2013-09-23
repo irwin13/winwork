@@ -1,0 +1,2 @@
+features and milestone :
+- generic create and edit page ?
