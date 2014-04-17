@@ -20,7 +20,7 @@ public final class StringCompressor {
     private static final Logger LOGGER = LoggerFactory.getLogger(StringCompressor.class);
     private static final String ENTRY_NAME = "entry";
 
-    public static String zip(String val) {
+    public static String compress(String val) {
         long start = System.currentTimeMillis();
 
         String result;
@@ -62,7 +62,7 @@ public final class StringCompressor {
         return result;
     }
 
-    public static String unzip(String val) {
+    public static String decompress(String val) {
         long start = System.currentTimeMillis();
         String result = null;
         byte[] byteContent = Base64.decodeBase64(val);
