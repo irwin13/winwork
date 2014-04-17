@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="id.co.quadras.dao.mybatis.model.AppSetting">
+<mapper namespace="com.irwin13.winwork.basic.model.entity.app.AppSetting">
     <!--
     <cache type="org.mybatis.hazelcast.HazelcastCache" />
     <cache type="org.mybatis.hazelcast.LoggingHazelcastCache"
@@ -16,7 +16,7 @@
     <resultMap id="AppSettingResult" type="AppSetting">
         <result property="id" column="id"/>
         <result property="active" column="active"
-                typeHandler="id.co.quadras.dao.mybatis.typehandler.OracleBooleanTypeHandler"/>
+                typeHandler="com.irwin13.winwork.mybatis.typehandler.OracleBooleanTypeHandler"/>
         <result property="createBy" column="create_by"/>
         <result property="createDate" column="create_date"/>
         <result property="lastUpdateBy" column="last_update_by"/>

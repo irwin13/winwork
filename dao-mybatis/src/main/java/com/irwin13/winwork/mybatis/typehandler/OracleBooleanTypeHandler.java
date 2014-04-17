@@ -1,4 +1,4 @@
-package id.co.quadras.dao.mybatis.typehandler;
+package com.irwin13.winwork.mybatis.typehandler;
 
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.TypeHandler;
