@@ -209,6 +209,12 @@
             <version>2.3</version>
         </dependency>
 
+        <!-- QUADRAS -->
+        <dependency>
+            <groupId>com.irwin13</groupId>
+            <artifactId>winwork-basic</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
     
 </project>

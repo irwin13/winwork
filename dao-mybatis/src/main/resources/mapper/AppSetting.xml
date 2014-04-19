@@ -55,41 +55,47 @@
         <if test="stringValue">
             AND string_value = #{stringValue}
         </if>
-        <if test="orderBy != null">
-            ORDER BY ${orderBy}
+        <if test="columnName != null and sortMethod != null">
+            ORDER BY ${columnName} ${sortMethod}
         </if>
     </sql>
 
     <sql id="defaultSearch">
         WHERE 1=1
-        <if test="searchKey != null and searchKey != ''">
+        <if test="searchKeyword != null and searchKeyword != ''">
             AND (
-            lower(code) LIKE '${searchKey}' OR
-            lower(description) LIKE '${searchKey}' OR
-            lower(string_value) LIKE '${searchKey}' OR
-            lower(setting_category) LIKE '${searchKey}' OR
+            lower(code) LIKE #{searchKeyword} OR
+            lower(description) LIKE #{searchKeyword} OR
+            lower(string_value) LIKE #{searchKeyword} OR
+            lower(setting_category) LIKE #{searchKeyword} OR
             )
         </if>
-        <if test="orderBy != null">
-            ORDER BY ${orderBy}
+        <if test="columnName != null and sortMethod != null">
+            ORDER BY ${columnName} ${sortMethod}
         </if>
     </sql>
 
-    <select id="select" parameterType="AppSetting" resultMap="AppSettingResult">
+    <select id="select" resultMap="AppSettingResult">
         SELECT
         <include refid="allField" />
         FROM app_setting
         <include refid="defaultWhere" />
     </select>
 
-    <select id="selectSearch" parameterType="string" resultMap="AppSettingResult">
+    <select id="selectCount" resultType="_long">
+        SELECT count(id) AS total
+        FROM app_setting
+        <include refid="defaultWhere" />
+    </select>
+
+    <select id="selectSearch" resultMap="AppSettingResult">
         SELECT
         <include refid="allField" />
         FROM app_setting
         <include refid="defaultSearch" />
     </select>
 
-    <select id="selectCount" parameterType="AppSetting" resultType="_long">
+    <select id="selectSearchCount" resultMap="AppSettingResult">
         SELECT count(id) AS total
         FROM app_setting
         <include refid="defaultSearch" />

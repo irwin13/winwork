@@ -5,35 +5,21 @@ import com.irwin13.winwork.basic.utilities.PojoUtil;
 /**
  * @author irwin Timestamp : 17/04/2014 19:07
  */
-public class SearchParameter {
-
-    public static final String ASC = " ASC ";
-    public static final String DESC = " DESC ";
+public class SearchParameter extends SortParameter {
 
     private final String searchKeyword;
-    private final String columnName;
-    private final String sortMethod;
 
-    public SearchParameter(String searchKeyword, String columnName, String sortMethod) {
+    public SearchParameter(String columnName, String sortMethod, String searchKeyword) {
+        super(columnName, sortMethod);
         this.searchKeyword = searchKeyword;
-        this.columnName = columnName;
-        this.sortMethod = sortMethod;
     }
 
     public String getSearchKeyword() {
         return searchKeyword;
     }
 
-    public String getColumnName() {
-        return columnName;
-    }
-
-    public String getSortMethod() {
-        return sortMethod;
-    }
-
     @Override
     public String toString() {
-        return PojoUtil.beanToString(this, false);
+        return PojoUtil.beanToString(this, true);
     }
 }

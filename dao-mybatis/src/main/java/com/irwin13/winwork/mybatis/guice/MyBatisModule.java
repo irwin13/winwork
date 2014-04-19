@@ -3,7 +3,6 @@ package com.irwin13.winwork.mybatis.guice;
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 import com.irwin13.winwork.mybatis.guice.provider.SqlSessionFactoryProvider;
-import com.irwin13.winwork.mybatis.guice.provider.SqlSessionProvider;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
