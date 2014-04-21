@@ -25,7 +25,7 @@
     </settings>
 
     <typeAliases>
-        <typeAlias alias="AppSetting" type="id.co.quadras.dao.mybatis.model.AppSetting"/>
+        <typeAlias alias="AppSetting" type="com.irwin13.winwork.basic.model.entity.app.AppSetting"/>
     </typeAliases>
 
     <environments default="local">

@@ -101,7 +101,7 @@
         <include refid="defaultSearch" />
     </select>
 
-    <select id="selectById" parameterType="string" resultMap="AppSettingResult">
+    <select id="selectById" resultMap="AppSettingResult">
         SELECT
         <include refid="allField" />
         FROM app_setting
@@ -129,7 +129,7 @@
         setting_category = #{settingCategory},
         active = #{active},
         last_update_by = #{lastUpdateBy},
-        last_update_date = #{lastUpdateDate},
+        last_update_date = #{lastUpdateDate}
         WHERE id = #{id}
     </update>
 

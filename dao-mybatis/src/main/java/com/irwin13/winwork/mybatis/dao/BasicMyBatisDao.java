@@ -55,6 +55,7 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
         try {
             session = openNewSqlSession();
             result = insert(session, model);
+            session.commit();
         } finally {
             closeSqlSession(session);
         }
@@ -72,6 +73,7 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
         try {
             session = openNewSqlSession();
             result = update(session, model);
+            session.commit();
         } finally {
             closeSqlSession(session);
         }
@@ -79,7 +81,7 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
     }
 
     public int update(SqlSession session, M model) {
-        return session.update(getModelClass().getCanonicalName() + UPDATE + model);
+        return session.update(getModelClass().getCanonicalName() + UPDATE, model);
     }
 
     public int delete(M model) {
@@ -88,6 +90,7 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
         try {
             session = openNewSqlSession();
             result = delete(session, model);
+            session.commit();
         } finally {
             closeSqlSession(session);
         }
@@ -158,7 +161,7 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
     public long selectCount(SqlSession session, M filter) {
         long result = 0;
         if (filter == null) return result;
-        result = session.selectOne(getModelClass().getCanonicalName() + SELECT_COUNT, filter);
+        result = (Long) session.selectOne(getModelClass().getCanonicalName() + SELECT_COUNT, filter);
         return result;
     }
 
@@ -204,7 +207,7 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
     public long selectSearchCount(SqlSession session, SearchParameter searchParameter) {
         long result;
         LOGGER.debug("COUNT searchParameter = {}", searchParameter);
-        result = session.selectOne(getModelClass().getCanonicalName() + SELECT_SEARCH_COUNT, searchParameter);
+        result = (Long) session.selectOne(getModelClass().getCanonicalName() + SELECT_SEARCH_COUNT, searchParameter);
         return result;
     }
 
@@ -257,9 +260,9 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
     @SuppressWarnings("unchecked")
     public M selectById(SqlSession session, I id, boolean fetchChild) {
         LOGGER.debug("Id = {}", id);
-        M object = session.selectOne(getModelClass().getCanonicalName() + SELECT_BY_ID, id);
+        M object = (M) session.selectOne(getModelClass().getCanonicalName() + SELECT_BY_ID, id);
         if (fetchChild) {
-            // TODO different query with chil
+            // TODO different query with child
         }
         return object;
     }
