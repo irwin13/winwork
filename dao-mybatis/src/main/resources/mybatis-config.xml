@@ -27,15 +27,48 @@
     <typeAliases>
         <typeAlias alias="AppSetting" type="com.irwin13.winwork.basic.model.entity.app.AppSetting"/>
     </typeAliases>
-
     <environments default="local">
         <environment id="local">
             <transactionManager type="JDBC"/>
+            <!--
             <dataSource type="POOLED">
                 <property name="driver" value="${driver}"/>
                 <property name="url" value="${url}"/>
                 <property name="username" value="${username}"/>
                 <property name="password" value="${password}"/>
+            </dataSource>
+            -->
+
+            <dataSource type="com.irwin13.winwork.mybatis.TomcatDataSource">
+                <property name="tomcat.connectionPool.url" value="${url}" />
+                <property name="tomcat.connectionPool.driver" value="${driver}" />
+                <property name="tomcat.connectionPool.username" value="${username}" />
+                <property name="tomcat.connectionPool.password" value="${password}" />
+
+                <property name="tomcat.connectionPool.validationQuery" value="SELECT 1 FROM DUAL" />
+
+                <property name="tomcat.connectionPool.testOnBorrow" value="true" />
+                <property name="tomcat.connectionPool.jmxEnabled" value="false" />
+                <property name="tomcat.connectionPool.testWhileIdle" value="false" />
+                <property name="tomcat.connectionPool.testOnReturn" value="false" />
+
+                <property name="tomcat.connectionPool.initialSize" value="10" />
+                <property name="tomcat.connectionPool.maxActive" value="100" />
+                <property name="tomcat.connectionPool.maxIdle" value="7" />
+                <property name="tomcat.connectionPool.minIdle" value="3" />
+
+                <property name="tomcat.connectionPool.minEvictableIdleTimeMillis" value="10000" />
+
+                <property name="tomcat.connectionPool.validationInterval" value="30000" />
+                <property name="tomcat.connectionPool.timeBetweenEvictionRunsMillis" value="5000" />
+
+                <property name="tomcat.connectionPool.maxWait" value="5000" />
+
+                <property name="tomcat.connectionPool.logAbandoned" value="false" />
+                <property name="tomcat.connectionPool.removeAbandoned" value="true" />
+                <property name="tomcat.connectionPool.removeAbandonedTimeout" value="60" />
+
+                <property name="tomcat.connectionPool.jdbcInterceptors" value="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer" />
             </dataSource>
         </environment>
     </environments>

@@ -227,6 +227,13 @@
             <version>1.0.1</version>
         </dependency>
 
+        <!-- CONNECTION POOL -->
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jdbc</artifactId>
+            <version>7.0.53</version>
+        </dependency>
+
         <!-- BYTE-CODE LIBRARY -->
         <dependency>
             <groupId>cglib</groupId>
