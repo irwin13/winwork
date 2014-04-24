@@ -9,7 +9,7 @@ import java.util.Date;
 public abstract class WinWorkBasicEntity implements Serializable {
 
     private String id;
-    private boolean active;
+    private Boolean active;
     private String createBy;
     private Date createDate;
     private String lastUpdateBy;
@@ -23,11 +23,11 @@ public abstract class WinWorkBasicEntity implements Serializable {
         this.id = id;
     }
 
-    public boolean isActive() {
+    public Boolean isActive() {
         return active;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(Boolean active) {
         this.active = active;
     }
 
