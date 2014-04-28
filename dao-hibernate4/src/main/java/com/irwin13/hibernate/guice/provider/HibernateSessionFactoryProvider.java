@@ -5,6 +5,7 @@ import com.google.inject.Singleton;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,9 +22,14 @@ public class HibernateSessionFactoryProvider implements Provider<SessionFactory>
     @Override
     public SessionFactory get() {
         if (sessionFactory == null) {
-            sessionFactory = new Configuration()
-                    .configure()
-                    .buildSessionFactory(new StandardServiceRegistryBuilder().build());
+            Configuration configuration = new Configuration();
+            configuration.configure("hibernate.cfg.xml");
+
+            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
+                    .applySettings(configuration.getProperties())
+                    .build();
+
+            sessionFactory = configuration.buildSessionFactory(serviceRegistry);
             LOGGER.debug("Hibernate initialized successfully");
         }
         return sessionFactory;

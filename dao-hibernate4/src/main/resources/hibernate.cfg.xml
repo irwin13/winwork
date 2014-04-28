@@ -10,13 +10,16 @@
         <property name="hibernate.connection.username">${test.database.username}</property>
         <property name="hibernate.connection.password">${test.database.password}</property>
 
+        <property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+        <property name="hibernate.c3p0.minPoolSize">5</property>
+        <property name="hibernate.c3p0.maxPoolSize">50</property>
+        <property name="hibernate.c3p0.acquireRetryAttempts">5</property>
+        <property name="hibernate.c3p0.autoCommitOnClose">false</property>
+        <property name="hibernate.c3p0.maxIdleTime">300</property>
+        <property name="hibernate.c3p0.initialPoolSize">10</property>
+        <property name="hibernate.c3p0.acquireIncrement">10</property>
+
         <property name="hibernate.dialect">${test.database.dialect}</property>
-
-        <property name="hibernate.bytecode.use_reflection_optimizer">true</property>
-        <property name="hibernate.bytecode.provider">cglib</property>
-
-        <property name="hibernate.connection.release_mode">after_transaction</property>
-        <property name="hibernate.order_updates">true</property>
 
         <!-- Cache configuration-->
         <property name="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
@@ -24,7 +27,7 @@
         <property name="hibernate.show_sql">${test.database.showSql}</property>
         <property name="hibernate.format_sql">${test.database.showSql}</property>
 
-        <mapping resource="hbm/app/AppSetting.hbm.xml"/>
+        <mapping resource="hbm/AppSetting.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>

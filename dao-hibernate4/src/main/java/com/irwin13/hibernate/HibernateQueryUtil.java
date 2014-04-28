@@ -232,7 +232,7 @@ public final class HibernateQueryUtil {
                 query.append(" ORDER BY " + sortParameter.getColumnName());
             }
 
-            if (sortParameter.getSortMethod() == null) {
+            if (Strings.isNullOrEmpty(sortParameter.getSortMethod())) {
                 query.append(" DESC");
             } else {
                 query.append(" " + sortParameter.getSortMethod());
@@ -342,27 +342,29 @@ public final class HibernateQueryUtil {
     private static Map<String, Class<?>> filteredMap(boolean isNumeric, boolean isDate, Map<String, Class<?>> source) {
         Map<String, Class<?>> filteredMap = new TreeMap<String, Class<?>>();
 
-        for (Map.Entry<String, Class<?>> entry : source.entrySet()) {
-            if (isNumeric) {
-                if (entry.getValue().equals(Long.class)) {
-                    filteredMap.put(entry.getKey(), entry.getValue());
-                } else if (entry.getValue().equals(Integer.class)) {
-                    filteredMap.put(entry.getKey(), entry.getValue());
-                } else if (entry.getValue().equals(Double.class)) {
-                    filteredMap.put(entry.getKey(), entry.getValue());
-                } else if (entry.getValue().equals(Float.class)) {
-                    filteredMap.put(entry.getKey(), entry.getValue());
-                } else if (entry.getValue().equals(BigDecimal.class)) {
-                    filteredMap.put(entry.getKey(), entry.getValue());
+        if (source != null) {
+            for (Map.Entry<String, Class<?>> entry : source.entrySet()) {
+                if (isNumeric) {
+                    if (entry.getValue().equals(Long.class)) {
+                        filteredMap.put(entry.getKey(), entry.getValue());
+                    } else if (entry.getValue().equals(Integer.class)) {
+                        filteredMap.put(entry.getKey(), entry.getValue());
+                    } else if (entry.getValue().equals(Double.class)) {
+                        filteredMap.put(entry.getKey(), entry.getValue());
+                    } else if (entry.getValue().equals(Float.class)) {
+                        filteredMap.put(entry.getKey(), entry.getValue());
+                    } else if (entry.getValue().equals(BigDecimal.class)) {
+                        filteredMap.put(entry.getKey(), entry.getValue());
+                    }
+                } else if (isDate) {
+                    if (entry.getValue().equals(Date.class) || entry.getKey().equals(java.sql.Date.class)) {
+                        filteredMap.put(entry.getKey(), entry.getValue());
+                    }
                 }
-            } else if (isDate) {
-                if (entry.getValue().equals(Date.class) || entry.getKey().equals(java.sql.Date.class)) {
-                    filteredMap.put(entry.getKey(), entry.getValue());
-                }
-            }
 
-            if (entry.getValue().equals(String.class)) {
-                filteredMap.put(entry.getKey(), entry.getValue());
+                if (entry.getValue().equals(String.class)) {
+                    filteredMap.put(entry.getKey(), entry.getValue());
+                }
             }
         }
 

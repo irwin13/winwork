@@ -4,6 +4,8 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 import com.irwin13.hibernate.HibernateConfig;
+import com.irwin13.hibernate.dao.AppSettingDao;
+import com.irwin13.hibernate.dao.AppSettingDaoImp;
 import com.irwin13.hibernate.guice.provider.HibernateSessionFactoryProvider;
 import com.irwin13.winwork.basic.config.WinWorkConfig;
 import org.hibernate.SessionFactory;
@@ -22,5 +24,6 @@ public class HibernateModule extends AbstractModule {
 
         bind(WinWorkConfig.class).to(HibernateConfig.class).in(Singleton.class);
         bind(SessionFactory.class).toProvider(HibernateSessionFactoryProvider.class).in(Singleton.class);
+        bind(AppSettingDao.class).to(AppSettingDaoImp.class);
     }
 }
