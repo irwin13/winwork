@@ -1,0 +1,90 @@
+package com.irwin13.hibernate.dao;
+
+import com.google.inject.Inject;
+import com.irwin13.winwork.basic.model.SearchParameter;
+import com.irwin13.winwork.basic.model.SortParameter;
+import com.irwin13.winwork.basic.model.entity.app.AppSetting;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * @author irwin Timestamp : 28/04/2014 17:31
+ */
+public class AppSettingDaoImp implements AppSettingDao {
+
+    private final SessionFactory sessionFactory;
+    private final BasicHibernateDao<AppSetting, String> basicDao = new BasicHibernateDao<AppSetting, String>(AppSetting.class);
+
+    @Inject
+    public AppSettingDaoImp(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+        basicDao.setSessionFactory(sessionFactory);
+    }
+
+    public Session openNewSession() {
+        return basicDao.openNewSession();
+    }
+
+    public void closeSession(Session session) {
+        basicDao.closeSession(session);
+    }
+
+    @Override
+    public Class<AppSetting> getModelClass() {
+        return basicDao.getModelClass();
+    }
+
+    @Override
+    public List<AppSetting> select(AppSetting filter, SortParameter sortParameter) {
+        return basicDao.select(filter, sortParameter);
+    }
+
+    @Override
+    public List<AppSetting> select(AppSetting filter, SortParameter sortParameter, int fetchStart, int fetchSize) {
+        return basicDao.select(filter, sortParameter, fetchStart, fetchSize);
+    }
+
+    @Override
+    public long selectCount(AppSetting filter) {
+        return basicDao.selectCount(filter);
+    }
+
+    @Override
+    public List<AppSetting> selectSearch(Map<String, Class<?>> searchProperties, SearchParameter searchParameter) {
+        return basicDao.selectSearch(searchParameter, searchProperties);
+    }
+
+    @Override
+    public List<AppSetting> selectSearch(Map<String, Class<?>> searchProperties, SearchParameter searchParameter,
+                                         int fetchStart, int fetchSize) {
+        return basicDao.selectSearch(searchParameter, searchProperties, fetchStart, fetchSize);
+    }
+
+    @Override
+    public long selectSearchCount(Map<String, Class<?>> searchProperties, SearchParameter searchParameter) {
+        return basicDao.selectSearchCount(searchParameter, searchProperties);
+    }
+
+    @Override
+    public AppSetting getById(String id, boolean fetchChild) {
+        return basicDao.getById(id, fetchChild);
+    }
+
+    @Override
+    public String insert(AppSetting model) {
+        return basicDao.insert(model);
+    }
+
+    @Override
+    public void update(AppSetting model) {
+        basicDao.merge(model);
+    }
+
+    @Override
+    public void delete(AppSetting model) {
+        basicDao.delete(model);
+    }
+}

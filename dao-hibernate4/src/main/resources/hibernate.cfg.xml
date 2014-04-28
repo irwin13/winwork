@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">${test.database.driver}</property>
+        <property name="hibernate.connection.url">${test.database.url}</property>
+        <property name="hibernate.connection.username">${test.database.username}</property>
+        <property name="hibernate.connection.password">${test.database.password}</property>
+
+        <property name="hibernate.dialect">${test.database.dialect}</property>
+
+        <property name="hibernate.bytecode.use_reflection_optimizer">true</property>
+        <property name="hibernate.bytecode.provider">cglib</property>
+
+        <property name="hibernate.connection.release_mode">after_transaction</property>
+        <property name="hibernate.order_updates">true</property>
+
+        <!-- Cache configuration-->
+        <property name="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+
+        <property name="hibernate.show_sql">${test.database.showSql}</property>
+        <property name="hibernate.format_sql">${test.database.showSql}</property>
+
+        <mapping resource="hbm/app/AppSetting.hbm.xml"/>
+
+    </session-factory>
+</hibernate-configuration>
