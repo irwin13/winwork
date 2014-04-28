@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-    <APP_SETTING />
+    <!-- select process -->
+    <APP_SETTING ID="6FF11123090345659A6DFD8C8C8652G0" code="findThis" string_value="13" setting_category="13" ACTIVE="Y" CREATE_BY="mimin" CREATE_DATE="2011-04-11 05:29:47.0" LAST_UPDATE_BY="mimin" LAST_UPDATE_DATE="2011-04-11 05:29:47.0" />
+
+    <!-- search process -->
+    <APP_SETTING ID="6FF11123090345659A6DFD8C8C8652G1" code="key1" string_value="13" setting_category="13" ACTIVE="Y" CREATE_BY="mimin" CREATE_DATE="2011-04-11 05:29:47.0" LAST_UPDATE_BY="mimin" LAST_UPDATE_DATE="2011-04-11 05:29:47.0" />
+    <APP_SETTING ID="6FF11123090345659A6DFD8C8C8652G2" code="key2" string_value="13" setting_category="13" ACTIVE="Y" CREATE_BY="mimin" CREATE_DATE="2011-04-11 05:29:47.0" LAST_UPDATE_BY="mimin" LAST_UPDATE_DATE="2011-04-11 05:29:47.0" />
+    <APP_SETTING ID="6FF11123090345659A6DFD8C8C8652G3" code="key3" string_value="13" setting_category="13" ACTIVE="Y" CREATE_BY="mimin" CREATE_DATE="2011-04-11 05:29:47.0" LAST_UPDATE_BY="mimin" LAST_UPDATE_DATE="2011-04-11 05:29:47.0" />
+
+    <!-- update process -->
+    <APP_SETTING ID="6FF11123090345659A6DFD8C8C8652G4" code="http_method" string_value="13" setting_category="13" ACTIVE="Y" CREATE_BY="mimin" CREATE_DATE="2011-04-11 05:29:47.0" LAST_UPDATE_BY="mimin" LAST_UPDATE_DATE="2011-04-11 05:29:47.0" />
+
+    <!-- delete process -->
+    <APP_SETTING ID="6FF11123090345659A6DFD8C8C8652G5" code="http_method" string_value="13" setting_category="13" ACTIVE="Y" CREATE_BY="mimin" CREATE_DATE="2011-04-11 05:29:47.0" LAST_UPDATE_BY="mimin" LAST_UPDATE_DATE="2011-04-11 05:29:47.0" />
+
 </dataset>

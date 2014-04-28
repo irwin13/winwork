@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.irwin13</groupId>
-    <artifactId>winwork-hibernate4</artifactId>
+    <artifactId>winwork-hibernate</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>Hibernate 4 DAO</name>
     <packaging>jar</packaging>
@@ -137,7 +137,7 @@
                                 <tstamp>
                                     <format property="last.updated" pattern="dd-MM-yyyy HH:mm:ss"/>
                                 </tstamp>
-                                <echo append="true" file="${project.build.directory}/classes/hibernate4-config.properties">
+                                <echo append="true" file="${project.build.directory}/classes/hibernate-config.properties">
                                     project.buildTime=${last.updated}
                                 </echo>
                             </target>

@@ -13,7 +13,11 @@ public class AppSettingEmbedder extends AbstractEmbedder {
     @Override
     public List<Object> stepsList() {
         List<Object> stepsList = new LinkedList<Object>();
-        stepsList.add(new AppSettingSteps());
+        stepsList.add(new AppSettingDeleteSteps());
+        stepsList.add(new AppSettingInsertSteps());
+        stepsList.add(new AppSettingSearchSteps());
+        stepsList.add(new AppSettingSelectSteps());
+        stepsList.add(new AppSettingUpdateSteps());
         return stepsList;
     }
 

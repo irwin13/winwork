@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.irwin13.winwork.basic.model.entity.app.AppSetting">
+<mapper namespace="mapper.com.irwin13.winwork.basic.model.entity.app.AppSetting">
     <!--
     <cache type="org.mybatis.hazelcast.HazelcastCache" />
     <cache type="org.mybatis.hazelcast.LoggingHazelcastCache"
@@ -43,19 +43,19 @@
 
     <sql id="defaultWhere">
         WHERE 1=1
-        <if test="code">
+        <if test="code != null">
             AND code = #{code}
         </if>
-        <if test="description">
+        <if test="description != null">
             AND description = #{description}
         </if>
-        <if test="numericValue">
+        <if test="settingCategory != null">
             AND setting_category = #{settingCategory}
         </if>
-        <if test="stringValue">
+        <if test="stringValue != null">
             AND string_value = #{stringValue}
         </if>
-        <if test="columnName != null and sortMethod != null">
+        <if test="columnName != null and columnName != '' and sortMethod != null and sortMethod != ''">
             ORDER BY ${columnName} ${sortMethod}
         </if>
     </sql>
@@ -67,10 +67,10 @@
             lower(code) LIKE #{searchKeyword} OR
             lower(description) LIKE #{searchKeyword} OR
             lower(string_value) LIKE #{searchKeyword} OR
-            lower(setting_category) LIKE #{searchKeyword} OR
+            lower(setting_category) LIKE #{searchKeyword}
             )
         </if>
-        <if test="columnName != null and sortMethod != null">
+        <if test="columnName != null and columnName != '' and sortMethod != null and sortMethod != ''">
             ORDER BY ${columnName} ${sortMethod}
         </if>
     </sql>
@@ -88,14 +88,14 @@
         <include refid="defaultWhere" />
     </select>
 
-    <select id="selectSearch" resultMap="AppSettingResult">
+    <select id="selectSearch" parameterType="SearchParameter" resultMap="AppSettingResult">
         SELECT
         <include refid="allField" />
         FROM app_setting
         <include refid="defaultSearch" />
     </select>
 
-    <select id="selectSearchCount" resultMap="AppSettingResult">
+    <select id="selectSearchCount" parameterType="SearchParameter" resultType="_long">
         SELECT count(id) AS total
         FROM app_setting
         <include refid="defaultSearch" />

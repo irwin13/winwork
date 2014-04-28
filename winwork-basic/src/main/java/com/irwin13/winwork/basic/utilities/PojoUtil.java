@@ -13,10 +13,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Collection;
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author irwin Timestamp : 17/04/2014 19:33
@@ -55,6 +52,32 @@ public final class PojoUtil {
 
         sb.append("=============================================\n");
         return sb.toString();
+    }
+
+    public static Map<String, Object> beanToMap(Object bean, boolean includeSuperClass) {
+        Map<String, Object> map = new TreeMap<String, Object>();
+
+        Class<? extends Object> clazz = bean.getClass();
+
+        Method[] methods = (includeSuperClass) ? clazz.getMethods() : clazz.getDeclaredMethods();
+        for (int i = 0; i < methods.length; i++) {
+            Method method = methods[i];
+            if ((method.getName().startsWith("get") ||
+                    method.getName().startsWith("is")) &&
+                    !method.getName().equalsIgnoreCase("getClass")) {
+                try {
+                    map.put(getFieldNameFromGetMethod(method.getName()), method.invoke(bean, ((Object[])null)));
+                } catch (IllegalArgumentException e) {
+                    LOGGER.error(e.getLocalizedMessage(), e);
+                } catch (IllegalAccessException e) {
+                    LOGGER.error(e.getLocalizedMessage(), e);
+                } catch (InvocationTargetException e) {
+                    LOGGER.error(e.getLocalizedMessage(), e);
+                }
+            }
+        }
+
+        return map;
     }
 
     /**

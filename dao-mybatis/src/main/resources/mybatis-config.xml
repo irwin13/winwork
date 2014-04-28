@@ -25,8 +25,13 @@
     </settings>
 
     <typeAliases>
+        <!-- SHARED CLASSES -->
+        <typeAlias alias="SearchParameter" type="com.irwin13.winwork.basic.model.SearchParameter"/>
+
+        <!-- APP -->
         <typeAlias alias="AppSetting" type="com.irwin13.winwork.basic.model.entity.app.AppSetting"/>
     </typeAliases>
+
     <environments default="local">
         <environment id="local">
             <transactionManager type="JDBC"/>

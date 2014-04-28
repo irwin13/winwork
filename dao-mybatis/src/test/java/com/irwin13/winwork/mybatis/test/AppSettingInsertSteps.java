@@ -15,22 +15,22 @@ import java.util.Date;
 /**
  * @author irwin Timestamp : 21/04/2014 20:08
  */
-public class AppSettingSteps {
+public class AppSettingInsertSteps {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AppSettingSteps.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AppSettingInsertSteps.class);
     private AppSettingDao dao = AppSettingDaoTest.injector.getInstance(AppSettingDao.class);
 
     private AppSetting appSetting;
     private String code;
 
-    @Given("a AppSetting with code $code")
-    public void init(String code) {
+    @Given("a AppSetting for insert with code $code")
+    public void given(String code) {
         LOGGER.debug("code = {}", code);
         this.code = code;
     }
 
-    @When("CRUD AppSettingDao is executed")
-    public void crudExecuted() {
+    @When("insert AppSetting is executed")
+    public void when() {
         AppSetting setting = new AppSetting();
         setting.setActive(Boolean.TRUE);
         setting.setId(StringUtil.random32UUID());
@@ -46,20 +46,10 @@ public class AppSettingSteps {
 
         appSetting = dao.getById(generatedId, false);
         LOGGER.debug("getById  = {}", appSetting);
-
-        appSetting.setStringValue("NEW VALUE");
-        appSetting.setLastUpdateDate(new Date());
-        dao.update(appSetting);
-        LOGGER.debug("UPDATE SUCCESS");
-
-        dao.delete(appSetting);
-        LOGGER.debug("DELETE SUCCESS");
     }
 
-    @Then("AppSetting code equals $code")
-    public void theKeyShouldBe(String code) {
-        Assert.assertEquals(this.code, code);
-        Assert.assertNotNull(appSetting.getStringValue());
+    @Then("AppSetting exists after insert should be $exists")
+    public void then(String exists) {
+        Assert.assertEquals(appSetting != null, Boolean.valueOf(exists));
     }
-
 }

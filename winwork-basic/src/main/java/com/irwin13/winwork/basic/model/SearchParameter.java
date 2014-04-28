@@ -9,7 +9,7 @@ public class SearchParameter extends SortParameter {
 
     private final String searchKeyword;
 
-    public SearchParameter(String columnName, String sortMethod, String searchKeyword) {
+    public SearchParameter(String searchKeyword, String columnName, String sortMethod) {
         super(columnName, sortMethod);
         this.searchKeyword = searchKeyword;
     }

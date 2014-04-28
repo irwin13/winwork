@@ -3,6 +3,7 @@ package com.irwin13.winwork.mybatis.dao;
 import com.irwin13.winwork.basic.annotations.MDCLog;
 import com.irwin13.winwork.basic.model.SearchParameter;
 import com.irwin13.winwork.basic.model.SortParameter;
+import com.irwin13.winwork.basic.utilities.PojoUtil;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -12,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author irwin Timestamp : 17/04/2014 21:16
@@ -19,6 +21,7 @@ import java.util.List;
 public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BasicMyBatisDao.class);
+    private static final String MAPPER = "mapper.";
     private static final String INSERT = ".insert";
     private static final String UPDATE = ".update";
     private static final String DELETE = ".delete";
@@ -48,6 +51,10 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
         if (session != session) session.close();
     }
 
+    protected String getMapperName() {
+        return MAPPER + getModelClass().getCanonicalName();
+    }
+
     public int insert(M model) {
         SqlSession session = null;
         int result = 0;
@@ -64,7 +71,7 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
     }
 
     public int insert(SqlSession session, M model) {
-        return session.insert(getModelClass().getCanonicalName() + INSERT, model);
+        return session.insert(getMapperName() + INSERT, model);
     }
 
     public int update(M model) {
@@ -81,7 +88,7 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
     }
 
     public int update(SqlSession session, M model) {
-        return session.update(getModelClass().getCanonicalName() + UPDATE, model);
+        return session.update(getMapperName() + UPDATE, model);
     }
 
     public int delete(M model) {
@@ -99,15 +106,23 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
     }
 
     public int delete(SqlSession session, M model) {
-        return session.delete(getModelClass().getCanonicalName() + DELETE, model);
+        return session.delete(getMapperName() + DELETE, model);
     }
 
     @SuppressWarnings("unchecked")
     @MDCLog
     public List<M> select(SqlSession session, M filter, SortParameter sortParameter) {
         if (filter == null) return Collections.EMPTY_LIST;
-        List<M> list = session.selectList(getModelClass().getCanonicalName() + SELECT,
-                new Object[]{filter, sortParameter});
+        Map<String, Object> parameterMap = PojoUtil.beanToMap(filter, true);
+        if (sortParameter != null) {
+            parameterMap.put("columnName", sortParameter.getColumnName());
+            parameterMap.put("sortMethod", sortParameter.getSortMethod());
+        } else {
+            parameterMap.put("columnName", null);
+            parameterMap.put("sortMethod", null);
+        }
+        LOGGER.debug("parameter map = {}", parameterMap);
+        List<M> list = session.selectList(getMapperName() + SELECT, parameterMap);
         return (list == null) ? Collections.EMPTY_LIST : list;
     }
 
@@ -134,8 +149,16 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
         LOGGER.debug("Select Paged start = {}", fetchStart);
         LOGGER.debug("Select Paged size = {}", fetchSize);
 
-        List<M> list = session.selectList(getModelClass().getCanonicalName() + SELECT,
-                new Object[]{filter, sortParameter}, new RowBounds(fetchStart, fetchSize));
+        Map<String, Object> parameterMap = PojoUtil.beanToMap(filter, true);
+        if (sortParameter != null) {
+            parameterMap.put("columnName", sortParameter.getColumnName());
+            parameterMap.put("sortMethod", sortParameter.getSortMethod());
+        } else {
+            parameterMap.put("columnName", null);
+            parameterMap.put("sortMethod", null);
+        }
+        LOGGER.debug("parameter map = {}", parameterMap);
+        List<M> list = session.selectList(getMapperName() + SELECT, parameterMap, new RowBounds(fetchStart, fetchSize));
 
         return (list == null) ? Collections.EMPTY_LIST : list;
     }
@@ -161,7 +184,13 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
     public long selectCount(SqlSession session, M filter) {
         long result = 0;
         if (filter == null) return result;
-        result = (Long) session.selectOne(getModelClass().getCanonicalName() + SELECT_COUNT, filter);
+
+        Map<String, Object> parameterMap = PojoUtil.beanToMap(filter, true);
+        parameterMap.put("columnName", null);
+        parameterMap.put("sortMethod", null);
+
+        LOGGER.debug("parameter map = {}", parameterMap);
+        result = (Long) session.selectOne(getMapperName() + SELECT_COUNT, parameterMap);
         return result;
     }
 
@@ -182,8 +211,14 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
     @SuppressWarnings("unchecked")
     @MDCLog
     public List<M> selectSearch(SqlSession session, SearchParameter searchParameter) {
-        LOGGER.debug("searchParameter = {}", searchParameter);
-        List<M> list = session.selectList(getModelClass().getCanonicalName() + SELECT_SEARCH, searchParameter);
+        if (searchParameter == null) {
+            return Collections.EMPTY_LIST;
+        }
+        SearchParameter sp = new SearchParameter(searchParameter.getSearchKeyword() + "%",
+                searchParameter.getColumnName(),
+                searchParameter.getSortMethod());
+        LOGGER.debug("searchParameter = {}", sp);
+        List<M> list = session.selectList(getMapperName() + SELECT_SEARCH, sp);
         return (list == null) ? Collections.EMPTY_LIST : list;
     }
 
@@ -205,9 +240,15 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
 
     @MDCLog
     public long selectSearchCount(SqlSession session, SearchParameter searchParameter) {
-        long result;
-        LOGGER.debug("COUNT searchParameter = {}", searchParameter);
-        result = (Long) session.selectOne(getModelClass().getCanonicalName() + SELECT_SEARCH_COUNT, searchParameter);
+        long result = 0;
+        if (searchParameter == null) {
+            return result;
+        }
+        SearchParameter sp = new SearchParameter(searchParameter.getSearchKeyword() + "%",
+                searchParameter.getColumnName(),
+                searchParameter.getSortMethod());
+        LOGGER.debug("COUNT searchParameter = {}", sp);
+        result = (Long) session.selectOne(getMapperName() + SELECT_SEARCH_COUNT, sp);
         return result;
     }
 
@@ -231,11 +272,19 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
     public List<M> selectSearch(SqlSession session, SearchParameter searchParameter,
                                      int fetchStart, int fetchSize) {
 
-        LOGGER.debug("PAGED searchParameter = {}", searchParameter);
+        if (searchParameter == null) {
+            return Collections.EMPTY_LIST;
+        }
+
+        SearchParameter sp = new SearchParameter(searchParameter.getSearchKeyword() + "%",
+                searchParameter.getColumnName(),
+                searchParameter.getSortMethod());
+
+        LOGGER.debug("PAGED searchParameter = {}", sp);
         LOGGER.debug("PAGED start = {}", fetchStart);
         LOGGER.debug("PAGED size = {}", fetchSize);
 
-        List<M> list = session.selectList(getModelClass().getCanonicalName() + SELECT_SEARCH, searchParameter,
+        List<M> list = session.selectList(getMapperName() + SELECT_SEARCH, sp,
                 new RowBounds(fetchStart, fetchSize));
 
         return (list == null) ? Collections.EMPTY_LIST : list;
@@ -260,7 +309,8 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
     @SuppressWarnings("unchecked")
     public M selectById(SqlSession session, I id, boolean fetchChild) {
         LOGGER.debug("Id = {}", id);
-        M object = (M) session.selectOne(getModelClass().getCanonicalName() + SELECT_BY_ID, id);
+        if (id == null) return null;
+        M object = (M) session.selectOne(getMapperName() + SELECT_BY_ID, id);
         if (fetchChild) {
             // TODO different query with child
         }

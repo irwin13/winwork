@@ -1,7 +1,6 @@
 package com.irwin13.winwork.mybatis.guice.provider;
 
 import com.google.inject.Provider;
-import com.google.inject.Singleton;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -14,7 +13,6 @@ import java.io.InputStream;
 /**
  * @author irwin Timestamp : 17/04/2014 21:02
  */
-@Singleton
 public class SqlSessionFactoryProvider implements Provider<SqlSessionFactory> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SqlSessionFactoryProvider.class);
