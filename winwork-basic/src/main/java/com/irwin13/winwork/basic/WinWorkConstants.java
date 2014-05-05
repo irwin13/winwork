@@ -53,4 +53,7 @@ public final class WinWorkConstants {
     public static final String DEFAULT_LANG = "en";
     public static final String DEFAULT_PASSWORD = "123";
 
+    public static final String WINWORK_NODE_NAME = "winWork.nodeName";
+    public static final String NODE_NAME_MISSING = "missing -D" + WINWORK_NODE_NAME + " argument in Java startup parameter";
+
 }
