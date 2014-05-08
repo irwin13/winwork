@@ -46,11 +46,11 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
     }
 
     public SqlSession openNewSqlSession() {
-        return sqlSessionFactory.openSession();
+        return sqlSessionFactory.openSession(   );
     }
 
     public void closeSqlSession(SqlSession session) {
-        if (session != session) session.close();
+        if (session != null) session.close();
     }
 
     protected String getMapperName() {

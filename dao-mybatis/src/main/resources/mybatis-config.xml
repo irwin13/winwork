@@ -13,7 +13,7 @@
         <setting name="useColumnLabel" value="true"/>
         <setting name="useGeneratedKeys" value="false"/>
         <setting name="autoMappingBehavior" value="PARTIAL"/>
-        <setting name="defaultExecutorType" value="BATCH"/>
+        <setting name="defaultExecutorType" value="REUSE"/>
         <setting name="defaultStatementTimeout" value="25"/>
         <setting name="safeRowBoundsEnabled" value="false"/>
         <setting name="mapUnderscoreToCamelCase" value="true"/>

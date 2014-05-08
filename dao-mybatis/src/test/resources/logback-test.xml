@@ -88,6 +88,18 @@
         <appender-ref ref="LOG-ERROR" />
     </logger>
 
+    <logger name="com.hazelcast" level="${app.log.level.apps}">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="LOG-DEBUG" />
+        <appender-ref ref="LOG-ERROR" />
+    </logger>
+
+    <logger name="org.mybatis" level="${app.log.level.apps}">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="LOG-DEBUG" />
+        <appender-ref ref="LOG-ERROR" />
+    </logger>
+
     <!-- LOG MAPPER SQL STATEMENT -->
     <logger name="MyBatisLogmapper.com.irwin13.winwork.basic.model.entity.app" level="${app.log.level.apps}">
         <appender-ref ref="STDOUT" />
