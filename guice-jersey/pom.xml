@@ -8,5 +8,143 @@
     <artifactId>guice-jersey</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <slf4j.version>1.7.7</slf4j.version>
+        <logback.version>1.1.2</logback.version>
+        <jackson.version>2.3.2</jackson.version>
+        <mybatis.version>3.2.7</mybatis.version>
+        <hibernate.version>4.3.5.Final</hibernate.version>
+        <uuid-generator.version>3.1.3</uuid-generator.version>
+        <jersey.version>2.8</jersey.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>repository.jboss.org-public</id>
+            <name>JBoss repository</name>
+            <url>https://repository.jboss.org/nexus/content/groups/public</url>
+        </repository>
+        <repository>
+            <id>maven-repository.dev.java.net</id>
+            <name>Java.net Repository for Maven 1</name>
+            <url>http://download.java.net/maven/1/</url>
+            <layout>legacy</layout>
+        </repository>
+        <repository>
+            <id>maven.java.net</id>
+            <name>Java.net Repository for Maven 2</name>
+            <url>http://download.java.net/maven/2/</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>maven.java.net</id>
+            <name>Java.net Repository for Maven 2</name>
+            <url>http://download.java.net/maven/2/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <!-- if your kons.hbm.kons.app server already had this PITA jar
+                    <packagingExcludes>WEB-INF/lib/commons-logging-*.jar</packagingExcludes>
+                    -->
+                    <webResources>
+                        <resource>
+                            <directory>${basedir}/src/main/webapp</directory>
+                            <filtering>true</filtering>
+                            <includes>
+                                <include>WEB-INF/web.xml</include>
+                            </includes>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jvnet.jax-ws-commons</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>2.3</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                        <configuration>
+                            <sei>id.co.bankmandiri.ws.NotifyEsbWs</sei>
+                            <keep>false</keep>
+                            <genWsdl>false</genWsdl>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.glassfish.maven.plugin</groupId>
+                <artifactId>maven-glassfish-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <glassfishDirectory>E:\opt\glassfish\glassfish-3.1.2\glassfish3</glassfishDirectory>
+                    <user>admin</user>
+                    <adminPassword>admin</adminPassword>
+                    <!-- <passFile>path/to/asadmin/passfile</passFile> -->
+                    <autoCreate>true</autoCreate>
+                    <debug>false</debug>
+                    <echo>false</echo>
+                    <terse>true</terse>
+                    <domain>
+                        <name>${project.artifactId}</name>
+                        <adminPort>4848</adminPort>
+                        <httpPort>8080</httpPort>
+                        <httpsPort>8443</httpsPort>
+                        <iiopPort>3700</iiopPort>
+                        <jmsPort>7676</jmsPort>
+                        <reuse>false</reuse>
+                    </domain>
+                    <components>
+                        <component>
+                            <name>${project.artifactId}</name>
+                            <artifact>${project.build.directory}/artifacts/${project.build.finalName}.war</artifact>
+                        </component>
+                    </components>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <!-- JERSEY -->
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-server</artifactId>
+            <version>${jersey.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>${jersey.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-common</artifactId>
+            <version>${jersey.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <!-- if your container implements Servlet API older than 3.0, use "jersey-container-servlet-core"  -->
+            <artifactId>jersey-container-servlet</artifactId>
+            <version>${jersey.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>

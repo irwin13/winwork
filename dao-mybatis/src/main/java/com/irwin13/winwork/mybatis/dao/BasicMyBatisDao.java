@@ -1,9 +1,11 @@
 package com.irwin13.winwork.mybatis.dao;
 
+import com.google.common.base.Preconditions;
 import com.irwin13.winwork.basic.annotations.MDCLog;
 import com.irwin13.winwork.basic.model.SearchParameter;
 import com.irwin13.winwork.basic.model.SortParameter;
 import com.irwin13.winwork.basic.utilities.PojoUtil;
+import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -330,4 +332,44 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
 
         return result;
     }
+
+    public void batchInsert(List<M> modelList) {
+        Preconditions.checkNotNull(modelList);
+        SqlSession session = sqlSessionFactory.openSession(ExecutorType.BATCH);
+        try {
+            for (M model : modelList) {
+                session.insert(getMapperName() + INSERT, model);
+            }
+            session.commit();
+        } finally {
+            closeSqlSession(session);
+        }
+    }
+
+    public void batchUpdate(List<M> modelList) {
+        Preconditions.checkNotNull(modelList);
+        SqlSession session = sqlSessionFactory.openSession(ExecutorType.BATCH);
+        try {
+            for (M model : modelList) {
+                session.insert(getMapperName() + UPDATE, model);
+            }
+            session.commit();
+        } finally {
+            closeSqlSession(session);
+        }
+    }
+
+    public void batchDelete(List<M> modelList) {
+        Preconditions.checkNotNull(modelList);
+        SqlSession session = sqlSessionFactory.openSession(ExecutorType.BATCH);
+        try {
+            for (M model : modelList) {
+                session.insert(getMapperName() + DELETE, model);
+            }
+            session.commit();
+        } finally {
+            closeSqlSession(session);
+        }
+    }
+
 }
