@@ -8,8 +8,6 @@ import com.irwin13.winwork.mybatis.dao.AppSettingDao;
 import com.irwin13.winwork.mybatis.guice.MyBatisModule;
 import org.junit.Test;
 
-import java.util.List;
-
 /**
  * @author irwin Timestamp : 08/05/2014 15:34
  */
@@ -32,14 +30,17 @@ public class CacheTest {
         filter.setCode("http_method");
         for (int i = 0; i < 10; i++) {
             appSettingDao.select(filter, null);
+            appSettingDao.selectCount(filter);
         }
 
     }
 
     @Test
     public void querySearch() {
+        String searchKeyword = "key";
         for (int i = 0; i < 10; i++) {
-            appSettingDao.selectSearch(null, new SearchParameter("key", null, null));
+            appSettingDao.selectSearch(null, new SearchParameter(searchKeyword, null, null));
+            appSettingDao.selectSearchCount(null, new SearchParameter(searchKeyword, null, null));
         }
     }
 }
