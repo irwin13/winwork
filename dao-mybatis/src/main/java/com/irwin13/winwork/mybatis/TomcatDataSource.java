@@ -15,12 +15,12 @@ import java.util.Set;
 public class TomcatDataSource implements DataSourceFactory {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TomcatDataSource.class);
-
     private final PoolProperties poolProperties = new PoolProperties();
 
     @Override
     public void setProperties(Properties properties) {
 
+        LOGGER.info("===============================================");
         LOGGER.info("Initialize Tomcat Data Source with properties :");
         Set<String> propertyNames = properties.stringPropertyNames();
         for (String propertyKey : propertyNames) {
@@ -30,6 +30,7 @@ public class TomcatDataSource implements DataSourceFactory {
                 LOGGER.info("{} = {}", propertyKey, "*****");
             }
         }
+        LOGGER.info("===============================================");
 
         poolProperties.setUrl(properties.getProperty("tomcat.connectionPool.url"));
         poolProperties.setDriverClassName(properties.getProperty("tomcat.connectionPool.driver"));

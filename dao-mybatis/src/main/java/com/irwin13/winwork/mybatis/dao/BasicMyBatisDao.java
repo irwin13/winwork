@@ -123,7 +123,7 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
             parameterMap.put("columnName", null);
             parameterMap.put("sortMethod", null);
         }
-        LOGGER.debug("parameter map = {}", parameterMap);
+        LOGGER.trace("parameter map = {}", parameterMap);
         List<M> list = session.selectList(getMapperName() + SELECT, parameterMap);
         return (list == null) ? Collections.EMPTY_LIST : list;
     }
@@ -148,8 +148,8 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
     public List<M> select(SqlSession session, M filter, SortParameter sortParameter, int fetchStart, int fetchSize) {
         if (filter == null) return Collections.EMPTY_LIST;
 
-        LOGGER.debug("Select Paged start = {}", fetchStart);
-        LOGGER.debug("Select Paged size = {}", fetchSize);
+        LOGGER.trace("Select Paged start = {}", fetchStart);
+        LOGGER.trace("Select Paged size = {}", fetchSize);
 
         Map<String, Object> parameterMap = PojoUtil.beanToMap(filter, true);
         if (sortParameter != null) {
@@ -159,7 +159,7 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
             parameterMap.put("columnName", null);
             parameterMap.put("sortMethod", null);
         }
-        LOGGER.debug("parameter map = {}", parameterMap);
+        LOGGER.trace("parameter map = {}", parameterMap);
         List<M> list = session.selectList(getMapperName() + SELECT, parameterMap, new RowBounds(fetchStart, fetchSize));
 
         return (list == null) ? Collections.EMPTY_LIST : list;
@@ -191,7 +191,7 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
         parameterMap.put("columnName", null);
         parameterMap.put("sortMethod", null);
 
-        LOGGER.debug("parameter map = {}", parameterMap);
+        LOGGER.trace("parameter map = {}", parameterMap);
         result = (Long) session.selectOne(getMapperName() + SELECT_COUNT, parameterMap);
         return result;
     }
@@ -219,7 +219,7 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
         SearchParameter sp = new SearchParameter(searchParameter.getSearchKeyword() + "%",
                 searchParameter.getColumnName(),
                 searchParameter.getSortMethod());
-        LOGGER.debug("searchParameter = {}", sp);
+        LOGGER.trace("searchParameter = {}", sp);
         List<M> list = session.selectList(getMapperName() + SELECT_SEARCH, sp);
         return (list == null) ? Collections.EMPTY_LIST : list;
     }
@@ -249,7 +249,7 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
         SearchParameter sp = new SearchParameter(searchParameter.getSearchKeyword() + "%",
                 searchParameter.getColumnName(),
                 searchParameter.getSortMethod());
-        LOGGER.debug("COUNT searchParameter = {}", sp);
+        LOGGER.trace("COUNT searchParameter = {}", sp);
         result = (Long) session.selectOne(getMapperName() + SELECT_SEARCH_COUNT, sp);
         return result;
     }
@@ -282,9 +282,9 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
                 searchParameter.getColumnName(),
                 searchParameter.getSortMethod());
 
-        LOGGER.debug("PAGED searchParameter = {}", sp);
-        LOGGER.debug("PAGED start = {}", fetchStart);
-        LOGGER.debug("PAGED size = {}", fetchSize);
+        LOGGER.trace("PAGED searchParameter = {}", sp);
+        LOGGER.trace("PAGED start = {}", fetchStart);
+        LOGGER.trace("PAGED size = {}", fetchSize);
 
         List<M> list = session.selectList(getMapperName() + SELECT_SEARCH, sp,
                 new RowBounds(fetchStart, fetchSize));
@@ -310,7 +310,7 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
 
     @SuppressWarnings("unchecked")
     public M selectById(SqlSession session, I id, boolean fetchChild) {
-        LOGGER.debug("Id = {}", id);
+        LOGGER.trace("Id = {}", id);
         if (id == null) return null;
         M object = (M) session.selectOne(getMapperName() + SELECT_BY_ID, id);
         if (fetchChild) {
@@ -339,6 +339,7 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
         try {
             for (M model : modelList) {
                 session.insert(getMapperName() + INSERT, model);
+                LOGGER.trace("batch insert = {}", model);
             }
             session.commit();
         } finally {
@@ -351,7 +352,8 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
         SqlSession session = sqlSessionFactory.openSession(ExecutorType.BATCH);
         try {
             for (M model : modelList) {
-                session.insert(getMapperName() + UPDATE, model);
+                session.update(getMapperName() + UPDATE, model);
+                LOGGER.trace("batch update = {}", model);
             }
             session.commit();
         } finally {
@@ -364,7 +366,8 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
         SqlSession session = sqlSessionFactory.openSession(ExecutorType.BATCH);
         try {
             for (M model : modelList) {
-                session.insert(getMapperName() + DELETE, model);
+                session.delete(getMapperName() + DELETE, model);
+                LOGGER.trace("batch delete = {}", model);
             }
             session.commit();
         } finally {
