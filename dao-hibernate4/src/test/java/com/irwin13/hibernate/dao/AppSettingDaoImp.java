@@ -4,11 +4,11 @@ import com.google.inject.Inject;
 import com.irwin13.winwork.basic.model.SearchParameter;
 import com.irwin13.winwork.basic.model.SortParameter;
 import com.irwin13.winwork.basic.model.entity.app.AppSetting;
+import com.irwin13.winwork.basic.utilities.PojoUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author irwin Timestamp : 28/04/2014 17:31
@@ -53,19 +53,20 @@ public class AppSettingDaoImp implements AppSettingDao {
     }
 
     @Override
-    public List<AppSetting> selectSearch(Map<String, Class<?>> searchProperties, SearchParameter searchParameter) {
-        return basicDao.selectSearch(searchParameter, searchProperties);
+    public List<AppSetting> selectSearch(SearchParameter searchParameter) {
+        return basicDao.selectSearch(searchParameter, PojoUtil.getSearchableField(getModelClass()));
     }
 
     @Override
-    public List<AppSetting> selectSearch(Map<String, Class<?>> searchProperties, SearchParameter searchParameter,
+    public List<AppSetting> selectSearch(SearchParameter searchParameter,
                                          int fetchStart, int fetchSize) {
-        return basicDao.selectSearch(searchParameter, searchProperties, fetchStart, fetchSize);
+        return basicDao.selectSearch(searchParameter, PojoUtil.getSearchableField(getModelClass()),
+                fetchStart, fetchSize);
     }
 
     @Override
-    public long selectSearchCount(Map<String, Class<?>> searchProperties, SearchParameter searchParameter) {
-        return basicDao.selectSearchCount(searchParameter, searchProperties);
+    public long selectSearchCount(SearchParameter searchParameter) {
+        return basicDao.selectSearchCount(searchParameter, PojoUtil.getSearchableField(getModelClass()));
     }
 
     @Override

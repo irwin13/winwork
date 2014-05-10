@@ -3,7 +3,6 @@ package com.irwin13.hibernate.dao.test;
 import com.irwin13.hibernate.dao.AppSettingDao;
 import com.irwin13.winwork.basic.model.SearchParameter;
 import com.irwin13.winwork.basic.model.entity.app.AppSetting;
-import com.irwin13.winwork.basic.utilities.PojoUtil;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
@@ -33,7 +32,7 @@ public class AppSettingSearchSteps {
 
     @When("search AppSetting is executed")
     public void when() {
-        appSettingList = dao.selectSearch(PojoUtil.getSearchableField(AppSetting.class),
+        appSettingList = dao.selectSearch(
                 new SearchParameter(key + "%", null, null));
     }
 

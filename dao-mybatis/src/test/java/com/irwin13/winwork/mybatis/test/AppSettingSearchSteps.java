@@ -32,7 +32,7 @@ public class AppSettingSearchSteps {
 
     @When("search AppSetting is executed")
     public void when() {
-        appSettingList = dao.selectSearch(null, new SearchParameter(key, null, null));
+        appSettingList = dao.selectSearch(new SearchParameter(key, null, null));
     }
 
     @Then("AppSettingList size after search should be equals $size")

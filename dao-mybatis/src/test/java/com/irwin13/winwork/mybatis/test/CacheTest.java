@@ -39,8 +39,8 @@ public class CacheTest {
     public void querySearch() {
         String searchKeyword = "key";
         for (int i = 0; i < 10; i++) {
-            appSettingDao.selectSearch(null, new SearchParameter(searchKeyword, null, null));
-            appSettingDao.selectSearchCount(null, new SearchParameter(searchKeyword, null, null));
+            appSettingDao.selectSearch(new SearchParameter(searchKeyword, null, null));
+            appSettingDao.selectSearchCount(new SearchParameter(searchKeyword, null, null));
         }
     }
 }

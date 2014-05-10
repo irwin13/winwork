@@ -7,7 +7,6 @@ import com.irwin13.winwork.basic.model.entity.app.AppSetting;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author irwin Timestamp : 17/04/2014 21:16
@@ -39,18 +38,18 @@ public class AppSettingDaoImp implements AppSettingDao {
     }
 
     @Override
-    public List<AppSetting> selectSearch(Map<String, Class<?>> searchProperties, SearchParameter searchParameter) {
+    public List<AppSetting> selectSearch(SearchParameter searchParameter) {
         return basicDao.selectSearch(searchParameter);
     }
 
     @Override
-    public List<AppSetting> selectSearch(Map<String, Class<?>> searchProperties, SearchParameter searchParameter,
+    public List<AppSetting> selectSearch(SearchParameter searchParameter,
                                          int fetchStart, int fetchSize) {
         return basicDao.selectSearch(searchParameter, fetchStart, fetchSize);
     }
 
     @Override
-    public long selectSearchCount(Map<String, Class<?>> searchProperties, SearchParameter searchParameter) {
+    public long selectSearchCount(SearchParameter searchParameter) {
         return basicDao.selectSearchCount(searchParameter);
     }
 

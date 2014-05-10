@@ -16,10 +16,10 @@ public interface WinWorkDao<M extends Serializable, I extends Serializable> {
     public List<M> select(M filter, SortParameter sortParameter, int fetchStart, int fetchSize);
     public long selectCount(M filter);
 
-    public List<M> selectSearch(Map<String, Class<?>> searchProperties, SearchParameter searchParameter);
-    public List<M> selectSearch(Map<String, Class<?>> searchProperties, SearchParameter searchParameter,
+    public List<M> selectSearch(SearchParameter searchParameter);
+    public List<M> selectSearch(SearchParameter searchParameter,
                                 int fetchStart, int fetchSize);
-    public long selectSearchCount(Map<String, Class<?>> searchProperties, SearchParameter searchParameter);
+    public long selectSearchCount(SearchParameter searchParameter);
 
     public M getById(I id, boolean fetchChild);
 
