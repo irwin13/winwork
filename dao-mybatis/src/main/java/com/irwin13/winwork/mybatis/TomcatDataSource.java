@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.sql.DataSource;
 import java.util.Properties;
+import java.util.Set;
 
 /**
  * @author irwin Timestamp : 22/04/2014 18:52
@@ -21,7 +22,14 @@ public class TomcatDataSource implements DataSourceFactory {
     public void setProperties(Properties properties) {
 
         LOGGER.info("Initialize Tomcat Data Source with properties :");
-        LOGGER.info(properties.toString());
+        Set<String> propertyNames = properties.stringPropertyNames();
+        for (String propertyKey : propertyNames) {
+            if (!propertyKey.contains("password")) {
+                LOGGER.info("{} = {}", propertyKey, properties.getProperty(propertyKey));
+            } else {
+                LOGGER.info("{} = {}", propertyKey, "*****");
+            }
+        }
 
         poolProperties.setUrl(properties.getProperty("tomcat.connectionPool.url"));
         poolProperties.setDriverClassName(properties.getProperty("tomcat.connectionPool.driver"));
