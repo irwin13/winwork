@@ -22,6 +22,10 @@ public class HibernateModule extends AbstractModule {
                 .annotatedWith(Names.named("configFile"))
                 .toInstance("common-config.xml");
 
+        bind(String.class)
+                .annotatedWith(Names.named("hibernateConfigFile"))
+                .toInstance("hibernate.cfg.xml");
+
         bind(WinWorkConfig.class).to(HibernateConfig.class).in(Singleton.class);
         bind(SessionFactory.class).toProvider(HibernateSessionFactoryProvider.class).in(Singleton.class);
         bind(AppSettingDao.class).to(AppSettingDaoImp.class);

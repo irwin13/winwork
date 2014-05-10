@@ -157,7 +157,7 @@ public class BasicHibernateDao<M extends Serializable, I extends Serializable> {
         if (filter == null) return Collections.EMPTY_LIST;
 
         String sqlQuery = HibernateQueryUtil.buildModelQuery(filter, false, sortParameter);
-        LOGGER.debug("Select QUERY = {}", sqlQuery);
+        LOGGER.trace("Select QUERY = {}", sqlQuery);
 
         Query query = session.createQuery(sqlQuery);
         query.setProperties(filter);
@@ -189,9 +189,9 @@ public class BasicHibernateDao<M extends Serializable, I extends Serializable> {
         if (filter == null) return Collections.EMPTY_LIST;
 
         String sqlQuery = HibernateQueryUtil.buildModelQuery(filter, false, sortParameter);
-        LOGGER.debug("Select Paged QUERY = {}", sqlQuery);
-        LOGGER.debug("Select Paged start = {}", fetchStart);
-        LOGGER.debug("Select Paged size = {}", fetchSize);
+        LOGGER.trace("Select Paged QUERY = {}", sqlQuery);
+        LOGGER.trace("Select Paged start = {}", fetchStart);
+        LOGGER.trace("Select Paged size = {}", fetchSize);
 
         Query query = session.createQuery(sqlQuery);
         query.setProperties(filter);
@@ -225,7 +225,7 @@ public class BasicHibernateDao<M extends Serializable, I extends Serializable> {
         if (filter == null) return result;
 
         String sqlQuery = HibernateQueryUtil.buildModelQuery(filter, true, null);
-        LOGGER.debug("COUNT Query = {}", sqlQuery);
+        LOGGER.trace("COUNT Query = {}", sqlQuery);
 
         Query query = session.createQuery(sqlQuery);
         query.setProperties(filter);
@@ -254,13 +254,13 @@ public class BasicHibernateDao<M extends Serializable, I extends Serializable> {
     @MDCLog
     public List<M> selectSearch(Session session, SearchParameter searchParameter, Map<String, Class<?>> searchProperties) {
 
-        LOGGER.debug("searchParameter = {}", searchParameter);
-        LOGGER.debug("searchProperties = {}", searchProperties);
+        LOGGER.trace("searchParameter = {}", searchParameter);
+        LOGGER.trace("searchProperties = {}", searchProperties);
 
         String query = HibernateQueryUtil.buildSearchQuery(modelClass, searchParameter.getSearchKeyword(), searchProperties,
                 false, new SortParameter(searchParameter.getColumnName(), searchParameter.getSortMethod()));
 
-        LOGGER.debug("selectSearch QUERY {}", query);
+        LOGGER.trace("selectSearch QUERY {}", query);
 
         Query q = session.createQuery(query);
         if (!Strings.isNullOrEmpty(searchParameter.getSearchKeyword())) {
@@ -298,13 +298,13 @@ public class BasicHibernateDao<M extends Serializable, I extends Serializable> {
     public long selectSearchCount(Session session, SearchParameter searchParameter, Map<String, Class<?>> searchProperties) {
         long result;
 
-        LOGGER.debug("COUNT searchParameter = {}", searchParameter);
-        LOGGER.debug("COUNT searchProperties = {}", searchProperties);
+        LOGGER.trace("COUNT searchParameter = {}", searchParameter);
+        LOGGER.trace("COUNT searchProperties = {}", searchProperties);
 
         String query = HibernateQueryUtil.buildSearchQuery(modelClass, searchParameter.getSearchKeyword(),
                 searchProperties, true, null);
 
-        LOGGER.debug("COUNT selectSearchCount QUERY = {}", query);
+        LOGGER.trace("COUNT selectSearchCount QUERY = {}", query);
 
         Query q = session.createQuery(query);
         if (!Strings.isNullOrEmpty(searchParameter.getSearchKeyword())) {
@@ -341,15 +341,15 @@ public class BasicHibernateDao<M extends Serializable, I extends Serializable> {
     public List<M> selectSearch(Session session, SearchParameter searchParameter, Map<String, Class<?>> searchProperties,
                                      int fetchStart, int fetchSize) {
 
-        LOGGER.debug("PAGED searchParameter = {}", searchParameter);
-        LOGGER.debug("PAGED searchProperties = {}", searchProperties);
-        LOGGER.debug("PAGED start = {}", fetchStart);
-        LOGGER.debug("PAGED size = {}", fetchSize);
+        LOGGER.trace("PAGED searchParameter = {}", searchParameter);
+        LOGGER.trace("PAGED searchProperties = {}", searchProperties);
+        LOGGER.trace("PAGED start = {}", fetchStart);
+        LOGGER.trace("PAGED size = {}", fetchSize);
 
         String query = HibernateQueryUtil.buildSearchQuery(modelClass, searchParameter.getSearchKeyword(), searchProperties,
                 false, new SortParameter(searchParameter.getColumnName(), searchParameter.getSortMethod()));
 
-        LOGGER.debug("PAGED selectSearchPaged QUERY = {}", query);
+        LOGGER.trace("PAGED selectSearchPaged QUERY = {}", query);
 
         Query q = session.createQuery(query);
         if (!Strings.isNullOrEmpty(searchParameter.getSearchKeyword())) {
@@ -387,7 +387,7 @@ public class BasicHibernateDao<M extends Serializable, I extends Serializable> {
 
     @SuppressWarnings("unchecked")
     public M getById(Session session, I id, boolean init) {
-        LOGGER.debug("Id = {}", id);
+        LOGGER.trace("Id = {}", id);
         M object = (M) session.get(modelClass, id);
         if (init && object != null) Hibernate.initialize(object);
         return object;

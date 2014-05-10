@@ -67,41 +67,41 @@
         </filter>
     </appender>
 
-    <root level="${app.log.level.root}">
+    <root level="${app.log.level}">
     </root>
 
-    <logger name="com.irwin13" level="${app.log.level.apps}">
+    <logger name="com.irwin13" level="${app.log.level}">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="LOG-DEBUG" />
         <appender-ref ref="LOG-ERROR" />
     </logger>
 
-    <logger name="test" level="${app.log.level.apps}">
+    <logger name="test" level="${app.log.level}">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="LOG-DEBUG" />
         <appender-ref ref="LOG-ERROR" />
     </logger>
 
-    <logger name="org.apache.ibatis" level="${app.log.level.apps}">
+    <logger name="org.apache.ibatis" level="${app.log.level}">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="LOG-DEBUG" />
         <appender-ref ref="LOG-ERROR" />
     </logger>
 
-    <logger name="com.hazelcast" level="${app.log.level.apps}">
+    <logger name="com.hazelcast" level="${app.log.level}">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="LOG-DEBUG" />
         <appender-ref ref="LOG-ERROR" />
     </logger>
 
-    <logger name="org.mybatis" level="${app.log.level.apps}">
+    <logger name="org.mybatis" level="${app.log.level}">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="LOG-DEBUG" />
         <appender-ref ref="LOG-ERROR" />
     </logger>
 
     <!-- LOG MAPPER SQL STATEMENT -->
-    <logger name="MyBatisLogmapper.com.irwin13.winwork.basic.model.entity.app" level="${app.log.level.apps}">
+    <logger name="MyBatisLogmapper.com.irwin13.winwork.basic.model.entity.app" level="${app.log.level}">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="LOG-DEBUG" />
         <appender-ref ref="LOG-ERROR" />

@@ -67,22 +67,22 @@
         </filter>
     </appender>
 
-    <root level="${app.log.level.root}">
+    <root level="${app.log.level}">
     </root>
 
-    <logger name="com.irwin13" level="${app.log.level.apps}">
+    <logger name="com.irwin13" level="${app.log.level}">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="LOG-DEBUG" />
         <appender-ref ref="LOG-ERROR" />
     </logger>
 
-    <logger name="test" level="${app.log.level.apps}">
+    <logger name="test" level="${app.log.level}">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="LOG-DEBUG" />
         <appender-ref ref="LOG-ERROR" />
     </logger>
 
-    <logger name="org.hibernate" level="${app.log.level.apps}">
+    <logger name="org.hibernate" level="${app.log.level}">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="LOG-DEBUG" />
         <appender-ref ref="LOG-ERROR" />
