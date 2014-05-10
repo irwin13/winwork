@@ -11,7 +11,7 @@ import java.sql.SQLException;
 /**
  * @author irwin Timestamp : 17/04/2014 16:17
  */
-public class OracleBooleanTypeHandler implements TypeHandler<Boolean> {
+public class CharToBooleanTypeHandler implements TypeHandler<Boolean> {
 
     private static final String YES = "Y";
     private static final String NO = "N";

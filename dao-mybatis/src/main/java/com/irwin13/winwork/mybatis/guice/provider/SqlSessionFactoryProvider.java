@@ -1,6 +1,8 @@
 package com.irwin13.winwork.mybatis.guice.provider;
 
+import com.google.inject.Inject;
 import com.google.inject.Provider;
+import com.google.inject.name.Named;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -18,12 +20,18 @@ public class SqlSessionFactoryProvider implements Provider<SqlSessionFactory> {
     private static final Logger LOGGER = LoggerFactory.getLogger(SqlSessionFactoryProvider.class);
 
     private SqlSessionFactory sqlSessionFactory;
+    private final String myBatisConfigFile;
+
+    @Inject
+    public SqlSessionFactoryProvider(@Named("myBatisConfigFile") String myBatisConfigFile) {
+        this.myBatisConfigFile = myBatisConfigFile;
+    }
 
     @Override
     public SqlSessionFactory get() {
         if (sqlSessionFactory == null) {
             try {
-                InputStream inputStream = Resources.getResourceAsStream("mybatis-config.xml");
+                InputStream inputStream = Resources.getResourceAsStream(myBatisConfigFile);
                 sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
             } catch (IOException e) {
                 LOGGER.error(e.getLocalizedMessage(), e);

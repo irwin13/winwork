@@ -22,6 +22,10 @@ public class MyBatisModule extends AbstractModule {
                 .annotatedWith(Names.named("configFile"))
                 .toInstance("common-config.xml");
 
+        bind(String.class)
+                .annotatedWith(Names.named("myBatisConfigFile"))
+                .toInstance("mybatis-config.xml");
+
         bind(WinWorkConfig.class).to(MyBatisConfig.class).in(Singleton.class);
 
         bind(SqlSessionFactory.class).toProvider(SqlSessionFactoryProvider.class).in(Singleton.class);
