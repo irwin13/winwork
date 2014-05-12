@@ -6,7 +6,7 @@
 
     <groupId>com.irwin13</groupId>
     <artifactId>winwork-mybatis</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <name>MyBatis DAO</name>
     <packaging>jar</packaging>
     <description>MyBatis DAO</description>
@@ -210,6 +210,7 @@
             <groupId>oracle</groupId>
             <artifactId>ojdbc6</artifactId>
             <version>11.1.0.7.0</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.mybatis</groupId>
@@ -275,13 +276,6 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.3.1</version>
-        </dependency>
-
-        <!-- DATE TIME -->
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-            <version>2.3</version>
         </dependency>
 
         <!-- QUADRAS -->
