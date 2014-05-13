@@ -347,6 +347,14 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
         }
     }
 
+    public void batchInsert(SqlSession session, List<M> modelList) {
+        Preconditions.checkNotNull(modelList);
+        for (M model : modelList) {
+            session.insert(getMapperName() + INSERT, model);
+            LOGGER.trace("batch insert = {}", model);
+        }
+    }
+
     public void batchUpdate(List<M> modelList) {
         Preconditions.checkNotNull(modelList);
         SqlSession session = sqlSessionFactory.openSession(ExecutorType.BATCH);
@@ -361,6 +369,14 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
         }
     }
 
+    public void batchUpdate(SqlSession session, List<M> modelList) {
+        Preconditions.checkNotNull(modelList);
+        for (M model : modelList) {
+            session.update(getMapperName() + UPDATE, model);
+            LOGGER.trace("batch update = {}", model);
+        }
+    }
+
     public void batchDelete(List<M> modelList) {
         Preconditions.checkNotNull(modelList);
         SqlSession session = sqlSessionFactory.openSession(ExecutorType.BATCH);
@@ -372,6 +388,14 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
             session.commit();
         } finally {
             closeSqlSession(session);
+        }
+    }
+
+    public void batchDelete(SqlSession session, List<M> modelList) {
+        Preconditions.checkNotNull(modelList);
+        for (M model : modelList) {
+            session.delete(getMapperName() + DELETE, model);
+            LOGGER.trace("batch delete = {}", model);
         }
     }
 
