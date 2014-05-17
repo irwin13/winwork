@@ -169,4 +169,7 @@ public class BasicSchedulerManager {
         return scheduler.rescheduleJob(triggerKey, newTrigger);
     }
 
+    public boolean isStarted() throws SchedulerException {
+        return scheduler.isStarted();
+    }
 }
