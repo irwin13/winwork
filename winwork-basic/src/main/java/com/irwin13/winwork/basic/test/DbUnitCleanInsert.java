@@ -26,7 +26,7 @@ public abstract class DbUnitCleanInsert {
 
     private IDatabaseConnection connection;
 
-    public abstract void initHibernate();
+    public abstract void initTestClass();
     public abstract List<String> datasetList();
 
     public abstract String jdbcDriver();
@@ -37,9 +37,9 @@ public abstract class DbUnitCleanInsert {
     @Before
     public void init() throws Exception {
 
-        LOGGER.info("Init Hibernate to AUTOMATIC CREATE TABLE ");
-        initHibernate();
-        LOGGER.info("Finish creating tables");
+        LOGGER.info("Creating Database objects ...");
+        initTestClass();
+        LOGGER.info("Finish creating Database objects");
 
         LOGGER.info("Run DbUnit CLEAN_INSERT :");
         LOGGER.info("Driver class = {}", jdbcDriver());
@@ -62,6 +62,7 @@ public abstract class DbUnitCleanInsert {
     private void executeDataset() throws Exception {
         DatabaseConfig config = connection.getConfig();
         config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new org.dbunit.ext.oracle.Oracle10DataTypeFactory());
+        config.setProperty(DatabaseConfig.FEATURE_QUALIFIED_TABLE_NAMES, Boolean.TRUE);
         List<String> dataSetList = datasetList();
         LOGGER.info("Load dataset : {}", dataSetList);
         for (String dataset : dataSetList) {

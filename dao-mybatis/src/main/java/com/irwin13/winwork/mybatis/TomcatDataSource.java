@@ -1,5 +1,6 @@
 package com.irwin13.winwork.mybatis;
 
+import com.google.common.base.Strings;
 import org.apache.ibatis.datasource.DataSourceFactory;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
 import org.slf4j.Logger;
@@ -54,7 +55,10 @@ public class TomcatDataSource implements DataSourceFactory {
         poolProperties.setValidationInterval(Integer.valueOf(properties.getProperty("tomcat.connectionPool.validationInterval")));
         poolProperties.setTimeBetweenEvictionRunsMillis(Integer.valueOf(properties.getProperty("tomcat.connectionPool.timeBetweenEvictionRunsMillis")));
 
-        poolProperties.setMaxWait(Integer.valueOf(properties.getProperty("tomcat.connectionPool.maxWait")));
+        String maxWait = properties.getProperty("tomcat.connectionPool.maxWait");
+        if (!Strings.isNullOrEmpty(maxWait)) {
+            poolProperties.setMaxWait(Integer.valueOf(maxWait));
+        }
 
         poolProperties.setLogAbandoned(Boolean.valueOf(properties.getProperty("tomcat.connectionPool.logAbandoned")));
         poolProperties.setRemoveAbandoned(Boolean.valueOf(properties.getProperty("tomcat.connectionPool.removeAbandoned")));
