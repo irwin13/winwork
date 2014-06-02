@@ -62,7 +62,6 @@ public abstract class DbUnitCleanInsert {
     private void executeDataset() throws Exception {
         DatabaseConfig config = connection.getConfig();
         config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new org.dbunit.ext.oracle.Oracle10DataTypeFactory());
-        config.setProperty(DatabaseConfig.FEATURE_QUALIFIED_TABLE_NAMES, Boolean.TRUE);
         List<String> dataSetList = datasetList();
         LOGGER.info("Load dataset : {}", dataSetList);
         for (String dataset : dataSetList) {
