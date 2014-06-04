@@ -53,7 +53,7 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
         if (session != null) session.close();
     }
 
-    protected String getMapperName() {
+    public String getMapperName() {
         return SQLMAP + getModelClass().getCanonicalName();
     }
 
