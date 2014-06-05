@@ -363,6 +363,7 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
                 session.update(getMapperName() + UPDATE, model);
                 LOGGER.trace("batch update = {}", model);
             }
+            session.flushStatements();
             session.commit();
         } finally {
             closeSqlSession(session);
@@ -385,6 +386,7 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
                 session.delete(getMapperName() + DELETE, model);
                 LOGGER.trace("batch delete = {}", model);
             }
+            session.flushStatements();
             session.commit();
         } finally {
             closeSqlSession(session);
