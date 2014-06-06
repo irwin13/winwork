@@ -23,6 +23,6 @@ public class AppSettingEmbedder extends AbstractEmbedder {
 
     @Override
     public String storyFilter() {
-        return "story/dao/**/*.story";
+        return "story/dao/*.story";
     }
 }
