@@ -5,7 +5,6 @@ import com.irwin13.winwork.basic.model.SortParameter;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author irwin Timestamp : 17/04/2014 19:04
@@ -27,5 +26,9 @@ public interface WinWorkDao<M extends Serializable, I extends Serializable> {
     public void update(M model);
     public void delete(M model);
     public Class<M> getModelClass();
+
+    public void batchInsert(List<M> modelList);
+    public void batchUpdate(List<M> modelList);
+    public void batchDelete(List<M> modelList);
 
 }

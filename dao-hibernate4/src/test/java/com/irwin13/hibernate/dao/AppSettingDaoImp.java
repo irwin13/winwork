@@ -88,4 +88,19 @@ public class AppSettingDaoImp implements AppSettingDao {
     public void delete(AppSetting model) {
         basicDao.delete(model);
     }
+
+    @Override
+    public void batchInsert(List<AppSetting> modelList) {
+        throw new RuntimeException("This method is not implemented, yet");
+    }
+
+    @Override
+    public void batchUpdate(List<AppSetting> modelList) {
+        throw new RuntimeException("This method is not implemented, yet");
+    }
+
+    @Override
+    public void batchDelete(List<AppSetting> modelList) {
+        throw new RuntimeException("This method is not implemented, yet");
+    }
 }

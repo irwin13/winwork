@@ -6,6 +6,7 @@ import com.irwin13.winwork.basic.model.SearchParameter;
 import com.irwin13.winwork.basic.model.entity.app.AppSetting;
 import com.irwin13.winwork.mybatis.dao.AppSettingDao;
 import com.irwin13.winwork.mybatis.guice.MyBatisModule;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -22,6 +23,7 @@ public class CacheTest {
         for (int i = 0; i < 10; i++) {
             appSettingDao.getById(id, false);
         }
+        Assert.assertTrue(true);
     }
 
     @Test
@@ -32,7 +34,7 @@ public class CacheTest {
             appSettingDao.select(filter, null);
             appSettingDao.selectCount(filter);
         }
-
+        Assert.assertTrue(true);
     }
 
     @Test
@@ -42,5 +44,6 @@ public class CacheTest {
             appSettingDao.selectSearch(new SearchParameter(searchKeyword, null, null));
             appSettingDao.selectSearchCount(new SearchParameter(searchKeyword, null, null));
         }
+        Assert.assertTrue(true);
     }
 }

@@ -78,4 +78,19 @@ public class AppSettingDaoImp implements AppSettingDao {
     public Class<AppSetting> getModelClass() {
         return basicDao.getModelClass();
     }
+
+    @Override
+    public void batchInsert(List<AppSetting> modelList) {
+        basicDao.batchInsert(modelList);
+    }
+
+    @Override
+    public void batchUpdate(List<AppSetting> modelList) {
+        basicDao.batchUpdate(modelList);
+    }
+
+    @Override
+    public void batchDelete(List<AppSetting> modelList) {
+        basicDao.batchDelete(modelList);
+    }
 }
