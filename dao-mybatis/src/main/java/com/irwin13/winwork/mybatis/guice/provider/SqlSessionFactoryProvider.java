@@ -22,18 +22,18 @@ public class SqlSessionFactoryProvider implements Provider<SqlSessionFactory> {
     private static final Logger LOGGER = LoggerFactory.getLogger(SqlSessionFactoryProvider.class);
 
     private SqlSessionFactory sqlSessionFactory;
-    private final String myBatisConfigFile;
+    private final String myBatisXmlConfigFile;
 
     @Inject
-    public SqlSessionFactoryProvider(@Named("myBatisConfigFile") String myBatisConfigFile) {
-        this.myBatisConfigFile = myBatisConfigFile;
+    public SqlSessionFactoryProvider(@Named("myBatisConfigFile") String myBatisXmlConfigFile) {
+        this.myBatisXmlConfigFile = myBatisXmlConfigFile;
     }
 
     @Override
     public SqlSessionFactory get() {
         if (sqlSessionFactory == null) {
             try {
-                InputStream inputStream = Resources.getResourceAsStream(myBatisConfigFile);
+                InputStream inputStream = Resources.getResourceAsStream(myBatisXmlConfigFile);
                 sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
             } catch (IOException e) {
                 LOGGER.error(e.getLocalizedMessage(), e);
