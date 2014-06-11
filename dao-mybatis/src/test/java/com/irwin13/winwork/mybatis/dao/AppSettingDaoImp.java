@@ -19,7 +19,8 @@ public class AppSettingDaoImp implements AppSettingDao {
     @Inject
     public AppSettingDaoImp(SqlSessionFactory sqlSessionFactory) {
         this.sqlSessionFactory = sqlSessionFactory;
-        this.basicDao = new BasicMyBatisDao<AppSetting, String>(AppSetting.class, sqlSessionFactory);
+        this.basicDao = new BasicMyBatisDao<AppSetting, String>(AppSetting.class, sqlSessionFactory,
+                AppSetting.class.getName() + BasicMyBatisDao.SQLMAP);
     }
 
     @Override

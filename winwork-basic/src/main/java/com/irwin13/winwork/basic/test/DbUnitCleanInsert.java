@@ -37,9 +37,9 @@ public abstract class DbUnitCleanInsert {
     @Before
     public void init() throws Exception {
 
-        LOGGER.info("Creating Database objects ...");
+        LOGGER.info("InitTestClass ...");
         initTestClass();
-        LOGGER.info("Finish creating Database objects");
+        LOGGER.info("Finish InitTestClass");
 
         LOGGER.info("Run DbUnit CLEAN_INSERT :");
         LOGGER.info("Driver class = {}", jdbcDriver());

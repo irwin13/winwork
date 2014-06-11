@@ -23,7 +23,9 @@ import java.util.Map;
 public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BasicMyBatisDao.class);
-    private static final String SQLMAP = "sqlmap.";
+
+    public static final String SQLMAP = "Sqlmap";
+
     private static final String INSERT = ".insert";
     private static final String UPDATE = ".update";
     private static final String DELETE = ".delete";
@@ -35,10 +37,12 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
 
     private final Class<M> modelClass;
     private final SqlSessionFactory sqlSessionFactory;
+    private final String mapperNamespace;
 
-    public BasicMyBatisDao(Class<M> modelClass, SqlSessionFactory sqlSessionFactory) {
+    public BasicMyBatisDao(Class<M> modelClass, SqlSessionFactory sqlSessionFactory, String mapperNamespace) {
         this.modelClass = modelClass;
         this.sqlSessionFactory = sqlSessionFactory;
+        this.mapperNamespace = mapperNamespace;
     }
 
     public Class<M> getModelClass() {
@@ -54,7 +58,7 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
     }
 
     public String getMapperName() {
-        return SQLMAP + getModelClass().getCanonicalName();
+        return mapperNamespace;
     }
 
     public int insert(M model) {
