@@ -53,6 +53,10 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
         return sqlSessionFactory.openSession();
     }
 
+    public SqlSession openNewSqlSession(ExecutorType executorType) {
+        return sqlSessionFactory.openSession(executorType);
+    }
+
     public void closeSqlSession(SqlSession session) {
         if (session != null) session.close();
     }
@@ -345,6 +349,7 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
                 session.insert(getMapperName() + INSERT, model);
                 LOGGER.trace("batch insert = {}", model);
             }
+            session.flushStatements();
             session.commit();
         } finally {
             closeSqlSession(session);
