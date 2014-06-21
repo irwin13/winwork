@@ -81,7 +81,7 @@ public class AppSettingDaoImp implements AppSettingDao {
 
     @Override
     public void update(AppSetting model) {
-        basicDao.merge(model);
+        basicDao.update(model);
     }
 
     @Override
@@ -102,5 +102,15 @@ public class AppSettingDaoImp implements AppSettingDao {
     @Override
     public void batchDelete(List<AppSetting> modelList) {
         throw new RuntimeException("This method is not implemented, yet");
+    }
+
+    @Override
+    public void merge(AppSetting model) {
+        basicDao.merge(model);
+    }
+
+    @Override
+    public void saveOrUpdate(AppSetting model) {
+        basicDao.saveOrUpdate(model);
     }
 }

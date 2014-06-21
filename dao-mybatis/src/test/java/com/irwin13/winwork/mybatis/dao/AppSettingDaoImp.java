@@ -94,4 +94,14 @@ public class AppSettingDaoImp implements AppSettingDao {
     public void batchDelete(List<AppSetting> modelList) {
         basicDao.batchDelete(modelList);
     }
+
+    @Override
+    public void merge(AppSetting model) {
+        basicDao.update(model);
+    }
+
+    @Override
+    public void saveOrUpdate(AppSetting model) {
+        throw new RuntimeException("Method not implemented");
+    }
 }

@@ -27,6 +27,9 @@ public interface WinWorkDao<M extends Serializable, I extends Serializable> {
     public void delete(M model);
     public Class<M> getModelClass();
 
+    public void merge(M model);
+    public void saveOrUpdate(M model);
+
     public void batchInsert(List<M> modelList);
     public void batchUpdate(List<M> modelList);
     public void batchDelete(List<M> modelList);
