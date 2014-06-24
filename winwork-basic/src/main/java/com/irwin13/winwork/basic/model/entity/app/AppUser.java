@@ -40,7 +40,7 @@ public class AppUser extends WinWorkBasicEntity {
     private String phone;
 
     @FormReadExclude
-    private String lastIpAddress;
+    private String lastLoginFrom;
 
     @FormReadExclude
     private java.util.Date lastLogin;
@@ -108,12 +108,12 @@ public class AppUser extends WinWorkBasicEntity {
         this.phone = phone;
     }
 
-    public String getLastIpAddress() {
-        return lastIpAddress;
+    public String getLastLoginFrom() {
+        return lastLoginFrom;
     }
 
-    public void setLastIpAddress(String lastIpAddress) {
-        this.lastIpAddress = lastIpAddress;
+    public void setLastLoginFrom(String lastLoginFrom) {
+        this.lastLoginFrom = lastLoginFrom;
     }
 
     public Date getLastLogin() {
