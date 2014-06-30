@@ -18,8 +18,6 @@ public class AppPermission extends WinWorkBasicEntity {
     @Sortable
     private String name;
 
-    @Searchable
-    @Sortable
     private String description;
 
     @Searchable
