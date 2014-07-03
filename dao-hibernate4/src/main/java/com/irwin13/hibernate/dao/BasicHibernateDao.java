@@ -267,7 +267,7 @@ public class BasicHibernateDao<M extends Serializable, I extends Serializable> {
             HibernateQueryUtil.setSearchParameter(q, searchParameter.getSearchKeyword(), searchProperties);
         }
 
-        if (WinWorkBasicEntity.class.isAssignableFrom(getModelClass())) {
+        if (WinWorkBasicEntity.class.isAssignableFrom(modelClass)) {
             q.setBoolean("STATUS_ACTIVE", Boolean.TRUE);
         }
 
@@ -310,7 +310,7 @@ public class BasicHibernateDao<M extends Serializable, I extends Serializable> {
         if (!Strings.isNullOrEmpty(searchParameter.getSearchKeyword())) {
             HibernateQueryUtil.setSearchParameter(q, searchParameter.getSearchKeyword(), searchProperties);
         }
-        if (WinWorkBasicEntity.class.isAssignableFrom(getModelClass())) {
+        if (WinWorkBasicEntity.class.isAssignableFrom(modelClass)) {
             q.setBoolean("STATUS_ACTIVE", Boolean.TRUE);
         }
 
@@ -355,7 +355,7 @@ public class BasicHibernateDao<M extends Serializable, I extends Serializable> {
         if (!Strings.isNullOrEmpty(searchParameter.getSearchKeyword())) {
             HibernateQueryUtil.setSearchParameter(q, searchParameter.getSearchKeyword(), searchProperties);
         }
-        if (WinWorkBasicEntity.class.isAssignableFrom(getModelClass())) {
+        if (WinWorkBasicEntity.class.isAssignableFrom(modelClass)) {
             q.setBoolean("STATUS_ACTIVE", Boolean.TRUE);
         }
         q.setFirstResult(fetchStart);
