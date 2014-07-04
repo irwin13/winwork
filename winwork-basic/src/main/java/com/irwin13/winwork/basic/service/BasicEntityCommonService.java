@@ -22,17 +22,13 @@ public class BasicEntityCommonService {
         if (Strings.isNullOrEmpty(model.getCreateBy())) {
             model.setCreateBy(WinWorkConstants.USER_SYSTEM);
         }
-        if (model.getCreateDate() == null) {
-            model.setCreateDate(current);
-        }
 
         if (Strings.isNullOrEmpty(model.getLastUpdateBy())) {
             model.setLastUpdateBy(WinWorkConstants.USER_SYSTEM);
         }
-        if (model.getLastUpdateDate() == null) {
-            model.setLastUpdateDate(current);
-        }
 
+        model.setLastUpdateDate(current);
+        model.setCreateDate(current);
         model.setActive(Boolean.TRUE);
     }
 
@@ -40,19 +36,16 @@ public class BasicEntityCommonService {
         if (Strings.isNullOrEmpty(model.getLastUpdateBy())) {
             model.setLastUpdateBy(WinWorkConstants.USER_SYSTEM);
         }
-        if (model.getLastUpdateDate() == null) {
-            model.setLastUpdateDate(new Date());
-        }
+
+        model.setLastUpdateDate(new Date());
     }
 
     public void onSoftDelete(WinWorkBasicEntity model) {
         if (Strings.isNullOrEmpty(model.getLastUpdateBy())) {
             model.setLastUpdateBy(WinWorkConstants.USER_SYSTEM);
         }
-        if (model.getLastUpdateDate() == null) {
-            model.setLastUpdateDate(new Date());
-        }
 
+        model.setLastUpdateDate(new Date());
         model.setActive(Boolean.FALSE);
     }
 
@@ -68,9 +61,8 @@ public class BasicEntityCommonService {
         if (Strings.isNullOrEmpty(model.getLastUpdateBy())) {
             model.setLastUpdateBy(WinWorkConstants.USER_SYSTEM);
         }
-        if (model.getLastUpdateDate() == null) {
-            model.setLastUpdateDate(current);
-        }
+
+        model.setLastUpdateDate(current);
         model.setActive(Boolean.TRUE);
     }
 
