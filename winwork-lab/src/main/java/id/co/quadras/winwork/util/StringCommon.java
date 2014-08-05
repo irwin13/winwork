@@ -83,7 +83,7 @@ public class StringCommon {
     public static String setSearchKeyword(String searchKeyword) {
         String val = null;
         if (!Strings.isNullOrEmpty(searchKeyword) && !searchKeyword.equalsIgnoreCase("null")) {
-            val = "%" + searchKeyword.toLowerCase() + "%";
+            val = searchKeyword.toLowerCase() + "%";
         }
         return val;
     }
