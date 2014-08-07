@@ -32,22 +32,16 @@ public class RestClient {
     private static final Logger LOGGER = LoggerFactory.getLogger(RestClient.class);
     public static final String HTTP_PROTOCOL = "http://";
 
-    public static final String HTTP_METHOD_GET = "GET";
-    public static final String HTTP_METHOD_POST = "POST";
-    public static final String HTTP_METHOD_PUT = "PUT";
-    public static final String HTTP_METHOD_DELETE = "DELETE";
-
-
     /**
-     * Connection timeout, time given to established HTTP connection
+     * Connection timeout, time given to established TCP / HTTP connection
      */
-    public static final int DEFAULT_CONNECTION_TIMEOUT = 1000 * 300; // in milliseconds, so it means 300 seconds / 5 minutes
+    public static final int DEFAULT_CONNECTION_TIMEOUT = 0; // no timeout
 
     /**
      * Socket timeout, time to wait for data transfer to be completed.
      * In this case, the HTTP connection already established, this is the timeout for data transfer.
      */
-    public static final int DEFAULT_SOCKET_TIMEOUT = 1000 * 900; // in milliseconds, so it means 900 seconds / 15 minutes
+    public static final int DEFAULT_SOCKET_TIMEOUT = 0; // no timeout
 
     /**
      * Method to invoke HTTP GET method.
