@@ -63,4 +63,46 @@ public final class WinWorkUtil {
         return content.toString();
     }
 
+    public static final String appStatusView(String appName, String version, long start, DateFormat dateFormat) {
+        StringBuilder content = new StringBuilder();
+
+        long now = System.currentTimeMillis();
+        Period period = new Duration(now - start).toPeriod().normalizedStandard();
+
+        content.append("<html>");
+        content.append("<head>");
+        content.append("<title>");
+        content.append(appName);
+        content.append(" ");
+        content.append(version);
+        content.append("</title>");
+        content.append("</head>");
+        content.append("<body>");
+        content.append("<h1>");
+        content.append(appName);
+        content.append(" ");
+        content.append(version);
+        content.append("</h1>");
+        content.append("<div>");
+        content.append("Node Name : ");
+        content.append(WinWorkUtil.getNodeName());
+        content.append("</div>");
+        content.append("<div>");
+        content.append("Up since : ");
+        content.append(dateFormat.format(new DateTime(start).toDate()));
+        content.append("</div>");
+        content.append("<div>");
+        content.append("Up for : ");
+        content.append(period.getYears()).append(" years ");
+        content.append(period.getMonths()).append(" months ");
+        content.append(period.getDays()).append(" days, ");
+        content.append(period.getHours()).append(" hours ");
+        content.append(period.getMinutes()).append(" minutes ");
+        content.append(period.getSeconds()).append(" seconds ");
+        content.append("</div>");
+        content.append("</body>");
+        content.append("</html>");
+        return content.toString();
+    }
+
 }
