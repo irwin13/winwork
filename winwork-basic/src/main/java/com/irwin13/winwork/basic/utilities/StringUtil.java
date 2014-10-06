@@ -13,7 +13,6 @@ import org.joda.time.Period;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * @author irwin Timestamp : 17/04/2014 19:51
@@ -25,13 +24,13 @@ public final class StringUtil {
     private static final EthernetAddress ETHERNET_ADDRESS = EthernetAddress.fromInterface();
 
     public static String random32UUID() {
-//        return UUID.randomUUID().toString().replaceAll("-", "");
         TimeBasedGenerator uuidGenerator = Generators.timeBasedGenerator(ETHERNET_ADDRESS);
         return uuidGenerator.generate().toString().replaceAll("-", "");
     }
 
     public static String random36UUID() {
-        return UUID.randomUUID().toString();
+        TimeBasedGenerator uuidGenerator = Generators.timeBasedGenerator(ETHERNET_ADDRESS);
+        return uuidGenerator.generate().toString();
     }
 
     public static String lowerCaseFirstLetter(String value) {

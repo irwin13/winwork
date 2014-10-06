@@ -14,6 +14,7 @@ public abstract class WinWorkBasicEntity implements Serializable {
     private Date createDate;
     private String lastUpdateBy;
     private Date lastUpdateDate;
+    private long lastUpdateMillis;
 
     public String getId() {
         return id;
@@ -61,6 +62,14 @@ public abstract class WinWorkBasicEntity implements Serializable {
 
     public void setLastUpdateDate(Date lastUpdateDate) {
         this.lastUpdateDate = lastUpdateDate;
+    }
+
+    public long getLastUpdateMillis() {
+        return lastUpdateMillis;
+    }
+
+    public void setLastUpdateMillis(long lastUpdateMillis) {
+        this.lastUpdateMillis = lastUpdateMillis;
     }
 
     @Override
