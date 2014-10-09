@@ -4,7 +4,6 @@ import com.google.inject.Inject;
 import com.irwin13.winwork.basic.annotations.MDCLog;
 import com.irwin13.winwork.basic.exception.WinWorkException;
 import org.quartz.*;
-import org.quartz.spi.MutableTrigger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -138,14 +137,17 @@ public class BasicSchedulerManager {
     }
 
     @MDCLog
-    // TODO still need testing
     public Trigger createCronTrigger(TriggerKey triggerKey, String cronExpression) {
         LOGGER.debug("triggerKey = {}", triggerKey);
         LOGGER.debug("cronExpression = {}", cronExpression);
         if (!CronExpression.isValidExpression(cronExpression)) {
             throw new WinWorkException("Invalid cron expression = " + cronExpression);
         }
-        MutableTrigger trigger = CronScheduleBuilder.cronSchedule(cronExpression).build();
+        Trigger trigger = TriggerBuilder
+                .newTrigger()
+                .withIdentity(triggerKey)
+                .withSchedule(CronScheduleBuilder.cronSchedule(cronExpression))
+                .build();
         return trigger;
     }
 

@@ -16,10 +16,6 @@ public abstract class WinWorkBasicEntity implements Serializable {
     private Date lastUpdateDate;
     private long lastUpdateMillis;
 
-    public String getId() {
-        return id;
-    }
-
     public void setId(String id) {
         this.id = id;
     }
@@ -72,7 +68,11 @@ public abstract class WinWorkBasicEntity implements Serializable {
         this.lastUpdateMillis = lastUpdateMillis;
     }
 
-    @Override
+	public Boolean getActive() {
+		return active;
+	}
+
+	@Override
     public boolean equals(Object o) {
 
         if (this == o) return true;
