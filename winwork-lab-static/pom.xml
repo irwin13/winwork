@@ -6,7 +6,7 @@
 
     <groupId>id.co.quadras</groupId>
     <artifactId>winwork-lab-static</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>2.0</version>
     <packaging>war</packaging>
     <name>WinWork Static</name>
 

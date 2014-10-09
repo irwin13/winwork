@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="id.co.quadras.winwork.model.entity.app">
-    <class name="AppRole" table="APP_ROLE" lazy="false">
+    <class name="AppRole" table="APP_ROLE" schema="winwork"  lazy="false">
 
         <id name="id" type="string" column="ID">
             <generator class="uuid" />
@@ -16,12 +16,12 @@
         <property name="name" column="NAME" type="string" not-null="true"/>
         <property name="description" column="DESCRIPTION" type="string" not-null="false"/>
 
-        <bag name="appUserList" table="APP_USER_ROLE">
+        <bag name="appUserList" table="APP_USER_ROLE" schema="winwork">
             <key column="APP_ROLE_ID"/>
             <many-to-many column="APP_USER_ID" class="id.co.quadras.winwork.model.entity.app.AppUser"/>
         </bag>
 
-        <bag name="appPermissionList" table="APP_ROLE_PERMISSION">
+        <bag name="appPermissionList" table="APP_ROLE_PERMISSION" schema="winwork">
             <key column="APP_ROLE_ID"/>
             <many-to-many column="APP_PERMISSION_ID" class="id.co.quadras.winwork.model.entity.app.AppPermission"/>
         </bag>

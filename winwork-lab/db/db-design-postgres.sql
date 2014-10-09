@@ -1,4 +1,4 @@
-CREATE TABLE qreport.app_user
+CREATE TABLE winwork.app_user
 (
   id character varying(32) NOT NULL,
   active character(1) default 'Y',
@@ -6,6 +6,7 @@ CREATE TABLE qreport.app_user
   create_date timestamp,
   last_update_by character varying(255),
   last_update_date timestamp,
+  last_update_millis bigint,
   username character varying(255),
   password character varying(255),
   last_login_from character varying(100),
@@ -14,10 +15,9 @@ CREATE TABLE qreport.app_user
   first_name character varying(255),
   last_name character varying(255),
   CONSTRAINT app_user_pkey PRIMARY KEY (id)
-)
-ALTER TABLE qreport.app_user OWNER TO qreport;
+);
 
-CREATE TABLE qreport.app_role
+CREATE TABLE winwork.app_role
 (
   id character varying(32) NOT NULL,
   active character(1) default 'Y',
@@ -25,20 +25,19 @@ CREATE TABLE qreport.app_role
   create_date timestamp,
   last_update_by character varying(255),
   last_update_date timestamp,
+  last_update_millis bigint,
   name character varying(100),
   description character varying(255),
   CONSTRAINT app_role_pkey PRIMARY KEY (id)
-)
-ALTER TABLE qreport.app_role OWNER TO qreport;
+);
 
-CREATE TABLE qreport.app_user_role
+CREATE TABLE winwork.app_user_role
 (
   app_user_id character varying(32),
   app_role_id character varying(32)
- )
-ALTER TABLE qreport.app_user_role OWNER TO qreport;
+ );
 
-CREATE TABLE qreport.app_permission
+CREATE TABLE winwork.app_permission
 (
   id character varying(32) NOT NULL,
   active character(1) default 'Y',
@@ -46,6 +45,7 @@ CREATE TABLE qreport.app_permission
   create_date timestamp,
   last_update_by character varying(255),
   last_update_date timestamp,
+  last_update_millis bigint,
   name character varying(255),
   description character varying(255),
   http_path character varying(500),
@@ -55,17 +55,15 @@ CREATE TABLE qreport.app_permission
   as_menu character varying(1) default 'N',
   menu_order integer default 0,
   CONSTRAINT app_permission_pkey PRIMARY KEY (id)
-)
-ALTER TABLE qreport.app_permission OWNER TO qreport;
+);
 
-CREATE TABLE qreport.app_role_permission
+CREATE TABLE winwork.app_role_permission
 (
   app_role_id character varying(32),
   app_permission_id character varying(32)
- )
-ALTER TABLE qreport.app_role_permission OWNER TO qreport;
+ );
 
-CREATE TABLE qreport.app_option
+CREATE TABLE winwork.app_option
 (
   id character varying(32) NOT NULL,
   active character(1) default 'Y',
@@ -73,14 +71,14 @@ CREATE TABLE qreport.app_option
   create_date timestamp,
   last_update_by character varying(255),
   last_update_date timestamp,
+  last_update_millis bigint,
   name character varying(255),
   option_category character varying(255),
   description character varying(255),
   CONSTRAINT app_option_pkey PRIMARY KEY (id)
-)
-ALTER TABLE qreport.app_option OWNER TO qreport;
+);
 
-CREATE TABLE qreport.app_setting
+CREATE TABLE winwork.app_setting
 (
   id character varying(32) NOT NULL,
   active character(1) default 'Y',
@@ -88,10 +86,10 @@ CREATE TABLE qreport.app_setting
   create_date timestamp,
   last_update_by character varying(255),
   last_update_date timestamp,
+  last_update_millis bigint,
   code character varying(255),
   string_value character varying(500),
   setting_category character varying(500),
   description character varying(255),
   CONSTRAINT app_setting_pkey PRIMARY KEY (id)
-)
-ALTER TABLE qreport.app_setting OWNER TO qreport;
+);
