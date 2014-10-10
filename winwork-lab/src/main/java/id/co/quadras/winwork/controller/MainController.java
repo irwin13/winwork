@@ -1,7 +1,7 @@
 package id.co.quadras.winwork.controller;
 
 import com.google.inject.Inject;
-import id.co.quadras.winwork.shared.WebPage;
+import id.co.quadras.qif.ui.WebPage;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;

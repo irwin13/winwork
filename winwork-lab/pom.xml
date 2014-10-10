@@ -13,13 +13,14 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <slf4j.version>1.7.2</slf4j.version>
-        <logback.version>1.0.7</logback.version>
+        <slf4j.version>1.7.7</slf4j.version>
+        <logback.version>1.1.2</logback.version>
+        <jackson.version>2.3.2</jackson.version>
+        <hibernate.version>4.3.5.Final</hibernate.version>
+        <uuid-generator.version>3.1.3</uuid-generator.version>
+        <jersey.version>1.18</jersey.version>
         <jbehave.version>3.6.7</jbehave.version>
-        <jackson.version>2.1.1</jackson.version>
         <guice.version>3.0</guice.version>
-        <jersey.version>1.17</jersey.version>
-        <hibernate.version>3.6.9.Final</hibernate.version>
         <jetty.version>8.1.11.v20130520</jetty.version>
     </properties>
 
@@ -216,6 +217,11 @@
 
         <!-- PERSISTENCE -->
         <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.3-1100-jdbc4</version>
+        </dependency>
+        <dependency>
             <groupId>oracle</groupId>
             <artifactId>ojdbc6</artifactId>
             <version>11.1.0.7.0</version>
@@ -228,11 +234,6 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>${hibernate.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-oscache</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
 
@@ -281,7 +282,7 @@
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jdbc</artifactId>
-            <version>7.0.39</version>
+            <version>7.0.54</version>
         </dependency>
 
         <!-- WEB -->
@@ -323,6 +324,18 @@
             <version>${jetty.version}</version>
         </dependency>
 
+        <!-- winwork -->
+        <dependency>
+            <groupId>com.irwin13</groupId>
+            <artifactId>winwork-basic</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.irwin13</groupId>
+            <artifactId>winwork-hibernate</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 
     </dependencies>
     

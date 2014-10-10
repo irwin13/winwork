@@ -1,11 +1,11 @@
 package id.co.quadras.winwork.validator.app;
 
 import com.google.inject.Inject;
-import id.co.quadras.winwork.model.entity.app.AppSetting;
-import id.co.quadras.winwork.service.app.AppSettingService;
-import id.co.quadras.winwork.validator.AbstractValidator;
-import id.co.quadras.winwork.validator.ValidationStatus;
-import id.co.quadras.winwork.validator.ValidatorResult;
+import com.irwin13.winwork.basic.model.entity.app.AppSetting;
+import com.irwin13.winwork.basic.validator.AbstractValidator;
+import com.irwin13.winwork.basic.validator.ValidationStatus;
+import com.irwin13.winwork.basic.validator.ValidatorResult;
+import id.co.quadras.qif.ui.service.app.AppSettingService;
 
 import java.util.List;
 

@@ -1,10 +1,13 @@
 package id.co.quadras.winwork.dao.app.imp;
 
 import com.google.inject.Inject;
-import id.co.quadras.winwork.dao.app.AppUserDao;
-import id.co.quadras.winwork.dao.hibernate.BasicHibernateDao;
-import id.co.quadras.winwork.model.entity.app.AppUser;
-import id.co.quadras.winwork.model.vo.SortParameter;
+import com.irwin13.hibernate.dao.BasicHibernateDao;
+import com.irwin13.winwork.basic.exception.WinWorkException;
+import com.irwin13.winwork.basic.model.SearchParameter;
+import com.irwin13.winwork.basic.model.SortParameter;
+import com.irwin13.winwork.basic.model.entity.app.AppUser;
+import com.irwin13.winwork.basic.utilities.PojoUtil;
+import id.co.quadras.qif.ui.dao.app.AppUserDao;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,7 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author irwin Timestamp : 15/04/13 11:54
@@ -31,12 +33,10 @@ public class AppUserDaoImp implements AppUserDao {
         basicDao.setSessionFactory(sessionFactory);
     }
 
-    @Override
     public Session openNewSession() {
         return basicDao.openNewSession();
     }
 
-    @Override
     public void closeSession(Session session) {
         basicDao.closeSession(session);
     }
@@ -47,8 +47,8 @@ public class AppUserDaoImp implements AppUserDao {
     }
 
     @Override
-    public List<AppUser> selectPaged(AppUser filter, SortParameter sortParameter, int start, int size) {
-        return basicDao.selectPaged(filter, sortParameter, start, size);
+    public List<AppUser> select(AppUser filter, SortParameter sortParameter, int start, int size) {
+        return basicDao.select(filter, sortParameter, start, size);
     }
 
     @Override
@@ -57,20 +57,18 @@ public class AppUserDaoImp implements AppUserDao {
     }
 
     @Override
-    public List<AppUser> selectSearch(String searchKeyword, Map<String, Class<?>> searchProperties,
-                                        SortParameter sortParameter) {
-        return basicDao.selectSearch(searchKeyword, searchProperties, sortParameter);
+    public List<AppUser> selectSearch(SearchParameter searchParameter) {
+        return basicDao.selectSearch(searchParameter, PojoUtil.getSearchableField(getModelClass()));
     }
 
     @Override
-    public List<AppUser> selectSearchPaged(String searchKeyword, Map<String, Class<?>> searchProperties,
-                                             SortParameter sortParameter, int start, int size) {
-        return basicDao.selectSearchPaged(searchKeyword, searchProperties, sortParameter, start, size);
+    public List<AppUser> selectSearch(SearchParameter searchParameter, int start, int size) {
+        return basicDao.selectSearch(searchParameter, PojoUtil.getSearchableField(getModelClass()), start, size);
     }
 
     @Override
-    public long selectSearchCount(String searchKeyword, Map<String, Class<?>> searchProperties) {
-        return basicDao.selectSearchCount(searchKeyword, searchProperties);
+    public long selectSearchCount(SearchParameter searchParameter) {
+        return basicDao.selectSearchCount(searchParameter, PojoUtil.getSearchableField(getModelClass()));
     }
 
     @Override
@@ -115,12 +113,27 @@ public class AppUserDaoImp implements AppUserDao {
     }
 
     @Override
-    public void insertOrUpdate(AppUser model) {
+    public void saveOrUpdate(AppUser model) {
         basicDao.saveOrUpdate(model);
     }
 
     @Override
     public Class<AppUser> getModelClass() {
         return basicDao.getModelClass();
+    }
+
+    @Override
+    public void batchInsert(List<AppUser> appUsers) {
+        throw new WinWorkException("This method is not implemented, yet");
+    }
+
+    @Override
+    public void batchUpdate(List<AppUser> appUsers) {
+        throw new WinWorkException("This method is not implemented, yet");
+    }
+
+    @Override
+    public void batchDelete(List<AppUser> appUsers) {
+        throw new WinWorkException("This method is not implemented, yet");
     }
 }

@@ -1,15 +1,17 @@
 package id.co.quadras.winwork.dao.app.imp;
 
 import com.google.inject.Inject;
-import id.co.quadras.winwork.dao.app.AppSettingDao;
-import id.co.quadras.winwork.dao.hibernate.BasicHibernateDao;
-import id.co.quadras.winwork.model.entity.app.AppSetting;
-import id.co.quadras.winwork.model.vo.SortParameter;
+import com.irwin13.hibernate.dao.BasicHibernateDao;
+import com.irwin13.winwork.basic.exception.WinWorkException;
+import com.irwin13.winwork.basic.model.SearchParameter;
+import com.irwin13.winwork.basic.model.SortParameter;
+import com.irwin13.winwork.basic.model.entity.app.AppSetting;
+import com.irwin13.winwork.basic.utilities.PojoUtil;
+import id.co.quadras.qif.ui.dao.app.AppSettingDao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author irwin Timestamp : 15/04/13 11:54
@@ -26,12 +28,10 @@ public class AppSettingDaoImp implements AppSettingDao {
         basicDao.setSessionFactory(sessionFactory);
     }
 
-    @Override
     public Session openNewSession() {
         return basicDao.openNewSession();
     }
 
-    @Override
     public void closeSession(Session session) {
         basicDao.closeSession(session);
     }
@@ -42,8 +42,8 @@ public class AppSettingDaoImp implements AppSettingDao {
     }
 
     @Override
-    public List<AppSetting> selectPaged(AppSetting filter, SortParameter sortParameter, int start, int size) {
-        return basicDao.selectPaged(filter, sortParameter, start, size);
+    public List<AppSetting> select(AppSetting filter, SortParameter sortParameter, int start, int size) {
+        return basicDao.select(filter, sortParameter, start, size);
     }
 
     @Override
@@ -52,20 +52,18 @@ public class AppSettingDaoImp implements AppSettingDao {
     }
 
     @Override
-    public List<AppSetting> selectSearch(String searchKeyword, Map<String, Class<?>> searchProperties,
-                                        SortParameter sortParameter) {
-        return basicDao.selectSearch(searchKeyword, searchProperties, sortParameter);
+    public List<AppSetting> selectSearch(SearchParameter searchParameter) {
+        return basicDao.selectSearch(searchParameter, PojoUtil.getSearchableField(getModelClass()));
     }
 
     @Override
-    public List<AppSetting> selectSearchPaged(String searchKeyword, Map<String, Class<?>> searchProperties,
-                                             SortParameter sortParameter, int start, int size) {
-        return basicDao.selectSearchPaged(searchKeyword, searchProperties, sortParameter, start, size);
+    public List<AppSetting> selectSearch(SearchParameter searchParameter, int start, int size) {
+        return basicDao.selectSearch(searchParameter, PojoUtil.getSearchableField(getModelClass()), start, size);
     }
 
     @Override
-    public long selectSearchCount(String searchKeyword, Map<String, Class<?>> searchProperties) {
-        return basicDao.selectSearchCount(searchKeyword, searchProperties);
+    public long selectSearchCount(SearchParameter searchParameter) {
+        return basicDao.selectSearchCount(searchParameter, PojoUtil.getSearchableField(getModelClass()));
     }
 
     @Override
@@ -94,12 +92,27 @@ public class AppSettingDaoImp implements AppSettingDao {
     }
 
     @Override
-    public void insertOrUpdate(AppSetting model) {
+    public void saveOrUpdate(AppSetting model) {
         basicDao.saveOrUpdate(model);
     }
 
     @Override
     public Class<AppSetting> getModelClass() {
         return basicDao.getModelClass();
+    }
+
+    @Override
+    public void batchInsert(List<AppSetting> appSettings) {
+        throw new WinWorkException("This method is not implemented, yet");
+    }
+
+    @Override
+    public void batchUpdate(List<AppSetting> appSettings) {
+        throw new WinWorkException("This method is not implemented, yet");
+    }
+
+    @Override
+    public void batchDelete(List<AppSetting> appSettings) {
+        throw new WinWorkException("This method is not implemented, yet");
     }
 }

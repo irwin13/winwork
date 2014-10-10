@@ -3,9 +3,9 @@ package id.co.quadras.winwork.filter;
 import com.google.common.base.Strings;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import id.co.quadras.winwork.shared.AbstractConfiguration;
-import id.co.quadras.winwork.shared.WebSession;
-import id.co.quadras.winwork.util.StringCommon;
+import com.irwin13.winwork.basic.config.WinWorkConfig;
+import com.irwin13.winwork.basic.utilities.StringUtil;
+import id.co.quadras.qif.ui.WebSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,7 +31,7 @@ public class UserSessionFilter implements Filter {
     private WebSession webSession;
 
     @Inject
-    private AbstractConfiguration config;
+    private WinWorkConfig config;
 
     @Override
     public void init(FilterConfig config) throws ServletException {
@@ -52,7 +52,7 @@ public class UserSessionFilter implements Filter {
 
         String cookieId = webSession.getCookieId(request);
         if (Strings.isNullOrEmpty(cookieId)) {
-            cookieId = StringCommon.random32UUID();
+            cookieId = StringUtil.random32UUID();
             LOGGER.debug("missing cookie, creating new one with value = {}", cookieId);
         }
 

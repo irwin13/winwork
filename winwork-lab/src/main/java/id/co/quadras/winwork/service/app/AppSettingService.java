@@ -1,7 +1,7 @@
 package id.co.quadras.winwork.service.app;
 
-import id.co.quadras.winwork.model.entity.app.AppSetting;
-import id.co.quadras.winwork.service.BasicOperationService;
+import com.irwin13.winwork.basic.model.entity.app.AppSetting;
+import com.irwin13.winwork.basic.service.WinWorkService;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
  * Edit By : Nova, 02/05/13
  * Add method getByCategory
  */
-public interface AppSettingService extends BasicOperationService<AppSetting, String> {
+public interface AppSettingService extends WinWorkService<AppSetting, String> {
 
     public AppSetting getByCode(String code);
     public List<AppSetting> getByCategory(String category);

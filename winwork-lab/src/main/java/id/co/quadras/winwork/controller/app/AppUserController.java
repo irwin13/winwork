@@ -3,16 +3,15 @@ package id.co.quadras.winwork.controller.app;
 import com.google.common.base.Strings;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import id.co.quadras.winwork.controller.CrudController;
-import id.co.quadras.winwork.model.entity.app.AppRole;
-import id.co.quadras.winwork.model.entity.app.AppUser;
-import id.co.quadras.winwork.model.enums.SortMethod;
-import id.co.quadras.winwork.model.vo.SortParameter;
-import id.co.quadras.winwork.service.app.AppRoleService;
-import id.co.quadras.winwork.service.app.AppUserService;
-import id.co.quadras.winwork.shared.WinWorkConstants;
-import id.co.quadras.winwork.util.SecurityUtil;
-import id.co.quadras.winwork.validator.AbstractValidator;
+import com.irwin13.winwork.basic.WinWorkConstants;
+import com.irwin13.winwork.basic.model.SortParameter;
+import com.irwin13.winwork.basic.model.entity.app.AppRole;
+import com.irwin13.winwork.basic.model.entity.app.AppUser;
+import com.irwin13.winwork.basic.utilities.SecurityUtil;
+import com.irwin13.winwork.basic.validator.AbstractValidator;
+import id.co.quadras.qif.ui.controller.CrudController;
+import id.co.quadras.qif.ui.service.app.AppRoleService;
+import id.co.quadras.qif.ui.service.app.AppUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -118,7 +117,7 @@ public class AppUserController extends CrudController {
     protected void setReferenceData(Map<String, Object> objectMap) {
         AppRole filter = new AppRole();
         filter.setActive(Boolean.TRUE);
-        List<AppRole> appRoleList = appRoleService.select(filter, new SortParameter("name", SortMethod.ASC));
+        List<AppRole> appRoleList = appRoleService.select(filter, new SortParameter("name", SortParameter.ASC));
         List<AppRole> filteredList = new LinkedList<AppRole>();
         for (AppRole appRole : appRoleList) {
             if (!appRole.getName().equalsIgnoreCase("admin")) {

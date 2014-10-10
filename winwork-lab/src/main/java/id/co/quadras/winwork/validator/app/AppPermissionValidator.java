@@ -1,9 +1,9 @@
 package id.co.quadras.winwork.validator.app;
 
-import id.co.quadras.winwork.model.entity.app.AppPermission;
-import id.co.quadras.winwork.validator.AbstractValidator;
-import id.co.quadras.winwork.validator.ValidationStatus;
-import id.co.quadras.winwork.validator.ValidatorResult;
+import com.irwin13.winwork.basic.model.entity.app.AppPermission;
+import com.irwin13.winwork.basic.validator.AbstractValidator;
+import com.irwin13.winwork.basic.validator.ValidationStatus;
+import com.irwin13.winwork.basic.validator.ValidatorResult;
 
 /**
  * @author irwin Timestamp : 23/04/13 16:29

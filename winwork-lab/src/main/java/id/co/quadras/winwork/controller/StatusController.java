@@ -1,9 +1,9 @@
 package id.co.quadras.winwork.controller;
 
 import com.google.inject.Inject;
-import id.co.quadras.winwork.WinWorkContextListener;
-import id.co.quadras.winwork.shared.AbstractConfiguration;
-import id.co.quadras.winwork.util.StringCommon;
+import com.irwin13.winwork.basic.config.WinWorkConfig;
+import com.irwin13.winwork.basic.utilities.WinWorkUtil;
+import id.co.quadras.qif.ui.QifUiContextListener;
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
 
@@ -23,7 +23,7 @@ public class StatusController {
     public static final SimpleDateFormat SDF = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
 
     @Inject
-    private AbstractConfiguration config;
+    private WinWorkConfig config;
 
     @GET
     @Produces(MediaType.TEXT_HTML)
@@ -35,7 +35,7 @@ public class StatusController {
         StringBuilder content = new StringBuilder();
 
         long now = System.currentTimeMillis();
-        Duration duration = new Duration(now - WinWorkContextListener.START);
+        Duration duration = new Duration(now - QifUiContextListener.START);
 
         content.append("<html>");
         content.append("<head>");
@@ -55,11 +55,11 @@ public class StatusController {
         content.append("</h1>");
         content.append("<div>");
         content.append("Node Name : ");
-        content.append(StringCommon.getNodeName());
+        content.append(WinWorkUtil.getNodeName());
         content.append("</div>");
         content.append("<div>");
         content.append("Up since : ");
-        content.append(SDF.format(new DateTime(WinWorkContextListener.START).toDate()));
+        content.append(SDF.format(new DateTime(QifUiContextListener.START).toDate()));
         content.append("</div>");
         content.append("<div>");
         content.append("Up for : ");

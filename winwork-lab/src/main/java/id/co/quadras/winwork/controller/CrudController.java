@@ -1,16 +1,17 @@
 package id.co.quadras.winwork.controller;
 
 import com.google.inject.Inject;
-import id.co.quadras.winwork.model.entity.BaseEntity;
-import id.co.quadras.winwork.model.vo.KeyValue;
-import id.co.quadras.winwork.model.vo.PagingModel;
-import id.co.quadras.winwork.model.vo.SortParameter;
-import id.co.quadras.winwork.service.BasicOperationService;
-import id.co.quadras.winwork.shared.WebPage;
-import id.co.quadras.winwork.util.PagingUtil;
-import id.co.quadras.winwork.validator.AbstractValidator;
-import id.co.quadras.winwork.validator.ValidationStatus;
-import id.co.quadras.winwork.validator.ValidatorResult;
+import com.irwin13.winwork.basic.model.KeyValue;
+import com.irwin13.winwork.basic.model.PagingModel;
+import com.irwin13.winwork.basic.model.SearchParameter;
+import com.irwin13.winwork.basic.model.SortParameter;
+import com.irwin13.winwork.basic.model.entity.WinWorkBasicEntity;
+import com.irwin13.winwork.basic.service.WinWorkService;
+import com.irwin13.winwork.basic.utilities.PagingUtil;
+import com.irwin13.winwork.basic.validator.AbstractValidator;
+import com.irwin13.winwork.basic.validator.ValidationStatus;
+import com.irwin13.winwork.basic.validator.ValidatorResult;
+import id.co.quadras.qif.ui.WebPage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,11 +32,11 @@ public abstract class CrudController {
     private static final Logger LOGGER = LoggerFactory.getLogger(CrudController.class);
 
     public static final String SELECT = "/select";
-    public static final String SELECT_PAGED = "/selectPaged";
+    public static final String SELECT_PAGED = "/select";
     public static final String SELECT_COUNT = "/selectCount";
 
     public static final String SELECT_SEARCH = "/selectSearch";
-    public static final String SELECT_SEARCH_PAGED = "/selectSearchPaged";
+    public static final String SELECT_SEARCH_PAGED = "/selectSearch";
     public static final String SELECT_SEARCH_COUNT = "/selectSearchCount";
 
     public static final String INSERT = "/insert";
@@ -59,7 +60,7 @@ public abstract class CrudController {
         return webPage.okResponse(content);
     }
 
-    public Response basicListAjaxPage(HttpServletRequest request, BasicOperationService service, String modelName,
+    public Response basicListAjaxPage(HttpServletRequest request, WinWorkService service, String modelName,
                                       String packageName) {
 
         String searchKeyword = webPage.readParameterSearchKeyword(request);
@@ -67,7 +68,8 @@ public abstract class CrudController {
         int pageStart = webPage.readParameterPageStart(request);
         int pageSize = webPage.readParameterPageSize(request);
 
-        List<? extends BaseEntity> list = service.selectSearchPaged(searchKeyword, sortParameter, pageStart, pageSize);
+        SearchParameter searchParameter = new SearchParameter(searchKeyword, sortParameter.getColumnName(), sortParameter.getSortMethod());
+        List<? extends WinWorkBasicEntity> list = service.selectSearch(searchParameter, pageStart, pageSize);
         long total = service.selectSearchCount(searchKeyword);
 
         PagingModel pagingModel = PagingUtil.getPagingModel(total, pageStart, pageSize);
@@ -81,13 +83,12 @@ public abstract class CrudController {
         String content = webPage.stringFromVm(packageName + modelName + WebPage.LIST_AJAX_PAGE_SUFFIX, objectMap);
 
         return webPage.okResponse(content);
-
     }
 
-    public Response basicDetailPage(HttpServletRequest request, BasicOperationService service,
+    public Response basicDetailPage(HttpServletRequest request, WinWorkService service,
                                     String modelName, String packageName, String id) {
 
-        BaseEntity model = service.getById(id, true);
+        WinWorkBasicEntity model = service.getById(id, true);
 
         Map<String, Object> objectMap = webPage.mapWithLoginUser(request);
         objectMap.put("model", model);
@@ -105,10 +106,10 @@ public abstract class CrudController {
         return webPage.okResponse(content);
     }
 
-    public Response basicEditPage(HttpServletRequest request, BasicOperationService service,
+    public Response basicEditPage(HttpServletRequest request, WinWorkService service,
                                   String modelName, String packageName, String id) {
 
-        BaseEntity model = service.getById(id, true);
+        WinWorkBasicEntity model = service.getById(id, true);
 
         Map<String, Object> objectMap = webPage.mapWithLoginUser(request);
         objectMap.put("model", model);
@@ -119,8 +120,8 @@ public abstract class CrudController {
         return webPage.okResponse(content);
     }
 
-    public Response basicDelete(HttpServletRequest request, BasicOperationService service, String modelName, String id) throws URISyntaxException {
-        BaseEntity model = service.getById(id, true);
+    public Response basicDelete(HttpServletRequest request, WinWorkService service, String modelName, String id) throws URISyntaxException {
+        WinWorkBasicEntity model = service.getById(id, true);
         if (model != null) {
             webPage.setUserLogged(request, model, true);
             service.softDelete(model);
@@ -128,17 +129,17 @@ public abstract class CrudController {
         return webPage.redirectListPage(modelName);
     }
 
-    public Response basicCreate(HttpServletRequest request, BasicOperationService service,
-                                Class<? extends BaseEntity> modelClass,
+    public Response basicCreate(HttpServletRequest request, WinWorkService service,
+                                Class<? extends WinWorkBasicEntity> modelClass,
                                 String modelName, String packageName,
                                 MultivaluedMap<String, String> formMap, AbstractValidator validator)
             throws InstantiationException, IllegalAccessException, URISyntaxException {
 
         LOGGER.debug("formMap = {}", formMap);
-        BaseEntity model = modelClass.newInstance();
+        WinWorkBasicEntity model = modelClass.newInstance();
         webPage.genericReadFormParameter(model, formMap);
         readAdditionalParameter(formMap, model);
-        ValidatorResult<? extends BaseEntity> validatorResult = validator.onCreate(model, webPage.displayLang(request));
+        ValidatorResult<? extends WinWorkBasicEntity> validatorResult = validator.onCreate(model, webPage.displayLang(request));
 
         if (validatorResult.getValidationStatus().equals(ValidationStatus.SUCCESS)) {
             webPage.setUserLogged(request, model, false);
@@ -155,7 +156,7 @@ public abstract class CrudController {
         }
     }
 
-    public Response basicEdit(HttpServletRequest request, BasicOperationService service,
+    public Response basicEdit(HttpServletRequest request, WinWorkService service,
                               String modelName, String packageName,
                               MultivaluedMap<String, String> formMap, AbstractValidator validator)
             throws URISyntaxException {
@@ -163,10 +164,10 @@ public abstract class CrudController {
         LOGGER.debug("formMap = {}", formMap);
         String id = formMap.getFirst("id");
 
-        BaseEntity model = service.getById(id, true);
+        WinWorkBasicEntity model = service.getById(id, true);
         webPage.genericReadFormParameter(model, formMap);
         readAdditionalParameter(formMap, model);
-        ValidatorResult<? extends BaseEntity> validatorResult = validator.onEdit(model, webPage.displayLang(request));
+        ValidatorResult<? extends WinWorkBasicEntity> validatorResult = validator.onEdit(model, webPage.displayLang(request));
 
         if (validatorResult.getValidationStatus().equals(ValidationStatus.SUCCESS)) {
             webPage.setUserLogged(request, model, true);

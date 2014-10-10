@@ -1,9 +1,9 @@
 package id.co.quadras.winwork.service.app;
 
-import id.co.quadras.winwork.model.entity.app.AppUser;
-import id.co.quadras.winwork.service.BasicOperationService;
+import com.irwin13.winwork.basic.model.entity.app.AppUser;
+import com.irwin13.winwork.basic.service.WinWorkService;
 
 /**
  * @author irwin Timestamp : 15/04/13 14:20
  */
-public interface AppUserService extends BasicOperationService<AppUser, String> {}
+public interface AppUserService extends WinWorkService<AppUser, String> {}

@@ -1,12 +1,12 @@
 package id.co.quadras.winwork.service.app.imp;
 
 import com.google.inject.Inject;
-import id.co.quadras.winwork.dao.app.AppRoleDao;
-import id.co.quadras.winwork.model.entity.app.AppRole;
-import id.co.quadras.winwork.model.vo.SortParameter;
-import id.co.quadras.winwork.service.BaseEntityCommonService;
-import id.co.quadras.winwork.service.app.AppRoleService;
-import id.co.quadras.winwork.util.PojoUtil;
+import com.irwin13.winwork.basic.model.SearchParameter;
+import com.irwin13.winwork.basic.model.SortParameter;
+import com.irwin13.winwork.basic.model.entity.app.AppRole;
+import com.irwin13.winwork.basic.service.BasicEntityCommonService;
+import id.co.quadras.qif.ui.dao.app.AppRoleDao;
+import id.co.quadras.qif.ui.service.app.AppRoleService;
 
 import java.util.List;
 
@@ -15,11 +15,11 @@ import java.util.List;
  */
 public class AppRoleServiceImp implements AppRoleService {
 
-    private final BaseEntityCommonService commonService;
+    private final BasicEntityCommonService commonService;
     private final AppRoleDao dao;
 
     @Inject
-    public AppRoleServiceImp(BaseEntityCommonService commonService, AppRoleDao dao) {
+    public AppRoleServiceImp(BasicEntityCommonService commonService, AppRoleDao dao) {
         this.commonService = commonService;
         this.dao = dao;
     }
@@ -31,9 +31,9 @@ public class AppRoleServiceImp implements AppRoleService {
     }
 
     @Override
-    public List<AppRole> selectPaged(AppRole filter, SortParameter sortParameter, int start, int size) {
+    public List<AppRole> select(AppRole filter, SortParameter sortParameter, int start, int size) {
         commonService.onSelect(filter);
-        return dao.selectPaged(filter, sortParameter, start, size);
+        return dao.select(filter, sortParameter, start, size);
     }
 
     @Override
@@ -43,22 +43,18 @@ public class AppRoleServiceImp implements AppRoleService {
     }
 
     @Override
-    public List<AppRole> selectSearch(String searchKeyword, SortParameter sortParameter) {
-        return dao.selectSearch(searchKeyword,
-                PojoUtil.getSearchableField(dao.getModelClass()), sortParameter);
+    public List<AppRole> selectSearch(SearchParameter searchParameter) {
+        return dao.selectSearch(searchParameter);
     }
 
     @Override
-    public List<AppRole> selectSearchPaged(String searchKeyword,
-                                             SortParameter sortParameter, int start, int size) {
-        return dao.selectSearchPaged(searchKeyword,
-                PojoUtil.getSearchableField(dao.getModelClass()), sortParameter, start, size);
+    public List<AppRole> selectSearch(SearchParameter searchParameter, int start, int size) {
+        return dao.selectSearch(searchParameter, start, size);
     }
 
     @Override
     public long selectSearchCount(String searchKeyword) {
-        return dao.selectSearchCount(searchKeyword,
-                PojoUtil.getSearchableField(dao.getModelClass()));
+        return dao.selectSearchCount(new SearchParameter(searchKeyword, null, null));
     }
 
     @Override
@@ -79,11 +75,6 @@ public class AppRoleServiceImp implements AppRoleService {
     }
 
     @Override
-    public void delete(AppRole model) {
-        dao.delete(model);
-    }
-
-    @Override
     public void softDelete(AppRole model) {
         commonService.onSoftDelete(model);
         dao.merge(model);
@@ -92,6 +83,6 @@ public class AppRoleServiceImp implements AppRoleService {
     @Override
     public void insertOrUpdate(AppRole model) {
         commonService.onInsertOrUpdate(model) ;
-        dao.insertOrUpdate(model);
+        dao.saveOrUpdate(model);
     }
 }

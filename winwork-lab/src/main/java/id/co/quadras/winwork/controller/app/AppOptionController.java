@@ -2,10 +2,10 @@ package id.co.quadras.winwork.controller.app;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import id.co.quadras.winwork.controller.CrudController;
-import id.co.quadras.winwork.model.entity.app.AppOption;
-import id.co.quadras.winwork.service.app.AppOptionService;
-import id.co.quadras.winwork.validator.AbstractValidator;
+import com.irwin13.winwork.basic.model.entity.app.AppOption;
+import com.irwin13.winwork.basic.validator.AbstractValidator;
+import id.co.quadras.qif.ui.controller.CrudController;
+import id.co.quadras.qif.ui.service.app.AppOptionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

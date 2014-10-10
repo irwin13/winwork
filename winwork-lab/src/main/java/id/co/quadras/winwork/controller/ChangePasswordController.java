@@ -1,12 +1,12 @@
 package id.co.quadras.winwork.controller;
 
 import com.google.inject.Inject;
-import id.co.quadras.winwork.model.entity.app.AppUser;
-import id.co.quadras.winwork.service.app.AppUserService;
-import id.co.quadras.winwork.shared.AbstractConfiguration;
-import id.co.quadras.winwork.shared.WebPage;
-import id.co.quadras.winwork.shared.WebSession;
-import id.co.quadras.winwork.util.SecurityUtil;
+import com.irwin13.winwork.basic.config.WinWorkConfig;
+import com.irwin13.winwork.basic.model.entity.app.AppUser;
+import com.irwin13.winwork.basic.utilities.SecurityUtil;
+import id.co.quadras.qif.ui.WebPage;
+import id.co.quadras.qif.ui.WebSession;
+import id.co.quadras.qif.ui.service.app.AppUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,7 +35,7 @@ public class ChangePasswordController {
     private AppUserService appUserService;
 
     @Inject
-    private AbstractConfiguration configuration;
+    private WinWorkConfig configuration;
 
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)

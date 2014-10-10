@@ -1,7 +1,6 @@
 package id.co.quadras.winwork.dao;
 
 import com.google.inject.Inject;
-import id.co.quadras.winwork.service.MessageParser;
 import id.co.quadras.winwork.shared.AbstractConfiguration;
 import id.co.quadras.winwork.util.RestClient;
 import org.slf4j.Logger;

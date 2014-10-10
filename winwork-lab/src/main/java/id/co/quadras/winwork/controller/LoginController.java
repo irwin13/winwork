@@ -2,14 +2,16 @@ package id.co.quadras.winwork.controller;
 
 import com.google.common.base.Strings;
 import com.google.inject.Inject;
-import id.co.quadras.winwork.model.entity.app.AppRole;
-import id.co.quadras.winwork.model.entity.app.AppUser;
-import id.co.quadras.winwork.service.app.AppPermissionService;
-import id.co.quadras.winwork.service.app.AppRoleService;
-import id.co.quadras.winwork.service.app.AppUserService;
-import id.co.quadras.winwork.shared.WebPage;
-import id.co.quadras.winwork.shared.WebSession;
-import id.co.quadras.winwork.util.SecurityUtil;
+import com.irwin13.winwork.basic.model.UserAccess;
+import com.irwin13.winwork.basic.model.UserMenu;
+import com.irwin13.winwork.basic.model.entity.app.AppRole;
+import com.irwin13.winwork.basic.model.entity.app.AppUser;
+import com.irwin13.winwork.basic.utilities.SecurityUtil;
+import id.co.quadras.qif.ui.WebPage;
+import id.co.quadras.qif.ui.WebSession;
+import id.co.quadras.qif.ui.service.app.AppPermissionService;
+import id.co.quadras.qif.ui.service.app.AppRoleService;
+import id.co.quadras.qif.ui.service.app.AppUserService;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -99,11 +101,13 @@ public class LoginController {
 
             webSession.set(request, WebSession.LOGIN_USER, user);
 
-            webSession.set(request, WebSession.MENU_LIST,
-                    appPermissionService.sortMenu(appPermissionService.getMenuList(initRoleList)));
+            List<UserMenu> sortedMenuList = appPermissionService.sortSimpleUserMenu(appPermissionService
+                    .getSimpleUserMenuList(initRoleList));
 
-            webSession.set(request, WebSession.USER_PERMISSION_LIST,
-                    appPermissionService.getUserAccessList(initRoleList));
+            webSession.set(request, WebSession.MENU_LIST, sortedMenuList);
+
+            List<UserAccess> userAccessList = appPermissionService.getSimpleUserAccessList(initRoleList);
+            webSession.set(request, WebSession.USER_PERMISSION_LIST, userAccessList);
 
             try {
                 response = webPage.redirectResponse("");
@@ -122,4 +126,7 @@ public class LoginController {
         return Response.ok(content).build();
     }
 
+    public static void main(String[] arg) throws NoSuchAlgorithmException {
+        System.out.println(SecurityUtil.createHash("123", SecurityUtil.DEFAULT_HASH));
+    }
 }

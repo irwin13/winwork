@@ -2,12 +2,12 @@ package id.co.quadras.winwork.controller.app;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import id.co.quadras.winwork.controller.CrudController;
-import id.co.quadras.winwork.model.entity.app.AppPermission;
-import id.co.quadras.winwork.model.entity.app.AppRole;
-import id.co.quadras.winwork.service.app.AppPermissionService;
-import id.co.quadras.winwork.service.app.AppRoleService;
-import id.co.quadras.winwork.validator.AbstractValidator;
+import com.irwin13.winwork.basic.model.entity.app.AppPermission;
+import com.irwin13.winwork.basic.model.entity.app.AppRole;
+import com.irwin13.winwork.basic.validator.AbstractValidator;
+import id.co.quadras.qif.ui.controller.CrudController;
+import id.co.quadras.qif.ui.service.app.AppPermissionService;
+import id.co.quadras.qif.ui.service.app.AppRoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,7 +38,8 @@ public class AppRoleController extends CrudController {
     private AppRoleService appRoleService;
 
     @Inject
-    private @Named(AppRole.MODEL_NAME) AbstractValidator validator;
+    private @Named(AppRole.MODEL_NAME)
+    AbstractValidator validator;
 
     @Inject
     private AppPermissionService appPermissionService;

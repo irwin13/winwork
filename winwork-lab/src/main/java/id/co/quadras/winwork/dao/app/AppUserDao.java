@@ -1,7 +1,6 @@
 package id.co.quadras.winwork.dao.app;
 
-import id.co.quadras.winwork.dao.BasicOperationDao;
-import id.co.quadras.winwork.model.entity.app.AppUser;
+import com.irwin13.winwork.basic.dao.WinWorkDao;
+import com.irwin13.winwork.basic.model.entity.app.AppUser;
 
-
-public interface AppUserDao extends BasicOperationDao<AppUser, String> {}
+public interface AppUserDao extends WinWorkDao<AppUser, String> {}

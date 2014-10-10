@@ -1,7 +1,7 @@
 package id.co.quadras.winwork.filter;
 
 import com.google.inject.Singleton;
-import id.co.quadras.winwork.util.StringCommon;
+import com.irwin13.winwork.basic.utilities.WinWorkUtil;
 import org.slf4j.MDC;
 
 import javax.servlet.*;
@@ -20,7 +20,7 @@ public class MDCNodeNameFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
 
-        MDC.put("nodeName", StringCommon.getNodeName());
+        MDC.put("nodeName", WinWorkUtil.getNodeName());
         filterChain.doFilter(servletRequest, servletResponse);
     }
 

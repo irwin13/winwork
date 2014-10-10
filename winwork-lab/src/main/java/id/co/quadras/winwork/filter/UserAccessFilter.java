@@ -1,12 +1,12 @@
 package id.co.quadras.winwork.filter;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Strings;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import id.co.quadras.winwork.model.entity.app.AppPermission;
-import id.co.quadras.winwork.service.MessageParser;
-import id.co.quadras.winwork.shared.WebSession;
+import com.irwin13.winwork.basic.model.UserAccess;
+import id.co.quadras.qif.ui.WebSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,8 +31,7 @@ public class UserAccessFilter implements Filter {
     private WebSession webSession;
 
     @Inject
-    private MessageParser messageParser;
-
+    private ObjectMapper objectMapper;
 
     @Override
     public void init(FilterConfig config) throws ServletException {
@@ -51,49 +50,19 @@ public class UserAccessFilter implements Filter {
         LOGGER.debug("<<<<<<<<<<<<< USER ACCESS CHECK >>>>>>>>>>>>>>>>>>>");
         LOGGER.debug("request servlet path = {}", request.getServletPath());
 
-        if (!request.getServletPath().equals("/") && isCheckedPath(request.getServletPath())) {
+        boolean checkedPath = isCheckedPath(request.getServletPath());
+        if (!request.getServletPath().equals("/") && checkedPath) {
             LOGGER.debug("request.getServletPath() {} IS MUST BE CHECKED", request.getServletPath());
 
-            List<AppPermission> permissionList = null;
-            Object object = webSession.get(request, WebSession.USER_PERMISSION_LIST);
-            if (object instanceof List) {
-                permissionList = (List<AppPermission>) object;
-            } else if (object instanceof String) {
-                permissionList = messageParser.parseToObject(false, (String) object, new TypeReference<List<AppPermission>>() {});
-            }
-
-            if (permissionList != null) {
-                boolean denied = true;
-                permissionLoop:
-                for (AppPermission permission : permissionList) {
-                    if (!Strings.isNullOrEmpty(permission.getHttpPath()) &&
-                            !permission.getHttpPath().equals("#")) {
-
-                        String servletPath = request.getServletPath().replaceFirst("/", "");
-                        String servletHttpMethod = request.getMethod();
-
-                        if (permission.getHttpMethod().equalsIgnoreCase(servletHttpMethod) &&
-                                permission.getHttpPath().equalsIgnoreCase(servletPath)) {
-                            LOGGER.debug("permission found with path {} and method {}",
-                                    permission.getHttpPath(), permission.getHttpMethod());
-                            denied = false;
-                            break permissionLoop;
-                        }
-                    }
-                }
-
-                webSession.updateMainWebSession(request);
-
-                if (denied) {
-                    LOGGER.debug("permission denied for path {}", request.getServletPath());
-                    response.sendRedirect(request.getContextPath() + "/publicAccess/noAccess");
-                    return;
-                }
-
-            } else {
-                LOGGER.debug("Missing permissionList in session, will be redirect to logout page");
-                response.sendRedirect(request.getContextPath() + "/logout");
+            boolean denied = checkUserAccess(request);
+            if (denied) {
+                LOGGER.debug("permission denied for path {}", request.getServletPath());
+                response.sendRedirect(request.getContextPath() + "/publicAccess/noAccess");
                 return;
+            } else {
+                if (checkedPath) {
+                    webSession.updateMainWebSession(request);
+                }
             }
         }
 
@@ -111,12 +80,47 @@ public class UserAccessFilter implements Filter {
             return false;
         }
         for (String allAccessPath : allAccessPathList) {
-            if (!allAccessPath.equals("/") && path.startsWith(allAccessPath)) {
+            if (!allAccessPath.equals("/") && (path.startsWith(allAccessPath) || path.equalsIgnoreCase(allAccessPath))) {
                 LOGGER.debug("path {} is start with {}", path, allAccessPath);
                 return false;
             }
         }
         return true;
+    }
+
+
+    private boolean checkUserAccess(HttpServletRequest request) throws IOException {
+        boolean denied = true;
+
+        List<UserAccess> permissionList = null;
+        Object object = webSession.get(request, WebSession.USER_PERMISSION_LIST);
+        if (object instanceof List) {
+            permissionList = (List<UserAccess>) object;
+        } else if (object instanceof String) {
+            permissionList = objectMapper.readValue((String) object, new TypeReference<List<UserAccess>>() {});
+        }
+
+        if (permissionList != null) {
+            permissionLoop:
+            for (UserAccess permission : permissionList) {
+                if (!Strings.isNullOrEmpty(permission.getHttpPath()) &&
+                        !permission.getHttpPath().equals("#")) {
+
+                    String servletPath = request.getServletPath().replaceFirst("/", "");
+                    String servletHttpMethod = request.getMethod();
+
+                    if (permission.getHttpMethod().equalsIgnoreCase(servletHttpMethod) &&
+                            permission.getHttpPath().equalsIgnoreCase(servletPath)) {
+                        LOGGER.debug("permission found with path {} and method {}",
+                                permission.getHttpPath(), permission.getHttpMethod());
+                        denied = false;
+                        break permissionLoop;
+                    }
+                }
+            }
+        }
+
+        return denied;
     }
 
 }

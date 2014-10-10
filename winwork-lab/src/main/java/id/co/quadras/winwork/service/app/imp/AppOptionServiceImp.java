@@ -1,13 +1,12 @@
 package id.co.quadras.winwork.service.app.imp;
 
 import com.google.inject.Inject;
-import id.co.quadras.winwork.dao.app.AppOptionDao;
-import id.co.quadras.winwork.model.entity.app.AppOption;
-import id.co.quadras.winwork.model.enums.SortMethod;
-import id.co.quadras.winwork.model.vo.SortParameter;
-import id.co.quadras.winwork.service.BaseEntityCommonService;
-import id.co.quadras.winwork.service.app.AppOptionService;
-import id.co.quadras.winwork.util.PojoUtil;
+import com.irwin13.winwork.basic.model.SearchParameter;
+import com.irwin13.winwork.basic.model.SortParameter;
+import com.irwin13.winwork.basic.model.entity.app.AppOption;
+import com.irwin13.winwork.basic.service.BasicEntityCommonService;
+import id.co.quadras.qif.ui.dao.app.AppOptionDao;
+import id.co.quadras.qif.ui.service.app.AppOptionService;
 
 import java.util.List;
 
@@ -16,11 +15,11 @@ import java.util.List;
  */
 public class AppOptionServiceImp implements AppOptionService {
 
-    private final BaseEntityCommonService commonService;
+    private final BasicEntityCommonService commonService;
     private final AppOptionDao dao;
 
     @Inject
-    public AppOptionServiceImp(BaseEntityCommonService commonService, AppOptionDao dao) {
+    public AppOptionServiceImp(BasicEntityCommonService commonService, AppOptionDao dao) {
         this.commonService = commonService;
         this.dao = dao;
     }
@@ -32,9 +31,9 @@ public class AppOptionServiceImp implements AppOptionService {
     }
 
     @Override
-    public List<AppOption> selectPaged(AppOption filter, SortParameter sortParameter, int start, int size) {
+    public List<AppOption> select(AppOption filter, SortParameter sortParameter, int start, int size) {
         commonService.onSelect(filter);
-        return dao.selectPaged(filter, sortParameter, start, size);
+        return dao.select(filter, sortParameter, start, size);
     }
 
     @Override
@@ -44,22 +43,18 @@ public class AppOptionServiceImp implements AppOptionService {
     }
 
     @Override
-    public List<AppOption> selectSearch(String searchKeyword, SortParameter sortParameter) {
-        return dao.selectSearch(searchKeyword,
-                PojoUtil.getSearchableField(dao.getModelClass()), sortParameter);
+    public List<AppOption> selectSearch(SearchParameter searchParameter) {
+        return dao.selectSearch(searchParameter);
     }
 
     @Override
-    public List<AppOption> selectSearchPaged(String searchKeyword,
-                                               SortParameter sortParameter, int start, int size) {
-        return dao.selectSearchPaged(searchKeyword,
-                PojoUtil.getSearchableField(dao.getModelClass()), sortParameter, start, size);
+    public List<AppOption> selectSearch(SearchParameter searchParameter, int start, int size) {
+        return dao.selectSearch(searchParameter, start, size);
     }
 
     @Override
     public long selectSearchCount(String searchKeyword) {
-        return dao.selectSearchCount(searchKeyword,
-                PojoUtil.getSearchableField(dao.getModelClass()));
+        return dao.selectSearchCount(new SearchParameter(searchKeyword, null, null));
     }
 
     @Override
@@ -80,11 +75,6 @@ public class AppOptionServiceImp implements AppOptionService {
     }
 
     @Override
-    public void delete(AppOption model) {
-        dao.delete(model);
-    }
-
-    @Override
     public void softDelete(AppOption model) {
         commonService.onSoftDelete(model);
         dao.merge(model);
@@ -93,7 +83,7 @@ public class AppOptionServiceImp implements AppOptionService {
     @Override
     public void insertOrUpdate(AppOption model) {
         commonService.onInsertOrUpdate(model) ;
-        dao.insertOrUpdate(model);
+        dao.saveOrUpdate(model);
     }
 
     @Override
@@ -102,7 +92,7 @@ public class AppOptionServiceImp implements AppOptionService {
         AppOption filter = new AppOption();
         filter.setActive(Boolean.TRUE);
         filter.setOptionCategory(category);
-        result = select(filter, new SortParameter("name", SortMethod.ASC));
+        result = select(filter, new SortParameter("name", SortParameter.ASC));
         return result;
     }
 }

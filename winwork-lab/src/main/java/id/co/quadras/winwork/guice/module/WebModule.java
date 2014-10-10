@@ -2,11 +2,15 @@ package id.co.quadras.winwork.guice.module;
 
 import com.sun.jersey.guice.JerseyServletModule;
 import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
-import id.co.quadras.winwork.controller.*;
-import id.co.quadras.winwork.controller.app.*;
-import id.co.quadras.winwork.filter.MDCNodeNameFilter;
-import id.co.quadras.winwork.filter.UserAccessFilter;
-import id.co.quadras.winwork.filter.UserSessionFilter;
+import id.co.quadras.qif.ui.controller.*;
+import id.co.quadras.qif.ui.controller.app.*;
+import id.co.quadras.qif.ui.controller.config.QifAdapterController;
+import id.co.quadras.qif.ui.controller.config.QifEventController;
+import id.co.quadras.qif.ui.controller.monitoring.EventInstanceController;
+import id.co.quadras.qif.ui.controller.monitoring.ProcessInstanceController;
+import id.co.quadras.qif.ui.filter.MDCNodeNameFilter;
+import id.co.quadras.qif.ui.filter.UserAccessFilter;
+import id.co.quadras.qif.ui.filter.UserSessionFilter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -65,6 +69,14 @@ public class WebModule extends JerseyServletModule {
         bind(AppUserController.class);
         bind(AppPermissionController.class);
         bind(AppRoleController.class);
+
+        // CONFIG
+        bind(QifEventController.class);
+        bind(QifAdapterController.class);
+
+        // MONITORING
+        bind(EventInstanceController.class);
+        bind(ProcessInstanceController.class);
 
         serve("/*").with(GuiceContainer.class);
     }

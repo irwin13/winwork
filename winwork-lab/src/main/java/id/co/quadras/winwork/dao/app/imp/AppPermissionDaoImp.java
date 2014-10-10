@@ -1,10 +1,13 @@
 package id.co.quadras.winwork.dao.app.imp;
 
 import com.google.inject.Inject;
-import id.co.quadras.winwork.dao.app.AppPermissionDao;
-import id.co.quadras.winwork.dao.hibernate.BasicHibernateDao;
-import id.co.quadras.winwork.model.entity.app.AppPermission;
-import id.co.quadras.winwork.model.vo.SortParameter;
+import com.irwin13.hibernate.dao.BasicHibernateDao;
+import com.irwin13.winwork.basic.exception.WinWorkException;
+import com.irwin13.winwork.basic.model.SearchParameter;
+import com.irwin13.winwork.basic.model.SortParameter;
+import com.irwin13.winwork.basic.model.entity.app.AppPermission;
+import com.irwin13.winwork.basic.utilities.PojoUtil;
+import id.co.quadras.qif.ui.dao.app.AppPermissionDao;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,7 +16,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author irwin Timestamp : 15/04/13 11:54
@@ -32,12 +34,10 @@ public class AppPermissionDaoImp implements AppPermissionDao {
         basicDao.setSessionFactory(sessionFactory);
     }
 
-    @Override
     public Session openNewSession() {
         return basicDao.openNewSession();
     }
 
-    @Override
     public void closeSession(Session session) {
         basicDao.closeSession(session);
     }
@@ -48,8 +48,8 @@ public class AppPermissionDaoImp implements AppPermissionDao {
     }
 
     @Override
-    public List<AppPermission> selectPaged(AppPermission filter, SortParameter sortParameter, int start, int size) {
-        return basicDao.selectPaged(filter, sortParameter, start, size);
+    public List<AppPermission> select(AppPermission filter, SortParameter sortParameter, int start, int size) {
+        return basicDao.select(filter, sortParameter, start, size);
     }
 
     @Override
@@ -58,20 +58,18 @@ public class AppPermissionDaoImp implements AppPermissionDao {
     }
 
     @Override
-    public List<AppPermission> selectSearch(String searchKeyword, Map<String, Class<?>> searchProperties,
-                                        SortParameter sortParameter) {
-        return basicDao.selectSearch(searchKeyword, searchProperties, sortParameter);
+    public List<AppPermission> selectSearch(SearchParameter searchParameter) {
+        return basicDao.selectSearch(searchParameter, PojoUtil.getSearchableField(getModelClass()));
     }
 
     @Override
-    public List<AppPermission> selectSearchPaged(String searchKeyword, Map<String, Class<?>> searchProperties,
-                                             SortParameter sortParameter, int start, int size) {
-        return basicDao.selectSearchPaged(searchKeyword, searchProperties, sortParameter, start, size);
+    public List<AppPermission> selectSearch(SearchParameter searchParameter, int start, int size) {
+        return basicDao.selectSearch(searchParameter, PojoUtil.getSearchableField(getModelClass()), start, size);
     }
 
     @Override
-    public long selectSearchCount(String searchKeyword, Map<String, Class<?>> searchProperties) {
-        return basicDao.selectSearchCount(searchKeyword, searchProperties);
+    public long selectSearchCount(SearchParameter searchParameter) {
+        return basicDao.selectSearchCount(searchParameter, PojoUtil.getSearchableField(getModelClass()));
     }
 
     @Override
@@ -89,7 +87,6 @@ public class AppPermissionDaoImp implements AppPermissionDao {
         basicDao.update(model);
     }
 
-    @Override
     public void merge(AppPermission model) {
         basicDao.merge(model);
     }
@@ -100,7 +97,7 @@ public class AppPermissionDaoImp implements AppPermissionDao {
     }
 
     @Override
-    public void insertOrUpdate(AppPermission model) {
+    public void saveOrUpdate(AppPermission model) {
         basicDao.saveOrUpdate(model);
     }
 
@@ -173,4 +170,18 @@ public class AppPermissionDaoImp implements AppPermissionDao {
         return (result != null) ? result : Collections.EMPTY_LIST;
     }
 
+    @Override
+    public void batchInsert(List<AppPermission> appPermissions) {
+        throw new WinWorkException("This method is not implemented, yet");
+    }
+
+    @Override
+    public void batchUpdate(List<AppPermission> appPermissions) {
+        throw new WinWorkException("This method is not implemented, yet");
+    }
+
+    @Override
+    public void batchDelete(List<AppPermission> appPermissions) {
+        throw new WinWorkException("This method is not implemented, yet");
+    }
 }
