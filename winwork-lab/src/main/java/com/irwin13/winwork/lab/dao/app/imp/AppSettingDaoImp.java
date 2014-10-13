@@ -1,24 +1,27 @@
-package com.irwin13.hibernate.dao;
+package com.irwin13.winwork.lab.dao.app.imp;
+
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import com.google.inject.Inject;
+import com.irwin13.winwork.basic.exception.WinWorkException;
 import com.irwin13.winwork.basic.model.SearchParameter;
 import com.irwin13.winwork.basic.model.SortParameter;
 import com.irwin13.winwork.basic.model.entity.app.AppSetting;
 import com.irwin13.winwork.basic.utilities.PojoUtil;
 import com.irwin13.winwork.hibernate.dao.BasicHibernateDao;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-
-import java.util.List;
+import com.irwin13.winwork.lab.dao.app.AppSettingDao;
 
 /**
- * @author irwin Timestamp : 28/04/2014 17:31
+ * @author irwin Timestamp : 15/04/13 11:54
  */
 public class AppSettingDaoImp implements AppSettingDao {
 
     private final SessionFactory sessionFactory;
-    private final BasicHibernateDao<AppSetting, String> basicDao = new BasicHibernateDao<AppSetting, String>(AppSetting.class);
+    private final BasicHibernateDao<AppSetting, String> basicDao =
+            new BasicHibernateDao<AppSetting, String>(AppSetting.class);
 
     @Inject
     public AppSettingDaoImp(SessionFactory sessionFactory) {
@@ -35,18 +38,13 @@ public class AppSettingDaoImp implements AppSettingDao {
     }
 
     @Override
-    public Class<AppSetting> getModelClass() {
-        return basicDao.getModelClass();
-    }
-
-    @Override
     public List<AppSetting> select(AppSetting filter, SortParameter sortParameter) {
         return basicDao.select(filter, sortParameter);
     }
 
     @Override
-    public List<AppSetting> select(AppSetting filter, SortParameter sortParameter, int fetchStart, int fetchSize) {
-        return basicDao.select(filter, sortParameter, fetchStart, fetchSize);
+    public List<AppSetting> select(AppSetting filter, SortParameter sortParameter, int start, int size) {
+        return basicDao.select(filter, sortParameter, start, size);
     }
 
     @Override
@@ -60,10 +58,8 @@ public class AppSettingDaoImp implements AppSettingDao {
     }
 
     @Override
-    public List<AppSetting> selectSearch(SearchParameter searchParameter,
-                                         int fetchStart, int fetchSize) {
-        return basicDao.selectSearch(searchParameter, PojoUtil.getSearchableField(getModelClass()),
-                fetchStart, fetchSize);
+    public List<AppSetting> selectSearch(SearchParameter searchParameter, int start, int size) {
+        return basicDao.selectSearch(searchParameter, PojoUtil.getSearchableField(getModelClass()), start, size);
     }
 
     @Override
@@ -72,8 +68,8 @@ public class AppSettingDaoImp implements AppSettingDao {
     }
 
     @Override
-    public AppSetting getById(String id, boolean fetchChild) {
-        return basicDao.getById(id, fetchChild);
+    public AppSetting getById(String id, boolean init) {
+        return basicDao.getById(id, init);
     }
 
     @Override
@@ -87,32 +83,37 @@ public class AppSettingDaoImp implements AppSettingDao {
     }
 
     @Override
-    public void delete(AppSetting model) {
-        basicDao.delete(model);
-    }
-
-    @Override
-    public void batchInsert(List<AppSetting> modelList) {
-        throw new RuntimeException("This method is not implemented, yet");
-    }
-
-    @Override
-    public void batchUpdate(List<AppSetting> modelList) {
-        throw new RuntimeException("This method is not implemented, yet");
-    }
-
-    @Override
-    public void batchDelete(List<AppSetting> modelList) {
-        throw new RuntimeException("This method is not implemented, yet");
-    }
-
-    @Override
     public void merge(AppSetting model) {
         basicDao.merge(model);
     }
 
     @Override
+    public void delete(AppSetting model) {
+        basicDao.delete(model);
+    }
+
+    @Override
     public void saveOrUpdate(AppSetting model) {
         basicDao.saveOrUpdate(model);
+    }
+
+    @Override
+    public Class<AppSetting> getModelClass() {
+        return basicDao.getModelClass();
+    }
+
+    @Override
+    public void batchInsert(List<AppSetting> appSettings) {
+        throw new WinWorkException("This method is not implemented, yet");
+    }
+
+    @Override
+    public void batchUpdate(List<AppSetting> appSettings) {
+        throw new WinWorkException("This method is not implemented, yet");
+    }
+
+    @Override
+    public void batchDelete(List<AppSetting> appSettings) {
+        throw new WinWorkException("This method is not implemented, yet");
     }
 }

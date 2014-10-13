@@ -6,8 +6,9 @@ import com.google.inject.name.Names;
 import com.irwin13.hibernate.HibernateConfig;
 import com.irwin13.hibernate.dao.AppSettingDao;
 import com.irwin13.hibernate.dao.AppSettingDaoImp;
-import com.irwin13.hibernate.guice.provider.HibernateSessionFactoryProvider;
 import com.irwin13.winwork.basic.config.WinWorkConfig;
+import com.irwin13.winwork.hibernate.guice.provider.HibernateSessionFactoryProvider;
+
 import org.hibernate.SessionFactory;
 
 /**

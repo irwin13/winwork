@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.irwin13</groupId>
-    <artifactId>winwork-hibernate</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>dao-hibernate4</artifactId>
+    <version>1.0</version>
     <name>Hibernate 4 DAO</name>
     <packaging>jar</packaging>
     <description>Hibernate 4 DAO</description>
@@ -279,7 +279,7 @@
         <dependency>
             <groupId>com.irwin13</groupId>
             <artifactId>winwork-basic</artifactId>
-            <version>1.0</version>
+            <version>2.0</version>
         </dependency>
     </dependencies>
     

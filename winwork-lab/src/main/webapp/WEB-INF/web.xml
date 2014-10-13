@@ -9,7 +9,7 @@
     <display-name>WinWork</display-name>
 
     <listener>
-        <listener-class>id.co.quadras.winwork.WinWorkContextListener</listener-class>
+        <listener-class>com.irwin13.winwork.lab.WinWorkContextListener</listener-class>
     </listener>
     <context-param>
         <param-name>activateCache</param-name>
