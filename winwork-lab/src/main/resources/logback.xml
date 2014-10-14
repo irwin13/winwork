@@ -70,7 +70,7 @@
     <root level="${app.log.level.root}">
     </root>
 
-    <logger name="id.co.quadras" level="${app.log.level.apps}">
+    <logger name="com.irwin13" level="${app.log.level.apps}">
         <appender-ref ref="LOG-DEBUG" />
         <appender-ref ref="LOG-ERROR" />
     </logger>

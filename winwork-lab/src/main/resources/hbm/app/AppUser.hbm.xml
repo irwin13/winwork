@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping package="com.irwin13.winwork.lab.model.entity.app">
+<hibernate-mapping package="com.irwin13.winwork.basic.model.entity.app">
     <class name="AppUser" table="APP_USER" schema="winwork" lazy="false">
 
         <id name="id" type="string" column="ID">
@@ -20,12 +20,10 @@
         <property name="displayLang" column="DISPLAY_LANG" type="string" not-null="false"/>
         <property name="firstName" column="FIRST_NAME" type="string" not-null="false"/>
         <property name="lastName" column="LAST_NAME" type="string" not-null="false"/>
-        <property name="email" column="EMAIL" type="string" not-null="false"/>
-        <property name="phone" column="PHONE" type="string" not-null="false"/>
 
         <bag name="appRoleList" table="APP_USER_ROLE" fetch="join" schema="winwork">
             <key column="APP_USER_ID"/>
-            <many-to-many column="APP_ROLE_ID" class="com.irwin13.winwork.lab.model.entity.app.AppRole"/>
+            <many-to-many column="APP_ROLE_ID" class="com.irwin13.winwork.basic.model.entity.app.AppRole"/>
         </bag>
 
     </class>
