@@ -1,8 +1,6 @@
 package com.irwin13.winwork.basic.utilities;
 
 import com.fasterxml.uuid.EthernetAddress;
-import com.fasterxml.uuid.Generators;
-import com.fasterxml.uuid.impl.TimeBasedGenerator;
 import com.google.common.base.Strings;
 import com.irwin13.winwork.basic.config.WinWorkConfig;
 import org.apache.commons.lang.StringUtils;
@@ -25,9 +23,7 @@ public final class StringUtil {
     private static final EthernetAddress ETHERNET_ADDRESS = EthernetAddress.fromInterface();
 
     public static String random32UUID() {
-//        return UUID.randomUUID().toString().replaceAll("-", "");
-        TimeBasedGenerator uuidGenerator = Generators.timeBasedGenerator(ETHERNET_ADDRESS);
-        return uuidGenerator.generate().toString().replaceAll("-", "");
+        return UUID.randomUUID().toString().replaceAll("-", "");
     }
 
     public static String random36UUID() {
