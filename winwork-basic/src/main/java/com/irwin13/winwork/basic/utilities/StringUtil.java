@@ -1,8 +1,5 @@
 package com.irwin13.winwork.basic.utilities;
 
-import com.fasterxml.uuid.EthernetAddress;
-import com.fasterxml.uuid.Generators;
-import com.fasterxml.uuid.impl.TimeBasedGenerator;
 import com.google.common.base.Strings;
 import com.irwin13.winwork.basic.config.WinWorkConfig;
 import org.apache.commons.lang.StringUtils;
@@ -13,6 +10,7 @@ import org.joda.time.Period;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author irwin Timestamp : 17/04/2014 19:51
@@ -21,16 +19,13 @@ public final class StringUtil {
 
     private static final DecimalFormat READABLE_FORMAT = new DecimalFormat("#,##0.#");
     private static final String[] BYTES_UNITS = new String[] { "B", "KB", "MB", "GB", "TB" };
-    private static final EthernetAddress ETHERNET_ADDRESS = EthernetAddress.fromInterface();
 
     public static String random32UUID() {
-        TimeBasedGenerator uuidGenerator = Generators.timeBasedGenerator(ETHERNET_ADDRESS);
-        return uuidGenerator.generate().toString().replaceAll("-", "");
+        return UUID.randomUUID().toString().replaceAll("-", "");
     }
 
     public static String random36UUID() {
-        TimeBasedGenerator uuidGenerator = Generators.timeBasedGenerator(ETHERNET_ADDRESS);
-        return uuidGenerator.generate().toString();
+        return UUID.randomUUID().toString();
     }
 
     public static String lowerCaseFirstLetter(String value) {
