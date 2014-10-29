@@ -6,7 +6,7 @@
 <hibernate-configuration>
     <session-factory>
 
-        <property name="hibernate.connection.provider_class">TomcatDataSourceProvider</property>
+        <property name="hibernate.connection.provider_class">com.irwin13.winwork.lab.dao.TomcatDataSourceProvider</property>
 
         <property name="hibernate.dialect">${app.database.dialect}</property>
 
