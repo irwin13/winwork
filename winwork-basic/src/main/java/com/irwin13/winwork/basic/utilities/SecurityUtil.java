@@ -64,5 +64,4 @@ public final class SecurityUtil {
 
         return checksum.toString();
     }
-
 }

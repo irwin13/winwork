@@ -26,9 +26,6 @@
                                     <label for="username" class="col-sm-6 control-label">$winWorkUtil.getLabel('id', 'login.userName')</label>
                                     <div class="col-sm-6 text-center">
                                         <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-star"></span>
-                                            </span>
                                             <input type="text" class="form-control" id="username" name="username" />
                                         </div>
                                     </div>

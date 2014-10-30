@@ -19,9 +19,21 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="#">$loginUser.firstName&nbsp;$loginUser.lastName</a></li>
-                <li><a href="${web.context}/changePassword">$winWorkUtil.getLabel($loginUser.displayLang, 'global.changePassword')</a></li>
-                <li><a href="${web.context}/logout">$winWorkUtil.getLabel($loginUser.displayLang, 'global.logout')</a></li>
+                <li>
+                	<a href="#">
+                		$displayTool.alt($loginUser.firstName, '&nbsp;') $displayTool.alt($loginUser.lastName, '&nbsp;')
+                	</a>
+                </li>
+                <li>
+                	<a href="${web.context}/changePassword">
+                		$winWorkUtil.getLabel($loginUser.displayLang, 'global.changePassword')
+                	</a>
+                </li>
+                <li>
+                	<a href="${web.context}/logout">
+                		$winWorkUtil.getLabel($loginUser.displayLang, 'global.logout')
+                	</a>
+                </li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

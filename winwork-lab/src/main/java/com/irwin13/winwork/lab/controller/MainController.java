@@ -22,7 +22,7 @@ public class MainController {
 
     @Inject
     private WebPage webPage;
-
+    
     @GET
     @Produces(MediaType.TEXT_HTML)
     public Response indexPage() {

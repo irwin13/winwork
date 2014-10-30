@@ -1,4 +1,4 @@
-Insert into winwork.APP_USER (ID,ACTIVE,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,USERNAME,PASSWORD,DISPLAY_LANG,LAST_LOGIN,LAST_LOGIN_FROM) values ('eec5f679d2b144d1a95322c2cd39f14d','Y','mimin',current_timestamp,'root',current_timestamp,'root','804307f829e4d68cf9666dc8bf17dcd94ba76600','en',current_timestamp,'127.0.0.1');
+Insert into winwork.APP_USER (ID,ACTIVE,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,USERNAME,FIRST_NAME, LAST_NAME,PASSWORD,DISPLAY_LANG,LAST_LOGIN,LAST_LOGIN_FROM) values ('eec5f679d2b144d1a95322c2cd39f14d','Y','mimin',current_timestamp,'root',current_timestamp,'root','WinWork','Root','40bd001563085fc35165329ea1ff5c5ecbdbbeef','en',current_timestamp,'127.0.0.1');
 
 Insert into winwork.APP_ROLE (ID,ACTIVE,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,NAME,DESCRIPTION) values ('c6c2c31d117b4aae879b776349e116f5','Y','mimin',current_timestamp,'root',current_timestamp,'root','root');
 
@@ -230,38 +230,5 @@ Insert into winwork.APP_ROLE_PERMISSION (APP_ROLE_ID,APP_PERMISSION_ID) values (
 
 Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values ('6FF11123090345659A6DFD8C8C8652F3','mimin',current_timestamp,'mimin',current_timestamp,'http_method','GET','Y');
 Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values ('108D44D4840D41B68939998C68A7C054','mimin',current_timestamp,'mimin',current_timestamp,'http_method','POST','Y');
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'project_status','ACTIVE','Y');
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'project_status','POC','Y');
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'project_status','PENDING','Y');
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'project_status','CLOSED','Y');
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'employee_status','ACTIVE','Y');
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'employee_status','RESIGN','Y');
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'activity_status','DONE','Y');
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'activity_status','IN PROGRESS','Y');
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'activity_status','CANCEL','Y');
 
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'gender','WANITA','Y');
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'gender','PRIA','Y');
-
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'division_role','Leader','Y');
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'division_role','Member','Y');
-
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'project_role','Project Manager','Y');
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'project_role','Technical Writer','Y');
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'project_role','Business Analyst','Y');
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'project_role','System Analyst','Y');
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'project_role','System Architect','Y');
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'project_role','System Administrator','Y');
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'project_role','IT Support','Y');
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'project_role','Network Engineer','Y');
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'project_role','Developer','Y');
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'project_role','Web Designer','Y');
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'project_role','Technical Leader','Y');
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'project_role','Team Leader','Y');
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'project_role','Quality Assurance','Y');
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'project_role','Application Tester','Y');
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'project_role','Database Administrator','Y');
-Insert into winwork.APP_OPTION (ID,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,OPTION_CATEGORY,NAME,ACTIVE) values (gen_uuid(),'mimin',current_timestamp,'mimin',current_timestamp,'project_role','Database Developer','Y');
-
-Insert into winwork.APP_SETTING (ID,ACTIVE,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,CODE,SETTING_CATEGORY,STRING_VALUE,DESCRIPTION) values (gen_uuid(),'Y','root',current_timestamp,'root',current_timestamp,'activity.stream.size',null,'30',null);
 Insert into winwork.APP_SETTING (ID,ACTIVE,CREATE_BY,CREATE_DATE,LAST_UPDATE_BY,LAST_UPDATE_DATE,CODE,SETTING_CATEGORY,STRING_VALUE,DESCRIPTION) values (gen_uuid(),'Y','root',current_timestamp,'root',current_timestamp,'filePicture.extensions',null,'jpg,jpeg,gif,png,bmp',null);
