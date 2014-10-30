@@ -111,7 +111,6 @@ public class AppUserController extends CrudController {
                 AppUser.MODEL_NAME, PACKAGE_PAGE_PREFIX, formMap, validator);
     }
 
-    //    @PUT -- somehow http form @method doesn't support PUT, so we use POST instead
     @POST
     @Path("/edit")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -127,7 +126,9 @@ public class AppUserController extends CrudController {
         List<AppRole> appRoleList = appRoleService.select(filter, new SortParameter("name", SortParameter.ASC));
         List<AppRole> filteredList = new LinkedList<AppRole>();
         for (AppRole appRole : appRoleList) {
-            if (!appRole.getName().equalsIgnoreCase("admin")) {
+            if (!appRole.getName().equalsIgnoreCase("root")) { 
+            	// don't show role 'root' to other user
+            	// role 'root' can only be created from db
                 filteredList.add(appRole);
             }
         }

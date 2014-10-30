@@ -131,8 +131,4 @@ public class LoginController {
         String content = webPage.stringFromVm(WebPage.COMMON_PAGE_PACKAGE + "login.vm", null);
         return Response.ok(content).build();
     }
-
-    public static void main(String[] arg) throws NoSuchAlgorithmException {
-        System.out.println(SecurityUtil.createHash("123", SecurityUtil.DEFAULT_HASH));
-    }
 }

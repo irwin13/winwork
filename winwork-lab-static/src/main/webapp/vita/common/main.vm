@@ -9,7 +9,7 @@
         #include("vita/common/leftMenu.html")
         <h1 class="page-header">Dashboard</h1>
         <div class="row">
-            Welcome $loginUser.firstName $loginUser.lastName
+            Welcome $displayTool.alt($loginUser.firstName, '&nbsp;') $displayTool.alt($loginUser.lastName, '&nbsp;')
         </div>
         #include("vita/common/footer.html")
     </body>
