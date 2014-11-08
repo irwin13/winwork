@@ -8,7 +8,7 @@
     <artifactId>winwork-lab-static</artifactId>
     <version>2.0</version>
     <packaging>war</packaging>
-    <name>WinWork Static</name>
+    <name>WinWork</name>
 
     <profiles>
         <profile>
@@ -103,7 +103,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.6</version>
+                <version>1.7</version>
                 <executions>
                     <execution>
                         <phase>package</phase>

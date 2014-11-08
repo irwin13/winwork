@@ -15,7 +15,7 @@ http://developer.yahoo.com/performance/rules.html#js_bottom
     $(document).ready(function() {
         jQuery.ajax({
             type: "GET",
-            url: "${web.context}/publicAccess/leftMenu",
+            url: "${web.context}publicAccess/leftMenu",
             dataType: "text",
             success: function(data, textStatus) {
                 if (textStatus == "success") {

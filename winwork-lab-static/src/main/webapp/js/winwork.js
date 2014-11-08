@@ -13,13 +13,13 @@ function setContextUrl(contextUrlParam) {
 
 // LIST PAGE COMMON SCRIPT
 function doCreate() {
-    document.location.href = contextUrl + '/' + model + '/page/create';
+    document.location.href = contextUrl + model + '/page/create';
 }
 
 function doDetail(id) {
 	jQuery.ajax({
 		type: "GET",
-		url: contextUrl + '/' + model + '/page/detail/' + id,
+		url: contextUrl + model + '/page/detail/' + id,
 		dataType: "text",
 		data: {id:id}, 
 		success: function(data, textStatus) {
@@ -66,7 +66,7 @@ function deleteConfirmation(id) {
 function doDelete() {
     $.ajax({
         type: 'GET',
-        url: contextUrl + '/' + model + '/delete?id=' + $('#deleteId').val(),
+        url: contextUrl + model + '/delete?id=' + $('#deleteId').val(),
         success:function() {
             $("#delete-confirm").modal('hide');
             loadList();
@@ -100,7 +100,7 @@ function doReset(){
 function loadList(){
 	jQuery.ajax({
 		type: "GET",
-		url: contextUrl + '/' + model + '/listAjax',
+		url: contextUrl + model + '/listAjax',
 		dataType: "text",
 		data : $('#listForm').serialize(),
 		beforeSend : function (xhr) {

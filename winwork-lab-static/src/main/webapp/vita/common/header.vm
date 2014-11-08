@@ -25,12 +25,12 @@
                 	</a>
                 </li>
                 <li>
-                	<a href="${web.context}/changePassword">
+                	<a href="${web.context}changePassword">
                 		$winWorkUtil.getLabel($loginUser.displayLang, 'global.changePassword')
                 	</a>
                 </li>
                 <li>
-                	<a href="${web.context}/logout">
+                	<a href="${web.context}logout">
                 		$winWorkUtil.getLabel($loginUser.displayLang, 'global.logout')
                 	</a>
                 </li>

@@ -2,12 +2,12 @@
 <html>
     <head>
         <title>${pom.name} ${pom.version} - $winWorkUtil.getLabel($loginUser.displayLang, 'global.create') $winWorkUtil.camelCaseToReadable($modelName, true)</title>
-        #include("vita/common/common_head_tag.html")
+        #include("vita/common/htmlHeadTag.html")
     </head>
     <body>
         #parse("vita/common/header.vm")
         #include("vita/common/leftMenu.html")
-        <form action="${web.context}/$modelName/create" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal" name="createForm" role="form">
+        <form action="${web.context}$modelName/create" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal" name="createForm" role="form">
             <fieldset>
                 <legend>
                     $winWorkUtil.camelCaseToReadable($modelName, true) $winWorkUtil.getLabel($loginUser.displayLang, 'global.create')
@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class="col-sm-offset-2 col-sm-10">
-                    #parse("vita/common/button_submit_form.vm")
+                    #parse("vita/common/submitFormButton.vm")
                 </div>
             </fieldset>
         </form>

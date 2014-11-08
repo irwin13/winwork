@@ -4,7 +4,7 @@
         <title>
             ${pom.name} ${pom.version} - Login
         </title>
-        #include("vita/common/common_head_tag.html")
+        #include("vita/common/htmlHeadTag.html")
     </head>
     <body>
         <div class="container">
@@ -17,7 +17,7 @@
                 <br />
                 <div class="col-md-5 col-md-offset-3">
                     <div class="well text-center">
-                        <form action="${web.context}/login" method="post" enctype="application/x-www-form-urlencoded" role="form" class="form-horizontal" name="loginForm" id="loginForm" onkeypress="return event.keyCode != 13;">
+                        <form action="${web.context}login" method="post" enctype="application/x-www-form-urlencoded" role="form" class="form-horizontal" name="loginForm" id="loginForm" onkeypress="return event.keyCode != 13;">
                             <fieldset>
                                 <legend style="text-align: center;">
                                     ${pom.name} ${pom.version}
@@ -48,7 +48,7 @@
                         </form>
                     </div>
                     <div class="text-center">
-                        <small><a href="http://www.quadras.co.id" target="_blank">Quadra Solution</a> &copy; 2014</small>
+                        <small><a href="http://xmirk.github.io" target="_blank">xmirk</a> &copy; 2014</small>
                     </div>
                 </div>
             </div>
