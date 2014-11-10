@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>${pom.name} ${pom.version} - $winWorkUtil.getLabel($loginUser.displayLang, 'global.list') $winWorkUtil.camelCaseToReadable($modelName, true)</title>
-        #include("vita/common/common_head_tag.html")
+        #include("vita/common/htmlHeadTag.html")
     </head>
     <body>
         #parse("vita/common/header.vm")
@@ -22,7 +22,7 @@
                     <div class="col-xs-4">
                         <button class="btn btn-default" type="button" onclick="doSearch('${web.context}');">$winWorkUtil.getLabel($loginUser.displayLang, 'global.search')</button>
                         <button class="btn btn-default" type="button" onclick="doReset('${web.context}');">$winWorkUtil.getLabel($loginUser.displayLang, 'global.reset')</button>
-                        <a href="${web.context}/$modelName/create" class="btn btn-primary">$winWorkUtil.getLabel($loginUser.displayLang, 'global.create')</a>
+                        <a href="${web.context}$modelName/create" class="btn btn-primary">$winWorkUtil.getLabel($loginUser.displayLang, 'global.create')</a>
                     </div>
                 </div>
             </fieldset>

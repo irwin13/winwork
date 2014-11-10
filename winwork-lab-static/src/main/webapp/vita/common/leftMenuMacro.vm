@@ -5,7 +5,7 @@
         <li class="nav-header">$menu.name</li>
         #else
         <li>
-            <a title="$menu.name" href="${web.context}/$menu.httpPath">$menu.name</a>
+            <a title="$menu.name" href="${web.context}$menu.httpPath">$menu.name</a>
         </li>
         #end
         #if($winWorkUtil.isEmptyChildMenuList($menu) == false)

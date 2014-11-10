@@ -13,12 +13,12 @@ import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.irwin13.winwork.basic.model.KeyValue;
-import com.irwin13.winwork.basic.model.PagingModel;
+import com.irwin13.winwork.basic.model.PaginationModel;
 import com.irwin13.winwork.basic.model.SearchParameter;
 import com.irwin13.winwork.basic.model.SortParameter;
 import com.irwin13.winwork.basic.model.entity.WinWorkBasicEntity;
 import com.irwin13.winwork.basic.service.WinWorkService;
-import com.irwin13.winwork.basic.utilities.PagingUtil;
+import com.irwin13.winwork.basic.utilities.PaginationUtil;
 import com.irwin13.winwork.basic.validator.AbstractValidator;
 import com.irwin13.winwork.basic.validator.ValidationStatus;
 import com.irwin13.winwork.basic.validator.ValidatorResult;
@@ -74,7 +74,7 @@ public abstract class CrudController {
         List<? extends WinWorkBasicEntity> list = service.selectSearch(searchParameter, pageStart, pageSize);
         long total = service.selectSearchCount(searchKeyword);
 
-        PagingModel pagingModel = PagingUtil.getPagingModel(total, pageStart, pageSize);
+        PaginationModel pagingModel = PaginationUtil.fourButtonPagination(total, pageStart, pageSize);
 
         Map<String, Object> objectMap = webPage.mapWithLoginUser(request);
         objectMap.put("list", list);

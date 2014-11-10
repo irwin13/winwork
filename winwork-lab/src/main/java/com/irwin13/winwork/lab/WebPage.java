@@ -48,7 +48,7 @@ public class WebPage {
     public static final String COMMON_PAGE_PACKAGE = "vita/common/";
     public static final String ERROR_PAGE_PACKAGE = "vita/error/";
 
-    public static final String GENERIC_LIST_PAGE= "list_page.vm";
+    public static final String GENERIC_LIST_PAGE= "genericListPage.vm";
 
     public static final String LIST_PAGE_SUFFIX = "_list.vm";
     public static final String LIST_AJAX_PAGE_SUFFIX = "_listAjax.vm";
@@ -137,7 +137,7 @@ public class WebPage {
     public Response redirectListPage(String modelName) throws URISyntaxException {
         String webContext = configuration.getString("web.context");
         LOGGER.debug("webContext to redirect = {}", webContext);
-        return redirectResponse(webContext + "/" + modelName + "/list");
+        return redirectResponse(webContext + modelName + "/list");
     }
 
     public SortParameter readParameterSort(HttpServletRequest request) {

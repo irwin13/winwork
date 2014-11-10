@@ -1,4 +1,4 @@
-#parse("vita/common/list_paging.vm")
+#parse("vita/common/fourButtonPagination.vm")
 <div class="table-responsive">
     <table class="table table-bordered table-condensed listTable-blue">
         <thead>
@@ -27,12 +27,12 @@
             <td>$displayTool.alt($model.email, '&nbsp;')</td>
             <td>$displayTool.alt($model.phone, '&nbsp;')</td>
             <td>
-                <a href="${web.context}/$modelName/resetPassword?id=$model.id">
+                <a href="${web.context}$modelName/resetPassword?id=$model.id">
                     $winWorkUtil.getLabel($loginUser.displayLang, 'global.resetPassword')
                 </a>
             </td>
             <td>
-                <a href="${web.context}/$modelName/edit?id=$model.id">
+                <a href="${web.context}$modelName/edit?id=$model.id">
                     $winWorkUtil.getLabel($loginUser.displayLang, 'global.edit')
                 </a>
                 &nbsp;

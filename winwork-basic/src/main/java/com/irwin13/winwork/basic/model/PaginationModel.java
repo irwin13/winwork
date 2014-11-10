@@ -5,7 +5,7 @@ import com.irwin13.winwork.basic.utilities.PojoUtil;
 /**
  * @author irwin Timestamp : 12/04/13 17:44
  */
-public class PagingModel {
+public class PaginationModel {
 
     private long totalRecord;
     private int totalPage;

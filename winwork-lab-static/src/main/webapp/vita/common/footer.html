@@ -15,12 +15,12 @@ http://developer.yahoo.com/performance/rules.html#js_bottom
     $(document).ready(function() {
         jQuery.ajax({
             type: "GET",
-            url: "${web.context}/publicAccess/leftMenu",
+            url: "${web.context}publicAccess/leftMenu",
             dataType: "text",
             success: function(data, textStatus) {
                 if (textStatus == "success") {
                     $('#leftMenu').html(data);
-                    $('#leftMenu').append('<br /><div><small>&copy; 2014</small></div>')
+                    $('#leftMenu').append('<br /><div><small><a href="http://xmirk.github.io" target="_blank">xmirk<a>&copy; 2014</small></div>')
                 }
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {

@@ -40,7 +40,7 @@ public class LeftMenuController {
         objectMap.put(WebSession.MENU_LIST, menuList);
         objectMap.put("isRoot", Boolean.TRUE);
 
-        String content = webPage.stringFromVm(WebPage.COMMON_PAGE_PACKAGE + "leftMenu_macro.vm", objectMap);
+        String content = webPage.stringFromVm(WebPage.COMMON_PAGE_PACKAGE + "leftMenuMacro.vm", objectMap);
         return Response.ok(content).build();
     }
 
