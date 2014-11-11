@@ -1,6 +1,6 @@
 package com.irwin13.winwork.basic.model;
 
-import com.irwin13.winwork.basic.utilities.PojoUtil;
+import com.irwin13.winwork.basic.utilities.WinWorkObjects;
 
 /**
  * @author irwin Timestamp : 12/04/13 17:04
@@ -25,6 +25,6 @@ public class KeyValue {
 
     @Override
     public String toString() {
-        return PojoUtil.beanToString(this, false);
+        return WinWorkObjects.beanToString(this, false);
     }
 }

@@ -4,8 +4,8 @@ import com.google.common.base.Strings;
 import com.irwin13.winwork.basic.WinWorkConstants;
 import com.irwin13.winwork.basic.model.SortParameter;
 import com.irwin13.winwork.basic.model.entity.WinWorkBasicEntity;
-import com.irwin13.winwork.basic.utilities.PojoUtil;
-import com.irwin13.winwork.basic.utilities.StringUtil;
+import com.irwin13.winwork.basic.utilities.WinWorkObjects;
+import com.irwin13.winwork.basic.utilities.WinWorkString;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Query;
 import org.slf4j.Logger;
@@ -30,7 +30,7 @@ public final class HibernateQueryUtil {
 
         Class<? extends Object> clazz = model.getClass();
 
-        final String modelName = StringUtil.lowerCaseFirstLetter(clazz.getSimpleName());
+        final String modelName = WinWorkString.lowerCaseFirstLetter(clazz.getSimpleName());
 
         Method[] methods = (includeSuperClass) ? clazz.getMethods() : clazz.getDeclaredMethods();
         for (int i = 0; i < methods.length; i++) {
@@ -40,7 +40,7 @@ public final class HibernateQueryUtil {
                     && !method.getName().equalsIgnoreCase("getClass")) {
                 try {
                     if (method.invoke(model, ((Object[])null)) != null) {
-                        String propertyName = PojoUtil.getFieldNameFromGetMethod(method.getName());
+                        String propertyName = WinWorkObjects.getFieldNameFromGetMethod(method.getName());
                         if (!exceptionFields.contains(propertyName)) {
                             if (i == methods.length - 1) {
                                 filter.append(modelName + "." + propertyName + "=:" + propertyName);
@@ -129,7 +129,7 @@ public final class HibernateQueryUtil {
                                           Map<String, Class<?>> searchProperties,
                                           boolean isSelectCount, SortParameter sortParameter) {
         StringBuilder query = new StringBuilder();
-        final String modelName = StringUtil.lowerCaseFirstLetter(model.getSimpleName());
+        final String modelName = WinWorkString.lowerCaseFirstLetter(model.getSimpleName());
 
         if (isSelectCount) {
             query.append("SELECT COUNT(" + modelName + ") FROM " + model.getName() + " " + modelName);
@@ -266,7 +266,7 @@ public final class HibernateQueryUtil {
         Class<? extends Object> clazz = model.getClass();
 
         // lower case the first letter of the class name
-        final String modelName = StringUtil.lowerCaseFirstLetter(clazz.getSimpleName());
+        final String modelName = WinWorkString.lowerCaseFirstLetter(clazz.getSimpleName());
 
         if (isSelectCount) {
             query.insert(0, "SELECT COUNT(" + modelName + ") FROM " + clazz.getName() + " " + modelName);
@@ -300,7 +300,7 @@ public final class HibernateQueryUtil {
         StringBuilder query = new StringBuilder();
 
         // lower case the first letter of the class name
-        final String modelName = StringUtil.lowerCaseFirstLetter(model.getSimpleName());
+        final String modelName = WinWorkString.lowerCaseFirstLetter(model.getSimpleName());
 
         if (isSelectCount) {
             query.insert(0, "SELECT COUNT(" + modelName + ") FROM " + model.getName() + " " + modelName);

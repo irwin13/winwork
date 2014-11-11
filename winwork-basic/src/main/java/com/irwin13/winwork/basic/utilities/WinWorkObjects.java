@@ -18,9 +18,9 @@ import java.util.*;
 /**
  * @author irwin Timestamp : 17/04/2014 19:33
  */
-public final class PojoUtil {
+public final class WinWorkObjects {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PojoUtil.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(WinWorkObjects.class);
 
     public static String beanToString(Object bean, boolean includeSuperClass) {
         StringBuilder sb = new StringBuilder();
@@ -251,7 +251,7 @@ public final class PojoUtil {
                 try {
                     Object value = method.invoke(model, ((Object[]) null));
                     if (value != null) {
-                        String propertyName = PojoUtil.getFieldNameFromGetMethod(method.getName());
+                        String propertyName = WinWorkObjects.getFieldNameFromGetMethod(method.getName());
                         if (index == 0) {
                             queryParam.append(propertyName);
                         } else {

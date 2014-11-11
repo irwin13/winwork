@@ -10,8 +10,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.google.inject.Inject;
-import com.irwin13.winwork.lab.WebPage;
-import com.irwin13.winwork.lab.WebSession;
+import com.irwin13.winwork.lab.service.WebPage;
+import com.irwin13.winwork.lab.service.WebSession;
 
 /**
  * @author irwin Timestamp : 05/07/13 14:09 *

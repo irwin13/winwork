@@ -4,7 +4,7 @@ import com.google.inject.Inject;
 import com.irwin13.winwork.basic.model.SearchParameter;
 import com.irwin13.winwork.basic.model.SortParameter;
 import com.irwin13.winwork.basic.model.entity.app.AppSetting;
-import com.irwin13.winwork.basic.utilities.PojoUtil;
+import com.irwin13.winwork.basic.utilities.WinWorkObjects;
 import com.irwin13.winwork.hibernate.dao.BasicHibernateDao;
 
 import org.hibernate.Session;
@@ -56,19 +56,19 @@ public class AppSettingDaoImp implements AppSettingDao {
 
     @Override
     public List<AppSetting> selectSearch(SearchParameter searchParameter) {
-        return basicDao.selectSearch(searchParameter, PojoUtil.getSearchableField(getModelClass()));
+        return basicDao.selectSearch(searchParameter, WinWorkObjects.getSearchableField(getModelClass()));
     }
 
     @Override
     public List<AppSetting> selectSearch(SearchParameter searchParameter,
                                          int fetchStart, int fetchSize) {
-        return basicDao.selectSearch(searchParameter, PojoUtil.getSearchableField(getModelClass()),
+        return basicDao.selectSearch(searchParameter, WinWorkObjects.getSearchableField(getModelClass()),
                 fetchStart, fetchSize);
     }
 
     @Override
     public long selectSearchCount(SearchParameter searchParameter) {
-        return basicDao.selectSearchCount(searchParameter, PojoUtil.getSearchableField(getModelClass()));
+        return basicDao.selectSearchCount(searchParameter, WinWorkObjects.getSearchableField(getModelClass()));
     }
 
     @Override

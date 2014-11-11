@@ -9,7 +9,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.google.inject.Inject;
-import com.irwin13.winwork.lab.WebPage;
+import com.irwin13.winwork.lab.service.WebPage;
 
 /**
  * @author irwin Timestamp : 05/07/13 14:09 *

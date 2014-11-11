@@ -5,7 +5,7 @@ import com.irwin13.winwork.basic.annotations.FormReadExclude;
 import com.irwin13.winwork.basic.annotations.Searchable;
 import com.irwin13.winwork.basic.annotations.Sortable;
 import com.irwin13.winwork.basic.model.entity.WinWorkBasicEntity;
-import com.irwin13.winwork.basic.utilities.PojoUtil;
+import com.irwin13.winwork.basic.utilities.WinWorkObjects;
 
 import java.util.List;
 
@@ -66,7 +66,7 @@ public class AppRole extends WinWorkBasicEntity {
 
     @Override
     public String toString() {
-        return PojoUtil.beanToString(this, true);
+        return WinWorkObjects.beanToString(this, true);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.irwin13.winwork.lab;
+package com.irwin13.winwork.lab.service;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -31,8 +31,8 @@ import com.irwin13.winwork.basic.model.KeyValue;
 import com.irwin13.winwork.basic.model.SortParameter;
 import com.irwin13.winwork.basic.model.entity.WinWorkBasicEntity;
 import com.irwin13.winwork.basic.model.entity.app.AppUser;
-import com.irwin13.winwork.basic.utilities.PojoUtil;
-import com.irwin13.winwork.basic.utilities.StringUtil;
+import com.irwin13.winwork.basic.utilities.WinWorkObjects;
+import com.irwin13.winwork.basic.utilities.WinWorkString;
 import com.irwin13.winwork.basic.utilities.WinWorkVelocityUtil;
 import com.irwin13.winwork.lab.dao.EntityResolver;
 
@@ -151,7 +151,7 @@ public class WebPage {
 
     public String readParameterSearchKeyword(HttpServletRequest request) {
         String search = request.getParameter("searchKeyword");
-        search = StringUtil.setSearchKeyword(search);
+        search = WinWorkString.setSearchKeyword(search);
         return search;
     }
 
@@ -187,13 +187,13 @@ public class WebPage {
 
     public List<KeyValue> sortableField(Class<?> clazz) {
         List<KeyValue> result = new LinkedList<KeyValue>();
-        Map<String, Class<?>> sortableMap = PojoUtil.getSortableField(clazz);
+        Map<String, Class<?>> sortableMap = WinWorkObjects.getSortableField(clazz);
         for (Map.Entry<String, Class<?>> entry : sortableMap.entrySet()) {
             String display = entry.getKey();
             if (display.contains(".")) {
                 display = display.substring(display.lastIndexOf(".") + 1, display.length());
             }
-            KeyValue keyValue = new KeyValue(entry.getKey(), StringUtil.insertStringInCamelCase(true, display, " "));
+            KeyValue keyValue = new KeyValue(entry.getKey(), WinWorkString.insertStringInCamelCase(true, display, " "));
             result.add(keyValue);
         }
         return result;

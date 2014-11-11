@@ -13,7 +13,7 @@ import com.irwin13.winwork.basic.model.SearchParameter;
 import com.irwin13.winwork.basic.model.SortParameter;
 import com.irwin13.winwork.basic.model.entity.app.AppUser;
 import com.irwin13.winwork.basic.service.BasicEntityCommonService;
-import com.irwin13.winwork.basic.utilities.SecurityUtil;
+import com.irwin13.winwork.basic.utilities.WinWorkString;
 import com.irwin13.winwork.lab.dao.app.AppUserDao;
 import com.irwin13.winwork.lab.service.app.AppUserService;
 
@@ -76,7 +76,7 @@ public class AppUserServiceImp implements AppUserService {
         commonService.onInsert(model);
         if (Strings.isNullOrEmpty(model.getPassword())) {
             try {
-                model.setPassword(SecurityUtil.createHash(WinWorkConstants.DEFAULT_PASSWORD, SecurityUtil.DEFAULT_HASH));
+                model.setPassword(WinWorkString.createHash(WinWorkConstants.DEFAULT_PASSWORD, WinWorkString.DEFAULT_HASH));
             } catch (NoSuchAlgorithmException e) {
                 LOGGER.error(e.getLocalizedMessage(), e);
             }

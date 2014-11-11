@@ -456,7 +456,7 @@ public class RestClient {
         return bufferInput;
     }
 
-    public void downloadWithTemp(String url, OutputStream outputStream) throws IOException {
+    public void downloadWithTempFolder(String url, OutputStream outputStream) throws IOException {
         String tempDir = System.getProperty("java.io.tmpdir");
         long current = System.currentTimeMillis();
         File file = new File(tempDir + File.separator + String.valueOf(current));

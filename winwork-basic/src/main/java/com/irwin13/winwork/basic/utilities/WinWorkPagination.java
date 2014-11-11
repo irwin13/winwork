@@ -5,7 +5,7 @@ import com.irwin13.winwork.basic.model.PaginationModel;
 /**
  * @author irwin Timestamp : 12/04/13 17:45
  */
-public class PaginationUtil {
+public class WinWorkPagination {
 
     public static PaginationModel fourButtonPagination(long totalRecord, int start, int pageSize) {
 

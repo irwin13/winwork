@@ -1,7 +1,7 @@
 package com.irwin13.winwork.mybatis.test;
 
 import com.irwin13.winwork.basic.model.entity.app.AppSetting;
-import com.irwin13.winwork.basic.utilities.StringUtil;
+import com.irwin13.winwork.basic.utilities.WinWorkString;
 import com.irwin13.winwork.mybatis.dao.AppSettingDao;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
@@ -33,7 +33,7 @@ public class AppSettingInsertSteps {
     public void when() {
         AppSetting setting = new AppSetting();
         setting.setActive(Boolean.TRUE);
-        setting.setId(StringUtil.random32UUID());
+        setting.setId(WinWorkString.random32UUID());
         setting.setCode(code);
         setting.setCreateBy("TEST");
         setting.setLastUpdateBy("TEST");
