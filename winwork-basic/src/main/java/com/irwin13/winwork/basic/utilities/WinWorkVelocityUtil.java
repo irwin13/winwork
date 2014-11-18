@@ -137,7 +137,7 @@ public class WinWorkVelocityUtil {
     }
 
     public String camelCaseToReadable(String camelString, boolean upperCaseFirstLetter) {
-        return StringUtil.insertStringInCamelCase(upperCaseFirstLetter, camelString, " ");
+        return WinWorkString.insertStringInCamelCase(upperCaseFirstLetter, camelString, " ");
     }
 
     public String formatDateDefault(Date date) {

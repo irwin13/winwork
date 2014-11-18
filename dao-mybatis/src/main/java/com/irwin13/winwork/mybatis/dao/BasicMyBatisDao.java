@@ -4,7 +4,7 @@ import com.google.common.base.Preconditions;
 import com.irwin13.winwork.basic.annotations.MDCLog;
 import com.irwin13.winwork.basic.model.SearchParameter;
 import com.irwin13.winwork.basic.model.SortParameter;
-import com.irwin13.winwork.basic.utilities.PojoUtil;
+import com.irwin13.winwork.basic.utilities.WinWorkObjects;
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -123,7 +123,7 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
     @MDCLog
     public List<M> select(SqlSession session, M filter, SortParameter sortParameter) {
         if (filter == null) return Collections.EMPTY_LIST;
-        Map<String, Object> parameterMap = PojoUtil.beanToMap(filter, true);
+        Map<String, Object> parameterMap = WinWorkObjects.beanToMap(filter, true);
         if (sortParameter != null) {
             parameterMap.put("columnName", sortParameter.getColumnName());
             parameterMap.put("sortMethod", sortParameter.getSortMethod());
@@ -159,7 +159,7 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
         LOGGER.trace("Select Paged start = {}", fetchStart);
         LOGGER.trace("Select Paged size = {}", fetchSize);
 
-        Map<String, Object> parameterMap = PojoUtil.beanToMap(filter, true);
+        Map<String, Object> parameterMap = WinWorkObjects.beanToMap(filter, true);
         if (sortParameter != null) {
             parameterMap.put("columnName", sortParameter.getColumnName());
             parameterMap.put("sortMethod", sortParameter.getSortMethod());
@@ -195,7 +195,7 @@ public class BasicMyBatisDao<M extends Serializable, I extends Serializable> {
         long result = 0;
         if (filter == null) return result;
 
-        Map<String, Object> parameterMap = PojoUtil.beanToMap(filter, true);
+        Map<String, Object> parameterMap = WinWorkObjects.beanToMap(filter, true);
         parameterMap.put("columnName", null);
         parameterMap.put("sortMethod", null);
 

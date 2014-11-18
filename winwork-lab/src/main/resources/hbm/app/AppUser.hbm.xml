@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="com.irwin13.winwork.basic.model.entity.app">
-    <class name="AppUser" table="APP_USER" schema="winwork" lazy="false">
+    <class name="AppUser" table="APP_USER" schema="${app.database.user}" lazy="false">
 
         <id name="id" type="string" column="ID">
             <generator class="uuid" />
@@ -21,7 +21,7 @@
         <property name="firstName" column="FIRST_NAME" type="string" not-null="false"/>
         <property name="lastName" column="LAST_NAME" type="string" not-null="false"/>
 
-        <bag name="appRoleList" table="APP_USER_ROLE" fetch="join" schema="winwork">
+        <bag name="appRoleList" table="APP_USER_ROLE" fetch="join" schema="${app.database.user}">
             <key column="APP_USER_ID"/>
             <many-to-many column="APP_ROLE_ID" class="com.irwin13.winwork.basic.model.entity.app.AppRole"/>
         </bag>

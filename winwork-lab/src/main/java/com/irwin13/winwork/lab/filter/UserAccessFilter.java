@@ -22,7 +22,7 @@ import com.google.common.base.Strings;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.irwin13.winwork.basic.model.UserAccess;
-import com.irwin13.winwork.lab.WebSession;
+import com.irwin13.winwork.lab.service.WebSession;
 
 /**
  * @author irwin Timestamp : 12/04/13 18:24

@@ -10,7 +10,7 @@ import com.irwin13.winwork.basic.exception.WinWorkException;
 import com.irwin13.winwork.basic.model.SearchParameter;
 import com.irwin13.winwork.basic.model.SortParameter;
 import com.irwin13.winwork.basic.model.entity.app.AppSetting;
-import com.irwin13.winwork.basic.utilities.PojoUtil;
+import com.irwin13.winwork.basic.utilities.WinWorkObjects;
 import com.irwin13.winwork.hibernate.dao.BasicHibernateDao;
 import com.irwin13.winwork.lab.dao.app.AppSettingDao;
 
@@ -54,17 +54,17 @@ public class AppSettingDaoImp implements AppSettingDao {
 
     @Override
     public List<AppSetting> selectSearch(SearchParameter searchParameter) {
-        return basicDao.selectSearch(searchParameter, PojoUtil.getSearchableField(getModelClass()));
+        return basicDao.selectSearch(searchParameter, WinWorkObjects.getSearchableField(getModelClass()));
     }
 
     @Override
     public List<AppSetting> selectSearch(SearchParameter searchParameter, int start, int size) {
-        return basicDao.selectSearch(searchParameter, PojoUtil.getSearchableField(getModelClass()), start, size);
+        return basicDao.selectSearch(searchParameter, WinWorkObjects.getSearchableField(getModelClass()), start, size);
     }
 
     @Override
     public long selectSearchCount(SearchParameter searchParameter) {
-        return basicDao.selectSearchCount(searchParameter, PojoUtil.getSearchableField(getModelClass()));
+        return basicDao.selectSearchCount(searchParameter, WinWorkObjects.getSearchableField(getModelClass()));
     }
 
     @Override

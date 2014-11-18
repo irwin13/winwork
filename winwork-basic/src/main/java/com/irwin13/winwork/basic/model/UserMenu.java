@@ -1,6 +1,6 @@
 package com.irwin13.winwork.basic.model;
 
-import com.irwin13.winwork.basic.utilities.PojoUtil;
+import com.irwin13.winwork.basic.utilities.WinWorkObjects;
 
 import java.util.List;
 
@@ -93,6 +93,6 @@ public class UserMenu {
 
     @Override
     public String toString() {
-        return PojoUtil.beanToString(this, false);
+        return WinWorkObjects.beanToString(this, false);
     }
 }

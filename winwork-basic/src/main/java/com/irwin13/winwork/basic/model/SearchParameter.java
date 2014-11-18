@@ -1,6 +1,6 @@
 package com.irwin13.winwork.basic.model;
 
-import com.irwin13.winwork.basic.utilities.PojoUtil;
+import com.irwin13.winwork.basic.utilities.WinWorkObjects;
 
 /**
  * @author irwin Timestamp : 17/04/2014 19:07
@@ -20,6 +20,6 @@ public class SearchParameter extends SortParameter {
 
     @Override
     public String toString() {
-        return PojoUtil.beanToString(this, true);
+        return WinWorkObjects.beanToString(this, true);
     }
 }

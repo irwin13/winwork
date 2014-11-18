@@ -18,11 +18,11 @@ import com.irwin13.winwork.basic.model.SearchParameter;
 import com.irwin13.winwork.basic.model.SortParameter;
 import com.irwin13.winwork.basic.model.entity.WinWorkBasicEntity;
 import com.irwin13.winwork.basic.service.WinWorkService;
-import com.irwin13.winwork.basic.utilities.PaginationUtil;
+import com.irwin13.winwork.basic.utilities.WinWorkPagination;
 import com.irwin13.winwork.basic.validator.AbstractValidator;
 import com.irwin13.winwork.basic.validator.ValidationStatus;
 import com.irwin13.winwork.basic.validator.ValidatorResult;
-import com.irwin13.winwork.lab.WebPage;
+import com.irwin13.winwork.lab.service.WebPage;
 
 /**
  * @author irwin Timestamp : 23/04/13 18:03
@@ -74,7 +74,7 @@ public abstract class CrudController {
         List<? extends WinWorkBasicEntity> list = service.selectSearch(searchParameter, pageStart, pageSize);
         long total = service.selectSearchCount(searchKeyword);
 
-        PaginationModel pagingModel = PaginationUtil.fourButtonPagination(total, pageStart, pageSize);
+        PaginationModel pagingModel = WinWorkPagination.fourButtonPagination(total, pageStart, pageSize);
 
         Map<String, Object> objectMap = webPage.mapWithLoginUser(request);
         objectMap.put("list", list);

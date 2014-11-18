@@ -21,8 +21,8 @@ import com.google.common.base.Strings;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.irwin13.winwork.basic.config.WinWorkConfig;
-import com.irwin13.winwork.basic.utilities.StringUtil;
-import com.irwin13.winwork.lab.WebSession;
+import com.irwin13.winwork.basic.utilities.WinWorkString;
+import com.irwin13.winwork.lab.service.WebSession;
 
 /**
  * @author irwin Timestamp : 12/04/13 18:24
@@ -59,7 +59,7 @@ public class UserSessionFilter implements Filter {
 
         String cookieId = webSession.getCookieId(request);
         if (Strings.isNullOrEmpty(cookieId)) {
-            cookieId = StringUtil.random32UUID();
+            cookieId = WinWorkString.random32UUID();
             LOGGER.debug("missing cookie, creating new one with value = {}", cookieId);
         }
 

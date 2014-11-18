@@ -17,6 +17,12 @@
                 <profile>irwin.properties</profile>
             </properties>
         </profile>
+        <profile>
+            <id>dev-prasetia</id>
+            <properties>
+                <profile>dev-prasetia.properties</profile>
+            </properties>
+        </profile>                
     </profiles>
 
     <build>

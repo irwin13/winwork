@@ -28,7 +28,7 @@ import com.irwin13.winwork.basic.WinWorkConstants;
 import com.irwin13.winwork.basic.model.SortParameter;
 import com.irwin13.winwork.basic.model.entity.app.AppRole;
 import com.irwin13.winwork.basic.model.entity.app.AppUser;
-import com.irwin13.winwork.basic.utilities.SecurityUtil;
+import com.irwin13.winwork.basic.utilities.WinWorkString;
 import com.irwin13.winwork.basic.validator.AbstractValidator;
 import com.irwin13.winwork.lab.controller.CrudController;
 import com.irwin13.winwork.lab.service.app.AppRoleService;
@@ -145,7 +145,7 @@ public class AppUserController extends CrudController {
             AppUser appUser = appUserService.getById(id, true);
             if (appUser != null) {
                 webPage.setUserLogged(request, appUser, true);
-                appUser.setPassword(SecurityUtil.createHash(WinWorkConstants.DEFAULT_PASSWORD, SecurityUtil.DEFAULT_HASH));
+                appUser.setPassword(WinWorkString.createHash(WinWorkConstants.DEFAULT_PASSWORD, WinWorkString.DEFAULT_HASH));
                 appUserService.update(appUser);
                 LOGGER.debug("user {} password has been reset ", appUser.getUsername());
             }

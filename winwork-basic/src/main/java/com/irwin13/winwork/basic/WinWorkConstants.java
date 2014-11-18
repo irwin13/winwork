@@ -49,11 +49,11 @@ public final class WinWorkConstants {
     public static final String BLANK_ERROR = "error.blank";
     public static final String BLANK_CONFIG = "config.blank";
 
-    public static final String USER_SYSTEM = "SYSTEM";
+    public static final String USER_SYSTEM = "winwork";
     public static final String DEFAULT_LANG = "en";
     public static final String DEFAULT_PASSWORD = "123";
 
-    public static final String WINWORK_NODE_NAME = "winWork.nodeName";
+    public static final String WINWORK_NODE_NAME = "winwork.node";
     public static final String NODE_NAME_MISSING = "single-node";
 
 }

@@ -1,7 +1,7 @@
 package com.irwin13.winwork.mybatis.test;
 
 import com.irwin13.winwork.basic.model.entity.app.AppSetting;
-import com.irwin13.winwork.basic.utilities.StringUtil;
+import com.irwin13.winwork.basic.utilities.WinWorkString;
 import com.irwin13.winwork.mybatis.dao.AppSettingDao;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
@@ -37,7 +37,7 @@ public class BatchUpdateSteps {
         List<AppSetting> appSettingList = new LinkedList<AppSetting>();
         for (int i = 0; i < loop; i++) {
             AppSetting setting = podamFactory.manufacturePojo(AppSetting.class);
-            setting.setId(StringUtil.random32UUID());
+            setting.setId(WinWorkString.random32UUID());
             setting.setCreateDate(null);
             setting.setLastUpdateDate(null);
             setting.setCode("TEST");

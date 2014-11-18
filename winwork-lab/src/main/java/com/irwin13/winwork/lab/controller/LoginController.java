@@ -28,9 +28,9 @@ import com.irwin13.winwork.basic.model.UserAccess;
 import com.irwin13.winwork.basic.model.UserMenu;
 import com.irwin13.winwork.basic.model.entity.app.AppRole;
 import com.irwin13.winwork.basic.model.entity.app.AppUser;
-import com.irwin13.winwork.basic.utilities.SecurityUtil;
-import com.irwin13.winwork.lab.WebPage;
-import com.irwin13.winwork.lab.WebSession;
+import com.irwin13.winwork.basic.utilities.WinWorkString;
+import com.irwin13.winwork.lab.service.WebPage;
+import com.irwin13.winwork.lab.service.WebSession;
 import com.irwin13.winwork.lab.service.app.AppPermissionService;
 import com.irwin13.winwork.lab.service.app.AppRoleService;
 import com.irwin13.winwork.lab.service.app.AppUserService;
@@ -79,7 +79,7 @@ public class LoginController {
 
         filter.setUsername(username);
         try {
-            filter.setPassword(SecurityUtil.createHash(password, SecurityUtil.DEFAULT_HASH));
+            filter.setPassword(WinWorkString.createHash(password, WinWorkString.DEFAULT_HASH));
         } catch (NoSuchAlgorithmException e) {
             LOGGER.error(e.getLocalizedMessage(), e);
         }

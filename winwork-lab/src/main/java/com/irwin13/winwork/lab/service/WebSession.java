@@ -1,4 +1,4 @@
-package com.irwin13.winwork.lab;
+package com.irwin13.winwork.lab.service;
 
 import java.io.IOException;
 import java.util.HashMap;

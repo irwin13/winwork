@@ -1,7 +1,7 @@
 package com.irwin13.winwork.basic.model;
 
 import com.google.common.base.Objects;
-import com.irwin13.winwork.basic.utilities.PojoUtil;
+import com.irwin13.winwork.basic.utilities.WinWorkObjects;
 
 /**
  * @author irwin Timestamp : 04/11/13 17:02
@@ -64,6 +64,6 @@ public class UserAccess {
 
     @Override
     public String toString() {
-        return PojoUtil.beanToString(this, false);
+        return WinWorkObjects.beanToString(this, false);
     }
 }

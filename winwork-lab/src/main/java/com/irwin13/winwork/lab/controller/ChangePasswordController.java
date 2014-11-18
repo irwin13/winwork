@@ -21,9 +21,9 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.irwin13.winwork.basic.config.WinWorkConfig;
 import com.irwin13.winwork.basic.model.entity.app.AppUser;
-import com.irwin13.winwork.basic.utilities.SecurityUtil;
-import com.irwin13.winwork.lab.WebPage;
-import com.irwin13.winwork.lab.WebSession;
+import com.irwin13.winwork.basic.utilities.WinWorkString;
+import com.irwin13.winwork.lab.service.WebPage;
+import com.irwin13.winwork.lab.service.WebSession;
 import com.irwin13.winwork.lab.service.app.AppUserService;
 
 @Path("/changePassword")
@@ -56,7 +56,7 @@ public class ChangePasswordController {
         String hashOldPassword = null;
 
         try {
-            hashOldPassword = SecurityUtil.createHash(oldPassword, SecurityUtil.DEFAULT_HASH);
+            hashOldPassword = WinWorkString.createHash(oldPassword, WinWorkString.DEFAULT_HASH);
         }
         catch (NoSuchAlgorithmException e) {
             LOGGER.error(e.getLocalizedMessage(), e);
@@ -64,7 +64,7 @@ public class ChangePasswordController {
 
         if (hashOldPassword.equalsIgnoreCase(appUser.getPassword())) {
             AppUser user = appUserService.getById(appUser.getId(), true);
-            user.setPassword(SecurityUtil.createHash(newPassword, SecurityUtil.DEFAULT_HASH));
+            user.setPassword(WinWorkString.createHash(newPassword, WinWorkString.DEFAULT_HASH));
             appUserService.update(user);
             String webContext = configuration.getString("web.context");
             LOGGER.debug("webContext to redirect = {}", webContext);
