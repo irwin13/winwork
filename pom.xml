@@ -16,6 +16,8 @@
 	
     <modules>
         <module>winwork-core</module>
+        <module>winwork-entity</module>
+        <module>winwork-hibernate</module>
     </modules>
 
     <properties>

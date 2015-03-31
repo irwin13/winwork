@@ -8,6 +8,7 @@ import java.util.Date;
  */
 public abstract class WinWorkEntity extends DecoratedToString implements Serializable {
 
+    public abstract String entityName();
 
     private String id;
     private Boolean active;
