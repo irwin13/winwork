@@ -2,54 +2,23 @@ package com.irwin13.winwork.core;
 
 import com.irwin13.winwork.core.model.DecoratedToString;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Created by irwin on 30/03/2015.
  */
 public class WinWorkConfiguration extends DecoratedToString {
 
-    private String velocityLoaderType;
-    private boolean velocityActivateCache;
-    private int velocityModificationCheckInterval;
-    private String velocityRootResource;
-
+    @NotNull
     private String logFile;
-    private int logFileMaxKeep;
+    @NotNull
+    private Integer logFileMaxKeep;
+    @NotNull
     private String logFileMaxSize;
+    @NotNull
     private String logLevel;
-
+    @NotNull
     private String assetsRootUrl;
-
-    public String getVelocityLoaderType() {
-        return velocityLoaderType;
-    }
-
-    public void setVelocityLoaderType(String velocityLoaderType) {
-        this.velocityLoaderType = velocityLoaderType;
-    }
-
-    public boolean isVelocityActivateCache() {
-        return velocityActivateCache;
-    }
-
-    public void setVelocityActivateCache(boolean velocityActivateCache) {
-        this.velocityActivateCache = velocityActivateCache;
-    }
-
-    public int getVelocityModificationCheckInterval() {
-        return velocityModificationCheckInterval;
-    }
-
-    public void setVelocityModificationCheckInterval(int velocityModificationCheckInterval) {
-        this.velocityModificationCheckInterval = velocityModificationCheckInterval;
-    }
-
-    public String getVelocityRootResource() {
-        return velocityRootResource;
-    }
-
-    public void setVelocityRootResource(String velocityRootResource) {
-        this.velocityRootResource = velocityRootResource;
-    }
 
     public String getLogFile() {
         return logFile;

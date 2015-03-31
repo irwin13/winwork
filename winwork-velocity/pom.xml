@@ -10,8 +10,8 @@
         <version>2.0-BETA</version>
     </parent>
 
-    <artifactId>winwork-entity</artifactId>
-    <name>WinWork Entity</name>
+    <artifactId>winwork-velocity</artifactId>
+    <name>WinWork Velocity</name>
     <packaging>jar</packaging>
 
     <dependencies>
@@ -20,5 +20,17 @@
             <artifactId>winwork-core</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <!-- VELOCITY -->
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>1.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-tools</artifactId>
+            <version>2.0</version>
+        </dependency>
     </dependencies>
+    
 </project>
