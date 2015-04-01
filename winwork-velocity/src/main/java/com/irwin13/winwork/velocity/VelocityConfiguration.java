@@ -1,21 +1,30 @@
 package com.irwin13.winwork.velocity;
 
-import com.irwin13.winwork.core.model.DecoratedToString;
+import com.irwin13.winwork.core.WinWorkConfiguration;
 
 import javax.validation.constraints.NotNull;
 
 /**
  * Created by irwin on 31/03/2015.
  */
-public class VelocityConfiguration extends DecoratedToString {
+public class VelocityConfiguration extends WinWorkConfiguration {
 
     @NotNull
     private String velocityLoaderType;
+
     private boolean velocityActivateCache;
+
     @NotNull
     private Integer velocityModificationCheckInterval;
+
     @NotNull
     private String velocityRootResource;
+
+    @NotNull
+    private String assetsRootUrl;
+
+    @NotNull
+    private String contextRootUrl;
 
     public String getVelocityLoaderType() {
         return velocityLoaderType;
@@ -33,11 +42,11 @@ public class VelocityConfiguration extends DecoratedToString {
         this.velocityActivateCache = velocityActivateCache;
     }
 
-    public int getVelocityModificationCheckInterval() {
+    public Integer getVelocityModificationCheckInterval() {
         return velocityModificationCheckInterval;
     }
 
-    public void setVelocityModificationCheckInterval(int velocityModificationCheckInterval) {
+    public void setVelocityModificationCheckInterval(Integer velocityModificationCheckInterval) {
         this.velocityModificationCheckInterval = velocityModificationCheckInterval;
     }
 
@@ -47,5 +56,21 @@ public class VelocityConfiguration extends DecoratedToString {
 
     public void setVelocityRootResource(String velocityRootResource) {
         this.velocityRootResource = velocityRootResource;
+    }
+
+    public String getAssetsRootUrl() {
+        return assetsRootUrl;
+    }
+
+    public void setAssetsRootUrl(String assetsRootUrl) {
+        this.assetsRootUrl = assetsRootUrl;
+    }
+
+    public String getContextRootUrl() {
+        return contextRootUrl;
+    }
+
+    public void setContextRootUrl(String contextRootUrl) {
+        this.contextRootUrl = contextRootUrl;
     }
 }

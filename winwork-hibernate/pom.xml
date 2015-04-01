@@ -17,13 +17,29 @@
     <dependencies>
         <dependency>
             <groupId>com.irwin13</groupId>
+            <artifactId>winwork-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.irwin13</groupId>
             <artifactId>winwork-entity</artifactId>
-            <version>2.0-BETA</version>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jdbc</artifactId>
+            <version>7.0.59</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>4.3.8.Final</version>
+            <version>4.2.18.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>4.2.18.Final</version>
         </dependency>
 
     </dependencies>
