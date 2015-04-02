@@ -21,12 +21,6 @@ public class VelocityWrapper {
     public static final String CLASSPATH = "classpath";
     public static final String URL = "url";
 
-    private final VelocityConfiguration config;
-
-    public VelocityWrapper(VelocityConfiguration config) {
-        this.config = config;
-    }
-
     private static boolean initialized = false;
 
     public static Properties initVelocity(String type, String activateCache, String modificationCheckInterval, String
@@ -143,14 +137,14 @@ public class VelocityWrapper {
         return writer.toString();
     }
 
-    public String generateWebPage(String vmName, Map<String, Object> velocityContext) {
+    public String generateWebPage(String vmName, VelocityConfiguration config, Map<String, Object> velocityContext) {
 
         if (!initialized) {
             throw new RuntimeException("Velocity not initialized");
         }
 
         VelocityContext context = commonVelocityContext();
-        webPageVelocityContext(context);
+        webPageVelocityContext(context, config);
         Writer writer = new StringWriter();
 
         if (velocityContext != null && !velocityContext.isEmpty()) {
@@ -173,7 +167,7 @@ public class VelocityWrapper {
         return context;
     }
 
-    private VelocityContext webPageVelocityContext(VelocityContext context) {
+    private VelocityContext webPageVelocityContext(VelocityContext context, VelocityConfiguration config) {
         context.put("assetsRootUrl", config.getAssetsRootUrl());
         context.put("contextRootUrl", config.getContextRootUrl());
         return context;

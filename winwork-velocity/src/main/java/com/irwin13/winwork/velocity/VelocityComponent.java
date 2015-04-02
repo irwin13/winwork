@@ -11,8 +11,7 @@ public class VelocityComponent implements WinWorkComponent<VelocityWrapper> {
 
     @Override
     public VelocityWrapper get(WinWorkConfiguration config) throws WinWorkException {
-        VelocityConfiguration velocityConfiguration = (VelocityConfiguration) config;
-        return new VelocityWrapper(velocityConfiguration);
+        return new VelocityWrapper();
     }
 
     @Override

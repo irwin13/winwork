@@ -10,6 +10,7 @@ import java.util.Locale;
  */
 public final class WinWorkConstants {
 
+    public static final String WINWORK_CONFIG_FILE = "winWork.configFile";
     public static final String FOLDER_SEPARATOR = File.separator;
 
     public static final String UTF_8 = "UTF-8";

@@ -20,6 +20,8 @@
         <module>winwork-velocity</module>
         <module>winwork-entity</module>
         <module>winwork-hibernate</module>
+        <module>winwork-servlet</module>
+        <module>winwork-jersey</module>
     </modules>
 
     <properties>
@@ -35,6 +37,7 @@
         <h2.version>1.4.185</h2.version>
         <assertj.version>1.7.1</assertj.version>
         <mockito.version>1.10.19</mockito.version>
+        <jackson.version>2.4.4</jackson.version>
     </properties>
 
     <developers>

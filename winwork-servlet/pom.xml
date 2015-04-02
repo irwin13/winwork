@@ -10,13 +10,9 @@
         <version>2.0-BETA</version>
     </parent>
 
-    <artifactId>winwork-jersey</artifactId>
-    <name>WinWork Jersey</name>
+    <artifactId>winwork-servlet</artifactId>
+    <name>WinWork Servlet</name>
     <packaging>jar</packaging>
-
-    <properties>
-        <jersey.version>2.17</jersey.version>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -28,30 +24,6 @@
             <groupId>com.irwin13</groupId>
             <artifactId>winwork-entity</artifactId>
             <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.irwin13</groupId>
-            <artifactId>winwork-velocity</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.irwin13</groupId>
-            <artifactId>winwork-servlet</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <!-- WEB -->
-        <dependency>
-            <groupId>org.glassfish.jersey.containers</groupId>
-            <!-- if your container implements Servlet API older than 3.0,
-            use "jersey-container-servlet-core"  -->
-            <artifactId>jersey-container-servlet</artifactId>
-            <version>${jersey.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.jersey.core</groupId>
-            <artifactId>jersey-client</artifactId>
-            <version>${jersey.version}</version>
         </dependency>
 
         <dependency>

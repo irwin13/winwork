@@ -1,6 +1,7 @@
 package com.irwin13.winwork.core;
 
 import com.google.common.base.Strings;
+import com.irwin13.winwork.core.model.PagingModel;
 import org.apache.commons.lang3.StringUtils;
 
 import java.text.DecimalFormat;
@@ -162,6 +163,35 @@ public final class WinWorkUtil {
         if(size <= 0) return "0";
         int digitGroups = (int) (Math.log10(size)/Math.log10(1024));
         return READABLE_FORMAT.format(size/Math.pow(1024, digitGroups)) + " " + BYTES_UNITS[digitGroups];
+    }
+
+    public static PagingModel generatePagingModel(long totalRecord, int start, int pageSize) {
+
+        PagingModel pagingModel = new PagingModel();
+        pagingModel.setTotalRecord(totalRecord);
+
+        totalRecord = totalRecord - 1;
+        if (totalRecord < 0) totalRecord = 0;
+
+        int totalPage = (int) (totalRecord + pageSize) / pageSize;
+        int currentPage = (start + pageSize) / pageSize;
+
+        pagingModel.setTotalPage(totalPage);
+        pagingModel.setTotalPageMin1(totalPage - 1);
+        pagingModel.setCurrentPage(currentPage);
+
+        int previous = 0;
+        if (start != 0) {
+            previous = start - pageSize;
+        }
+
+        int next = start + pageSize;
+
+        pagingModel.setStart(start);
+        pagingModel.setNext(next);
+        pagingModel.setPrevious(previous);
+
+        return pagingModel;
     }
 
 }
