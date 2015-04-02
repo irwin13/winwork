@@ -1,8 +1,11 @@
 package com.irwin13.winwork.hibernate;
 
 import com.google.common.base.Strings;
+import com.irwin13.winwork.core.WinWorkConstants;
+import com.irwin13.winwork.core.WinWorkUtil;
 import com.irwin13.winwork.core.model.SortParameter;
 import com.irwin13.winwork.core.model.WinWorkEntity;
+
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.*;
 import org.slf4j.Logger;
@@ -432,7 +435,7 @@ public abstract class WinWorkHibernateDao<M extends Serializable, I extends Seri
 
         Class<? extends Object> clazz = model.getClass();
 
-        final String modelName = StringUtil.lowerCaseFirstLetter(clazz.getSimpleName());
+        final String modelName = WinWorkUtil.lowerCaseFirstLetter(clazz.getSimpleName());
 
         Method[] methods = (includeSuperClass) ? clazz.getMethods() : clazz.getDeclaredMethods();
         for (int i = 0; i < methods.length; i++) {
@@ -442,7 +445,7 @@ public abstract class WinWorkHibernateDao<M extends Serializable, I extends Seri
                     && !method.getName().equalsIgnoreCase("getClass")) {
                 try {
                     if (method.invoke(model, ((Object[])null)) != null) {
-                        String propertyName = PojoUtil.getFieldNameFromGetMethod(method.getName());
+                        String propertyName = WinWorkUtil.getFieldNameFromGetMethod(method.getName());
                         if (!exceptionFields.contains(propertyName)) {
                             if (i == methods.length - 1) {
                                 filter.append(modelName + "." + propertyName + "=:" + propertyName);
@@ -531,7 +534,7 @@ public abstract class WinWorkHibernateDao<M extends Serializable, I extends Seri
                                           Map<String, Class<?>> searchProperties,
                                           boolean isSelectCount, SortParameter sortParameter) {
         StringBuilder query = new StringBuilder();
-        final String modelName = StringUtil.lowerCaseFirstLetter(model.getSimpleName());
+        final String modelName = WinWorkUtil.lowerCaseFirstLetter(model.getSimpleName());
 
         if (isSelectCount) {
             query.append("SELECT COUNT(" + modelName + ") FROM " + model.getName() + " " + modelName);
@@ -616,13 +619,13 @@ public abstract class WinWorkHibernateDao<M extends Serializable, I extends Seri
                 }
                 index++;
             }
-            if (WinWorkBasicEntity.class.isAssignableFrom(model)) {
+            if (WinWorkEntity.class.isAssignableFrom(model)) {
                 query.append(" ) AND " + modelName + ".active = :STATUS_ACTIVE ");
             } else {
                 query.append(" ) ");
             }
         } else {
-            if (WinWorkBasicEntity.class.isAssignableFrom(model)) {
+            if (WinWorkEntity.class.isAssignableFrom(model)) {
                 query.append(" WHERE " + modelName + ".active = :STATUS_ACTIVE ");
             }
         }
@@ -668,7 +671,7 @@ public abstract class WinWorkHibernateDao<M extends Serializable, I extends Seri
         Class<? extends Object> clazz = model.getClass();
 
         // lower case the first letter of the class name
-        final String modelName = StringUtil.lowerCaseFirstLetter(clazz.getSimpleName());
+        final String modelName = WinWorkUtil.lowerCaseFirstLetter(clazz.getSimpleName());
 
         if (isSelectCount) {
             query.insert(0, "SELECT COUNT(" + modelName + ") FROM " + clazz.getName() + " " + modelName);
@@ -702,7 +705,7 @@ public abstract class WinWorkHibernateDao<M extends Serializable, I extends Seri
         StringBuilder query = new StringBuilder();
 
         // lower case the first letter of the class name
-        final String modelName = StringUtil.lowerCaseFirstLetter(model.getSimpleName());
+        final String modelName = WinWorkUtil.lowerCaseFirstLetter(model.getSimpleName());
 
         if (isSelectCount) {
             query.insert(0, "SELECT COUNT(" + modelName + ") FROM " + model.getName() + " " + modelName);
