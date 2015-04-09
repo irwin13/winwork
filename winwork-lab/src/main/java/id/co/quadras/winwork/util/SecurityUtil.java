@@ -36,4 +36,7 @@ public class SecurityUtil {
         return hash.toString();
     }
 
+    public static void main(String[] args) throws Exception {
+        System.out.println(createHash("123", null));
+    }
 }

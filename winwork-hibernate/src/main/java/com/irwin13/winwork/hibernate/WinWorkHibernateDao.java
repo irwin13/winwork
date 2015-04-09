@@ -62,6 +62,7 @@ public abstract class WinWorkHibernateDao<M extends Serializable, I extends Seri
         } catch (RuntimeException e) {
             logger.error(e.getLocalizedMessage(), e);
             if (tx != null) tx.rollback();
+            throw e;
         } finally {
             closeSession(session);
         }
@@ -85,6 +86,7 @@ public abstract class WinWorkHibernateDao<M extends Serializable, I extends Seri
         } catch (RuntimeException e) {
             logger.error(e.getLocalizedMessage(), e);
             if (tx != null) tx.rollback();
+            throw e;
         } finally {
             closeSession(session);
         }
@@ -105,6 +107,7 @@ public abstract class WinWorkHibernateDao<M extends Serializable, I extends Seri
         } catch (RuntimeException e) {
             logger.error(e.getLocalizedMessage(), e);
             if (tx != null) tx.rollback();
+            throw e;
         } finally {
             closeSession(session);
         }
@@ -125,6 +128,7 @@ public abstract class WinWorkHibernateDao<M extends Serializable, I extends Seri
         } catch (RuntimeException e) {
             logger.error(e.getLocalizedMessage(), e);
             if (tx != null) tx.rollback();
+            throw e;
         } finally {
             closeSession(session);
         }
@@ -145,6 +149,7 @@ public abstract class WinWorkHibernateDao<M extends Serializable, I extends Seri
         } catch (RuntimeException e) {
             logger.error(e.getLocalizedMessage(), e);
             if (tx != null) tx.rollback();
+            throw e;
         } finally {
             closeSession(session);
         }
@@ -178,6 +183,7 @@ public abstract class WinWorkHibernateDao<M extends Serializable, I extends Seri
             list = select(session, filter, sortParameter);
         } catch (RuntimeException e) {
             logger.error(e.getLocalizedMessage(), e);
+            throw e;
         } finally {
             closeSession(session);
         }
@@ -213,6 +219,7 @@ public abstract class WinWorkHibernateDao<M extends Serializable, I extends Seri
             list = selectPaged(session, filter, sortParameter, start, size);
         } catch (RuntimeException e) {
             logger.error(e.getLocalizedMessage(), e);
+            throw e;
         } finally {
             closeSession(session);
         }
@@ -243,6 +250,7 @@ public abstract class WinWorkHibernateDao<M extends Serializable, I extends Seri
             result = selectCount(session, filter);
         } catch (RuntimeException e) {
             logger.error(e.getLocalizedMessage(), e);
+            throw e;
         } finally {
             closeSession(session);
         }
@@ -289,6 +297,7 @@ public abstract class WinWorkHibernateDao<M extends Serializable, I extends Seri
             list = selectSearch(session, searchKeyword, searchProperties, sortParameter);
         } catch (RuntimeException e) {
             logger.error(e.getLocalizedMessage(), e);
+            throw e;
         } finally {
             closeSession(session);
         }
@@ -329,6 +338,7 @@ public abstract class WinWorkHibernateDao<M extends Serializable, I extends Seri
             result = selectSearchCount(session, searchKeyword, searchProperties);
         } catch (RuntimeException e) {
             logger.error(e.getLocalizedMessage(), e);
+            throw e;
         } finally {
             closeSession(session);
         }
@@ -378,6 +388,7 @@ public abstract class WinWorkHibernateDao<M extends Serializable, I extends Seri
             list = selectSearchPaged(session, searchKeyword, searchProperties, sortParameter, start, size);
         } catch (RuntimeException e) {
             logger.error(e.getLocalizedMessage(), e);
+            throw e;
         } finally {
             closeSession(session);
         }
@@ -402,6 +413,7 @@ public abstract class WinWorkHibernateDao<M extends Serializable, I extends Seri
             result = getById(session, id, init);
         } catch (RuntimeException e) {
             logger.error(e.getLocalizedMessage(), e);
+            throw e;
         } finally {
             closeSession(session);
         }
@@ -418,6 +430,7 @@ public abstract class WinWorkHibernateDao<M extends Serializable, I extends Seri
             list = selectNativeSQL(session, sql);
         } catch (RuntimeException e) {
             logger.error(e.getLocalizedMessage(), e);
+            throw e;
         } finally {
             closeSession(session);
         }

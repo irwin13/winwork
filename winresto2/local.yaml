@@ -1,0 +1,29 @@
+# LOGGING
+logging:
+    logFile: logs/winresto.log
+    # in days
+    logFileMaxKeep: 2
+    # example 10MB or 1GB
+    logFileMaxSize: 5MB
+    # DEBUG, INFO, ERROR or else
+    logLevel: DEBUG
+
+# VELOCITY
+velocity:
+    velocityLoaderType: CLASSPATH
+    velocityActivateCache: false
+    # in seconds, minus value means disable check
+    velocityModificationCheckInterval: -1
+    #required only by URL and FILE
+    # URL
+    velocityRootResource: http://localhost:9800/vita/
+    # FILE
+    #velocityRootResource: ../enumbr-assets/vita/
+
+# HIBERNATE
+hibernate:
+    driverClass: com.mysql.jdbc.Driver
+    jdbcUrl: jdbc:mysql://localhost:3306/winresto
+    username: root
+    password:
+    validationQuery: SELECT 1 FROM DUAL

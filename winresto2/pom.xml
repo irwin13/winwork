@@ -38,6 +38,15 @@
                 <flyway.password>root</flyway.password>
             </properties>
         </profile>
+        <profile>
+            <id>db-migrate-thinkpad</id>
+            <properties>
+                <flyway.url>jdbc:mysql://localhost:3306/winresto</flyway.url>
+                <flyway.driver>com.mysql.jdbc.Driver</flyway.driver>
+                <flyway.user>root</flyway.user>
+                <flyway.password></flyway.password>
+            </properties>
+        </profile>
     </profiles>
     <build>
         <plugins>
