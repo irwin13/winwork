@@ -1,5 +1,7 @@
 package com.irwin13.winwork.basic.model.entity;
 
+import com.irwin13.winwork.basic.utilities.PojoUtil;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -81,4 +83,8 @@ public abstract class WinWorkBasicEntity implements Serializable {
         return id != null ? id.hashCode() : 0;
     }
 
+    @Override
+    public String toString() {
+        return PojoUtil.beanToString(this, true);
+    }
 }
